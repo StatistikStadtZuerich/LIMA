@@ -1,0 +1,193 @@
+/* Body */
+body {
+  background-color: white;
+}
+
+/* Sidebar Panel */
+.well {
+  background-color: white;
+  border-color: #0F05A0;
+}
+
+.shiny-input-container:not(.shiny-input-container-inline) {
+  width: 600px;
+  max-width: 100%;
+}
+
+
+/* Buttons */
+.btn {
+  background-color: #0F05A0;
+  border-color: #0F05A0;
+  color: white;
+  transition-duration: 0.4s;
+  font-size: 12px;
+}
+
+.btn:hover {
+  background-color: white;
+  border-color: #0F05A0;
+  color: #0F05A0;
+}
+
+.btn:focus {
+  background-color: #0F05A0;
+  border-color: #0F05A0;
+  color: white;
+  transition-duration: 0.4s;
+}
+
+.btn:active {
+  background-color: #0F05A0;
+  border-color: #0F05A0;
+  color: white;
+}
+
+.downloadLinkText {
+  margin-left: 5px;
+}
+
+.downloadLink {
+  color: #0F05A0;
+  transition-duration: 0.4s;
+  margin-bottom: 5px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.radio {
+  font-family: "Arial", sans-serif;
+}
+
+.control-label {
+  color: #0F05A0;
+}
+
+.autocomplete {
+  color: #0F05A0;
+}
+
+
+/* Headings */
+h2 {
+  font-family: "Arial Black", sans-serif;
+  color: #0F05A0;
+}
+
+h5 {
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #0F05A0;
+}
+
+.title_div {
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: #0F05A0;
+  margin-top: -5Spx;
+}
+
+.subtitle_div {
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  color: #000000;
+}
+
+.subSubtitle_div {
+  font-family: "Arial", sans-serif;
+  font-size: 12px;
+  color: #000000;
+}
+
+.tableTitle_div {
+  font-family: "Arial", sans-serif;
+  font-size: 12px;
+  color: #0F05A0;
+  margin-top: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.info_div {
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  color: #0F05A0
+}
+
+/* Table */
+.shiny-html-output table td {
+  font-size: 80%;
+}
+  
+
+/* Autocomplete Drop Down Menu */
+.autocomplete-items div {
+  border-bottom: 0px;
+ }
+ 
+.autocomplete-items div:hover {
+  background-color: #f6f6f6;
+ }
+ 
+.autocomplete-active {
+  background-color: #f6f6f6 !important; 
+  color: black;
+}
+ 
+ /* Drop Downs */
+.option[data-value = "Ganze Stadt"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 1"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 2"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 3"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 4"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 5"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 6"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 7"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 8"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 9"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 10"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 11"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 12"] {
+  font-weight: bold !important;
+}
