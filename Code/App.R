@@ -10,14 +10,14 @@ library(gtools)
 library(xlsx)
 
 ### Data
-source("O:/Projekte/Bodenpreise/6_Shiny/01_Code/DataLoad.R")
+source("DataLoad.R")
 
 #GUI
 ui <- fluidPage(
   
   
   #CSS
-  includeCSS("O:/Projekte/Bodenpreise/6_Shiny/01_Code/sszTheme.css"),
+  includeCSS("sszTheme.css"),
   
   #Title
   titlePanel("Abfragetool LIMA"),
