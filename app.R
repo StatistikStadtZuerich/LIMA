@@ -12,60 +12,60 @@ library(xlsx)
 ### Data
 source("DataLoad.R", local = TRUE)
 
-###GUI
+### GUI
 ui <- fluidPage(
 	
-	#CSS
+	# CSS
 	includeCSS("sszTheme.css"),
 	
 	br(),
 	
-	#App Selection
-	radioButtons(inputId="query", 
-							 label="Wählen Sie eine Abfrage", 
-							 choices=c("Abfrage 1: Zeitreihen nach Bauzonen für ganze Stadt und Teilgebiete",
-							 					 "Abfrage 2: Zeitreihen für Quartiere und Bauzonen über Adresseingabe"),
-							 character(0)),
+	# App Selection
+	radioButtons(inputId="query",
+	             label="Wählen Sie eine Abfrage",
+	             choices=c("Abfrage 1: Zeitreihen nach Bauzonen für ganze Stadt und Teilgebiete",
+	                       "Abfrage 2: Zeitreihen für Quartiere und Bauzonen über Adresseingabe"),
+	             character(0)),
 	br(),
 	
-	#App1: 
+	# App 1: 
 	conditionalPanel(
 		condition = 'input.query == "Abfrage 1: Zeitreihen nach Bauzonen für ganze Stadt und Teilgebiete"',
 		sidebarLayout(
 			
-			#Sidebar (Query)
+			# Sidebar (Query)
 			sidebarPanel(
 				
-				#Area
-				selectInput("area", 
-										"Gebietsauswahl",
-										choices = c(unique(zones$GebietLang))
+				# Area
+				selectInput("area",
+				            "Gebietsauswahl",
+				            choices = c(unique(zones$GebietLang))
 				),
 				
-				#Price
-				radioButtons("price", 
-										 "Preise",
+				# Price
+				radioButtons("price",
+				             "Preise",
 										 choices = c(unique(zones$PreisreiheLang))
 				),
 				
-				#Group (conditional to price)
+				# Group (conditional to price)
 				conditionalPanel(
 					condition = 'input.price != "Stockwerkeigentum pro m2 Wohnungsfläche"',
-					radioButtons("group", 
-											 "Art",
+					radioButtons("group",
+					             "Art",
 											 choices = c("Nur ganze Liegenschaften",
-											 						"Nur Stockwerkeigentum",
-											 						"Alle Verkäufe")
+											             "Nur Stockwerkeigentum",
+											             "Alle Verkäufe")
 					),
 				),
 				
-				#Action Button
-				actionButton("buttonStart", 
-										 "Abfrage starten", 
+				# Action Button
+				actionButton("buttonStart",
+				             "Abfrage starten", 
 										 icon = icon("database")),
 				br(),
 				
-				#Downloads
+				# Downloads
 				conditionalPanel(
 					condition = 'input.buttonStart',
 					h5("Daten herunterladen"),
@@ -105,7 +105,7 @@ ui <- fluidPage(
 						)
 					),
 					
-					#Data Explanation
+					# Zones Definition
 					h5("Erklärung Wohnzonen"),
 					h6("Z = Zentrumszone"),
 					h6("K = Kernzone"),
@@ -117,82 +117,82 @@ ui <- fluidPage(
 				)
 			),
 			
-			#Main Panel (Results)
+			# Main Panel (Results)
 			mainPanel(
 				
-				#Table Title (prices)
+				#T able Title (prices)
 				tags$div(
 					id = "title_id",
 					class = "title_div",
 					textOutput("title")
 				),
 				
-				#Table Subtitle (prices)
+				# Table Subtitle (prices)
 				tags$div(
 					id = "subtitle_id",
 					class = "subtitle_div",
 					textOutput("subtitle")
 				),
 				
-				#Table Subsubtitle (prices)
+				# Table Subsubtitle (prices)
 				tags$div(
 					id = "subSubtitle_id",
 					class = "subSubtitle_div",
 					textOutput("subSubtitle")
 				),
 				
-				#Title for BZO16 (prices)
+				# Title for BZO16 (prices)
 				tags$div(
 					id = "tableTitle16_id",
 					class = "tableTitle_div",
 					textOutput("tableTitle16")
 				),
 				
-				#Table for BZO 16 (prices)
+				# Table for BZO 16 (prices)
 				htmlOutput("resultsPrice16"),
 				
-				#title for BZO99 (prices)
+				# title for BZO99 (prices)
 				tags$div(
 					id = "tableTitle99_id",
 					class = "tableTitle_div",
 					textOutput("tableTitle99")
 				),
 				
-				#Table for BZO 99 (prices)
+				# Table for BZO 99 (prices)
 				htmlOutput("resultsPrice99"),
 				
-				#Action Link for Hand Changes (counts)
+				# Action Link for Sales (Sales)
 				useShinyjs(),
 				conditionalPanel(
 					condition = 'input.buttonStart',
 					actionLink("linkCount",
-										 "Anzahl Handänderungen einblenden", 
+					           "Anzahl Handänderungen einblenden", 
 										 icon = icon("angle-down"),
 										 style='font-size:12px')
 				),
 				
-				#Hidden Titles and Tables for Hand Changes
+				# Hidden Titles and Tables for Sales
 				shinyjs::hidden(
 					div(id='countDiv',
 							
-							#Title for BZO16 (counts)
+							# Title for BZO16 (Sales)
 							tags$div(
 								id = "tableTitleTwo16_id",
 								class = "tableTitle_div",
 								textOutput("tableTitleTwo16")
 							),
 							
-							#Table for BZO16 (counts)
+							# Table for BZO16 (Sales)
 							htmlOutput("resultsCount16"),
 							
-							#Title for BZO99 (counts)
+							# Title for BZO99 (Sales)
 							tags$div(
 								id = "tableTitleTwo99_id",
 								class = "tableTitle_div",
 								textOutput("tableTitleTwo99")
 							),
 							
-							#Table for BZO99 (counts)
+							# Table for BZO99 (Sales)
 							htmlOutput("resultsCount99")
 					)
 				)
@@ -200,32 +200,32 @@ ui <- fluidPage(
 		)
 	),
 	
-	#App 2
+	# App 2
 	conditionalPanel(
 		condition = 'input.query == "Abfrage 2: Zeitreihen für Quartiere und Bauzonen über Adresseingabe" ',
 		sidebarLayout(
 			
-			#Sidebar (Query)
+			# Sidebar (Query)
 			sidebarPanel(
 				
 				#Street input
-				autocomplete_input("street", 
-													 "Geben Sie eine Strasse ein", 
+				autocomplete_input("street",
+				                   "Geben Sie eine Strasse ein", 
 													 unique(addresses$StrasseLang)),
 				
-				#Number input
-				selectizeInput("number", 
-											 "Wählen Sie eine Hausnummer aus", 
-											 choices = c("",sort(unique(addresses$Hnr))),
-											 selected = NULL),
+				# Number input
+				selectizeInput("number",
+				               "Wählen Sie eine Hausnummer aus",
+				               choices = c("", sort(unique(addresses$Hnr))),
+				               selected = NULL),
 				
-				#Action Button
-				actionButton("buttonStartTwo", 
-										 "Abfrage starten", 
+				# Action Button
+				actionButton("buttonStartTwo",
+				             "Abfrage starten", 
 										 icon = icon("database")),
 				br(),
 				
-				#Conditional Data Download
+				# Conditional Data Download
 				conditionalPanel(
 					condition = 'input.street && input.number && input.buttonStartTwo',
 					uiOutput("dataTwo"),
@@ -235,11 +235,11 @@ ui <- fluidPage(
 				)
 			),
 			
-			#Main Panel (results)
+			# Main Panel (results)
 			mainPanel(
 				br(),
 				
-				#Info Table
+				# Info Table
 				htmlOutput("resultsInfos"),
 				tags$div(
 					id = "info_id",
@@ -248,10 +248,10 @@ ui <- fluidPage(
 				),
 				br(),
 				
-				#Table for prices
+				# Table for prices
 				htmlOutput("resultsPriceSeries"),
 				
-				#Action Link for Hand Changes (counts)
+				# Action Link for Sales (Sales)
 				useShinyjs(),
 				conditionalPanel(
 					condition = 'input.buttonStartTwo',
@@ -262,10 +262,10 @@ ui <- fluidPage(
 					)
 				),
 				
-				#Hidden Table for Hand Changes
+				# Hidden Table for Sales
 				shinyjs::hidden(
 					div(id='countDivTwo',
-							htmlOutput("resultsCountSeries")
+					    htmlOutput("resultsCountSeries")
 					)
 				)
 			)
@@ -273,79 +273,78 @@ ui <- fluidPage(
 	)
 )
 
-###Server
+### Server
 server <- function(input, output, session) {
 	
-	###Get Data for Download
-	#App 1
+	### Get Data for Download
+	## App 1
 	dataDownload <- eventReactive(input$buttonStart, {
 		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
 			filtered <- zones %>%
 				filter(GebietLang == input$area,
-							 PreisreiheLang == input$price) %>% 
+				       PreisreiheLang == input$price) %>% 
 				select(Typ, GebietLang, PreisreiheLang, ArtLang, BZO, Jahr, ALLE, ZE, KE, QU, W2, W23, W34, W45, W56)
 			filtered
 		} else {
 			filtered <- zones %>%
 				filter(GebietLang == input$area,
-							 PreisreiheLang == input$price,
-							 ArtLang == input$group) %>% 
+				       PreisreiheLang == input$price,
+				       ArtLang == input$group) %>% 
 				select(Typ, GebietLang, PreisreiheLang, ArtLang, BZO, Jahr, ALLE, ZE, KE, QU, W2, W23, W34, W45, W56)
 			filtered
 		}
 	})
 	
-	#App 2
+	## App 2
 	dataDownloadTwo <- eventReactive(input$buttonStartTwo, {
 		
-		#Pull district
+		# Pull district
 		district <- addresses %>%
 			filter(StrasseLang == input$street & Hnr == input$number) %>% 
 			pull(QuarLang)
 		
-		#Pull zone BZO16
+		# Pull zone BZO16
 		zoneBZO16 <- addresses %>%
 			filter(StrasseLang == input$street & Hnr == input$number) %>% 
 			pull(ZoneBZO16Lang)
 		
-		#Pull zone BZO99
+		# Pull zone BZO99
 		zoneBZO99 <- addresses %>%
 			filter(StrasseLang == input$street & Hnr == input$number) %>% 
 			pull(ZoneBZO99Lang)
 		
-		#Serie BZO16
+		# Serie BZO16
 		serieBZO16 <- series %>% 
 			filter(QuarLang == district & ZoneLang == zoneBZO16,
-						 Jahr >= 2019) 
+			       Jahr >= 2019) 
 		
-		#Serie BZO99
+		# Serie BZO99
 		serieBZO99 <- series %>% 
 			filter(QuarLang == district & ZoneLang == zoneBZO99,
-						 Jahr < 2019) 
+			       Jahr < 2019) 
 		
-		#Total series
+		# Total series
 		seriesPriceCount <- bind_rows(serieBZO16, serieBZO99) %>% 
 			select(-QuarCd, -ZoneSort, -ZoneLang) %>% 
 			arrange(factor(Typ, levels = c("Preis",
-																		 "Zahl")), 
+			                               "Zahl")), 
 							desc(Jahr))
 		seriesPriceCount
 	})
 	
-	###Tables Output
-	##App 1
-	#Get Data for Output Prices
-	#BZO16
+	### Tables Output
+	## App 1
+	# Get Data for Output Prices
+	# BZO16
 	priceOutput16 <- eventReactive(input$buttonStart, {
 		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
 			filtered <- zonesBZO16 %>%
 				filter(Typ == "Preis",
-							 GebietLang == input$area,
-							 PreisreiheLang == input$price) %>% 
+				       GebietLang == input$area,
+				       PreisreiheLang == input$price) %>% 
 				select(Jahr, Total, Z, K, Q, W2, W3, W4, W5, W6) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
-				kable("html",
-							align = c("c")) %>% 
+				kable("html", align = c("c")) %>% 
 				kable_styling(bootstrap_options = c("hover", "condensed")) %>% 
 				row_spec(0, font_size = 10) %>% 
 				column_spec(1:10, width = "10%")
@@ -358,8 +357,7 @@ server <- function(input, output, session) {
 							 ArtLang == input$group) %>% 
 				select(Jahr, Total, Z, K, Q, W2, W3, W4, W5, W6) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
-				kable("html",
-							align = c("c")) %>% 
+				kable("html", align = c("c")) %>% 
 				kable_styling(bootstrap_options = c("hover", "condensed")) %>% 
 				row_spec(0, font_size = 10) %>% 
 				column_spec(1:10, width = "10%")
@@ -367,17 +365,16 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	#BZO99
+	# BZO99
 	priceOutput99 <- eventReactive(input$buttonStart, {
 		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
 			filtered <- zonesBZO99 %>%
 				filter(Typ == "Preis",
-							 GebietLang == input$area,
-							 PreisreiheLang == input$price) %>% 
+				       GebietLang == input$area,
+				       PreisreiheLang == input$price) %>% 
 				select(Jahr, Total, Z, K, Q, ` `,W2, W3, W4, W5) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
-				kable("html",
-							align = c("c")) %>% 
+				kable("html", align = c("c")) %>% 
 				kable_styling(bootstrap_options = c("hover", "condensed")) %>% 
 				row_spec(0, font_size = 10) %>% 
 				column_spec(1:10, width = "10%")
@@ -390,8 +387,7 @@ server <- function(input, output, session) {
 							 ArtLang == input$group) %>% 
 				select(Jahr, Total, Z, K, Q, ` `,W2, W3, W4, W5) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
-				kable("html",
-							align = c("c")) %>% 
+				kable("html", align = c("c")) %>% 
 				kable_styling(bootstrap_options = c("hover", "condensed")) %>% 
 				row_spec(0, font_size = 10) %>% 
 				column_spec(1:10, width = "10%")
@@ -399,8 +395,8 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	#Get Data for Output Counts
-	#BZO16
+	# Get Data for Output Sales
+	# BZO16
 	countOutput16 <- eventReactive(input$buttonStart, {
 		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
 			filtered <- zonesBZO16 %>%
@@ -409,8 +405,7 @@ server <- function(input, output, session) {
 							 PreisreiheLang == input$price) %>% 
 				select(Jahr, Total, Z, K, Q, W2, W3, W4, W5, W6) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
-				kable("html",
-							align = c("c")) %>% 
+				kable("html", align = c("c")) %>% 
 				kable_styling(bootstrap_options = c("hover", "condensed")) %>% 
 				row_spec(0, font_size = 10) %>% 
 				column_spec(1:10, width = "10%")
@@ -423,8 +418,7 @@ server <- function(input, output, session) {
 							 ArtLang == input$group) %>% 
 				select(Jahr, Total, Z, K, Q, W2, W3, W4, W5, W6) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
-				kable("html",
-							align = c("c")) %>% 
+				kable("html", align = c("c")) %>% 
 				kable_styling(bootstrap_options = c("hover", "condensed")) %>% 
 				row_spec(0, font_size = 10) %>% 
 				column_spec(1:10, width = "10%")
@@ -432,7 +426,7 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	#BZO99
+	# BZO99
 	countOutput99 <- eventReactive(input$buttonStart, {
 		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
 			filtered <- zonesBZO99 %>%
@@ -441,8 +435,7 @@ server <- function(input, output, session) {
 							 PreisreiheLang == input$price) %>% 
 				select(Jahr, Total, Z, K, Q, ` `,W2, W3, W4, W5) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
-				kable("html",
-							align = c("c")) %>% 
+				kable("html", align = c("c")) %>% 
 				kable_styling(bootstrap_options = c("hover", "condensed")) %>% 
 				row_spec(0, font_size = 10) %>% 
 				column_spec(1:10, width = "10%")
@@ -455,8 +448,7 @@ server <- function(input, output, session) {
 							 ArtLang == input$group) %>% 
 				select(Jahr, Total, Z, K, Q, ` `,W2, W3, W4, W5) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
-				kable("html",
-							align = c("c")) %>% 
+				kable("html", align = c("c")) %>% 
 				kable_styling(bootstrap_options = c("hover", "condensed")) %>% 
 				row_spec(0, font_size = 10) %>% 
 				column_spec(1:10, width = "10%")
@@ -464,7 +456,7 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	#Show Output Prices (App 1)
+	# Show Output Prices (App 1)
 	observeEvent(input$buttonStart, {
 		output$resultsPrice16 <- renderText({
 			out16 <- priceOutput16()
@@ -476,7 +468,7 @@ server <- function(input, output, session) {
 		})
 	})
 	
-	#Show Output Counts (App 1)
+	# Show Output Sales (App 1)
 	observeEvent(input$linkCount, {
 		shinyjs::toggle('countDiv')
 		output$resultsCount16 <- renderText({
@@ -496,8 +488,8 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	#Captions
-	#Reactive Title
+	# Captions
+	# Reactive Title
 	titleReactive <- eventReactive(input$buttonStart, {
 		input$price
 	})
@@ -505,7 +497,7 @@ server <- function(input, output, session) {
 		titleReactive()
 	})
 	
-	#Reactive Subtitle
+	# Reactive Subtitle
 	subtitleReactive <- eventReactive(input$buttonStart, {
 		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche"){
 			title <- NULL
@@ -517,7 +509,7 @@ server <- function(input, output, session) {
 		subtitleReactive()
 	})
 	
-	#Reactive Sub-Subtitle
+	# Reactive Sub-Subtitle
 	subSubtitleReactive <- eventReactive(input$buttonStart, {
 		subSubtitle <- paste0(input$area, ", Medianpreise in CHF")
 	})
@@ -525,7 +517,7 @@ server <- function(input, output, session) {
 		subSubtitleReactive()
 	})
 	
-	#Reactive Table Title BZO 16
+	# Reactive Table Title BZO 16
 	tableTitle16Reactive <- eventReactive(input$buttonStart, {
 		tableTitle16 <- paste0("Nach Zonenart gemäss BZO 2016")
 	})
@@ -540,7 +532,7 @@ server <- function(input, output, session) {
 		tableTitleTwo16Reactive()
 	})
 	
-	#Reactive Table Title BZO 16
+	# Reactive Table Title BZO 16
 	tableTitle99Reactive <- eventReactive(input$buttonStart, {
 		tableTitle99 <- paste0("Nach Zonenart gemäss BZO 1999")
 	})
@@ -555,9 +547,9 @@ server <- function(input, output, session) {
 		tableTitleTwo99Reactive()
 	})
 	
-	##App 2
-	#Show Output Info (App 2)
-	#Sort for House Number in Drop Down
+	## App 2
+	# Show Output Info (App 2)
+	# Sort for House Number in Drop Down
 	observe({
 		updateSelectInput(
 			session, "number",
@@ -568,7 +560,7 @@ server <- function(input, output, session) {
 		)
 	})
 	
-	#Get Information of Address
+	# Get Information of Address
 	infosReactive <- eventReactive(input$buttonStartTwo, {
 		req(input$street)
 		req(input$number)
@@ -579,18 +571,16 @@ server <- function(input, output, session) {
 			mutate(pivot = 1) %>% 
 			pivot_longer(!pivot) %>% 
 			mutate(name = case_when(name == "Adresse" ~ "Die Adresse",
-															name == "QuarLang" ~ "liegt im Quartier",
-															name == "Zones" ~ "in folgender Zone")) %>% 
+			                        name == "QuarLang" ~ "liegt im Quartier",
+			                        name == "Zones" ~ "in folgender Zone")) %>% 
 			select(-pivot) %>% 
-			kable("html",
-						align = "lr",
-						col.names = NULL) %>% 
+			kable("html", align = "lr", col.names = NULL) %>% 
 			kable_styling(bootstrap_options = c("condensed")) %>% 
 			column_spec(2, bold = TRUE)
 		infosFiltered
 	})
 	
-	#Show Output Information Address
+	# Show Output Information Address
 	observeEvent(input$buttonStartTwo, {
 		output$resultsInfos <- renderText({
 			outInfos <- infosReactive() 
@@ -598,38 +588,39 @@ server <- function(input, output, session) {
 		})
 	})
 	
-	#Get Information if Data Frame is empty
+	# Get Information if Data Frame is empty
 	dataAvailable <- eventReactive(input$buttonStartTwo, {
 		req(input$street)
 		req(input$number)
-		#Pull district
+		
+		# Pull district
 		district <- addresses %>%
 			filter(StrasseLang == input$street & Hnr == input$number) %>% 
 			pull(QuarLang)
 		
-		#Pull zone BZO16
+		# Pull zone BZO16
 		zoneBZO16 <- addresses %>%
 			filter(StrasseLang == input$street & Hnr == input$number) %>% 
 			pull(ZoneBZO16Lang)
 		
-		#Pull zone BZO99
+		# Pull zone BZO99
 		zoneBZO99 <- addresses %>%
 			filter(StrasseLang == input$street & Hnr == input$number) %>% 
 			pull(ZoneBZO99Lang)
 		
-		#Price serie BZO16
+		# Price serie BZO16
 		priceSerieBZO16 <- series %>% 
 			filter(QuarLang == district & ZoneLang == zoneBZO16,
 						 Typ == "Preis",
 						 Jahr >= 2019) 
 		
-		#Price serie BZO99
+		# Price serie BZO99
 		priceSerieBZO99 <- series %>% 
 			filter(QuarLang == district & ZoneLang == zoneBZO99,
 						 Typ == "Preis",
 						 Jahr < 2019) 
 		
-		#Total series
+		# Total series
 		priceSerieTotal <- bind_rows(priceSerieBZO16, priceSerieBZO99) %>% 
 			select(-Typ, -QuarCd, -QuarLang, -ZoneSort, -ZoneLang)
 		
@@ -640,7 +631,7 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	#Reactive Info
+	# Reactive Info
 	infoReactive <- eventReactive(input$buttonStartTwo, {
 		req(input$street)
 		req(input$number)
@@ -657,62 +648,60 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	#Show Info (App 2)
+	# Show Info (App 2)
 	output$info <- renderText({
 		infoReactive()
 	})
 	
-	#Show Output (App 2)  
-	#Get Data for Output Prices (District-Zone-Combination)
+	# Show Output (App 2)  
+	# Get Data for Output Prices (District-Zone-Combination)
 	distReactivePrice <- eventReactive(input$buttonStartTwo, {
 		req(input$street)
 		req(input$number)
 		
-		#Pull district
+		# Pull district
 		district <- addresses %>%
 			filter(StrasseLang == input$street & Hnr == input$number) %>% 
 			pull(QuarLang)
 		
-		#Pull zone BZO16
+		# Pull zone BZO16
 		zoneBZO16 <- addresses %>%
 			filter(StrasseLang == input$street & Hnr == input$number) %>% 
 			pull(ZoneBZO16Lang)
 		
-		#Pull zone BZO99
+		# Pull zone BZO99
 		zoneBZO99 <- addresses %>%
 			filter(StrasseLang == input$street & Hnr == input$number) %>% 
 			pull(ZoneBZO99Lang)
 		
-		#Price serie BZO16
+		# Price serie BZO16
 		priceSerieBZO16 <- series %>% 
 			filter(QuarLang == district & ZoneLang == zoneBZO16,
 						 Typ == "Preis",
 						 Jahr >= 2019) 
 		
-		#Price serie BZO99
+		# Price serie BZO99
 		priceSerieBZO99 <- series %>% 
 			filter(QuarLang == district & ZoneLang == zoneBZO99,
 						 Typ == "Preis",
 						 Jahr < 2019) 
 		
-		#Total series
+		# Total series
 		priceSerieTotal <- bind_rows(priceSerieBZO16, priceSerieBZO99) %>% 
 			select(-Typ, -QuarCd, -QuarLang, -ZoneSort, -ZoneLang)
 		
 		if(nrow(priceSerieTotal)>0) {
 			priceDistZone <- priceSerieTotal %>% 
-				kable("html",
-							col.names = c("Jahr",
-														"Ganze\nLiegenschaft",
-														"Stockwerk-\nEigentum",
-														"Total",
-														"Ganze\nLiegenschaft",
-														"Stockwerk-\nEigentum",
-														"Total",
-														" "),
-							align = c("c")) %>% 
+				kable("html", col.names = c("Jahr",
+				                            "Ganze\nLiegenschaft",
+				                            "Stockwerk-\nEigentum",
+				                            "Total",
+				                            "Ganze\nLiegenschaft",
+				                            "Stockwerk-\nEigentum",
+				                            "Total", " "),
+				      align = c("c")) %>% 
 				add_header_above(c(" ",
-													 "Gesamtpreise pro m2 Boden" = 3,
+				                   "Gesamtpreise pro m2 Boden" = 3,
 													 "Gesamtpreise pro m2 Boden abzgl. Gebäudeversicherungswert" = 3,
 													 "Stockwerk-\nEigentum pro m2 Wohnungsfläche (alle Zonen)"),
 												 font_size = 10,
@@ -727,57 +716,55 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	#Get Data for Output Counts (District-Price-Combination)
+	# Get Data for Output Counts (District-Price-Combination)
 	distReactiveCount <- eventReactive(input$buttonStartTwo, {
 		req(input$street)
 		req(input$number)
 		
-		#Pull district
+		# Pull district
 		district <- addresses %>%
 			filter(StrasseLang == input$street & Hnr == input$number) %>% 
 			pull(QuarLang)
 		
-		#Pull zone BZO16
+		# Pull zone BZO16
 		zoneBZO16 <- addresses %>%
 			filter(StrasseLang == input$street & Hnr == input$number) %>% 
 			pull(ZoneBZO16Lang)
 		
-		#Pull zone BZO99
+		# Pull zone BZO99
 		zoneBZO99 <- addresses %>%
 			filter(StrasseLang == input$street & Hnr == input$number) %>% 
 			pull(ZoneBZO99Lang)
 		
-		#Price serie BZO16
+		# Price serie BZO16
 		countSerieBZO16 <- series %>% 
 			filter(QuarLang == district & ZoneLang == zoneBZO16,
 						 Typ == "Zahl",
 						 Jahr >= 2019) 
 		
-		#Price serie BZO99
+		# Price serie BZO99
 		countSerieBZO99 <- series %>% 
 			filter(QuarLang == district & ZoneLang == zoneBZO99,
 						 Typ == "Zahl",
 						 Jahr < 2019) 
 		
-		#Total series
+		# Total series
 		countSerieTotal <- bind_rows(countSerieBZO16, countSerieBZO99) %>% 
 			select(-Typ, -QuarCd, -QuarLang, -ZoneSort, -ZoneLang)
 		
 		if(nrow(countSerieTotal)>0) {
 			countDistZone <- countSerieTotal %>% 
-				kable("html",
-							col.names = c("Jahr",
-							              "Ganze\nLiegenschaft",
-							              "Stockwerk-\nEigentum",
-							              "Total   ",
-							              " ",
-							              " ",
-							              " ",
-							              " "),
-							align = c("c")) %>% 
+				kable("html", col.names = c("Jahr",
+				                            "Ganze\nLiegenschaft",
+				                            "Stockwerk-\nEigentum",
+				                            "Total   ",
+				                            " ",
+				                            " ",
+				                            " ",
+				                            " "),
+				      align = c("c")) %>% 
 				add_header_above(c(" ",
 				                   "Anzahl Handänderungen" = 6,
-				
 				                   "Stockwerk-\nEigentum pro m2 Wohnungsfläche (alle Zonen)"),
 												 font_size = 10,
 												 color = "#0F05A0",
@@ -791,7 +778,7 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	#Conditional Data Download
+	# Conditional Data Download
 	output$dataTwo <- renderUI({
 		availability <- dataAvailable()
 		if(availability>0) {
@@ -808,7 +795,7 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	#Show Output Prices
+	# Show Output Prices
 	observeEvent(input$buttonStartTwo, {
 		req(input$street)
 		req(input$number)
@@ -819,18 +806,19 @@ server <- function(input, output, session) {
 		})
 	})
 	
-	#Show Output Counts
+	# Show Output Counts
 	output$linken <- renderUI({
 		availability <- dataAvailable()
 		if(availability>0) {
 			actionLink("linkCountTwoTest",
-								 "Anzahl Handänderungen einblenden", 
+			           "Anzahl Handänderungen einblenden", 
 								 icon = icon("angle-down"),
 								 style='font-size:12px')
 		} else {
 			txt <- NULL
 		}
 	})
+	
 	observeEvent(input$linkCountTwoTest, {
 		shinyjs::toggle('countDivTwo')
 		output$resultsCountSeries <- renderText({
@@ -846,9 +834,9 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	###Write Download Table
-	##App 1
-	#CSV
+	### Write Download Table
+	## App 1
+	# CSV
 	output$downloadDataCSV <- downloadHandler(
 		filename = function(price) {
 			price <- input$price
@@ -868,7 +856,7 @@ server <- function(input, output, session) {
 		}
 	)
 	
-	#Excel
+	# Excel
 	output$downloadDataEXCEL <- downloadHandler(
 		filename = function(price) {
 			price <- input$price
@@ -888,8 +876,8 @@ server <- function(input, output, session) {
 		}
 	)
 	
-	#App 2
-	#CSV
+	## App 2
+	# CSV
 	output$downloadDataCSVTwo <- downloadHandler(
 		filename = function() {
 			district <- addresses %>%
@@ -902,7 +890,7 @@ server <- function(input, output, session) {
 		}
 	)
 	
-	#Excel
+	# Excel
 	output$downloadDataEXCELTwo <- downloadHandler(
 		filename = function() {
 			district <- addresses %>%
@@ -915,7 +903,7 @@ server <- function(input, output, session) {
 		}
 	)
 	
-	#Conditional Data Download (title)
+	# Conditional Data Download (title)
 	observeEvent(input$buttonStartTwo, {
 		output$dataTwo <- renderUI({
 			availability <- dataAvailable()
@@ -934,7 +922,7 @@ server <- function(input, output, session) {
 		})
 	})
 	
-	#Conditional Data Download (CSV link)
+	# Conditional Data Download (CSV link)
 	output$tagCSV <- renderUI({
 		availability <- dataAvailable()
 		if(availability>0) {
@@ -956,7 +944,7 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	#Conditional Data Download (Excel link)
+	# Conditional Data Download (Excel link)
 	output$tagEXCEL <- renderUI({
 		availability <- dataAvailable()
 		if(availability>0) {
@@ -978,7 +966,7 @@ server <- function(input, output, session) {
 		}
 	})
 	
-	#Conditional Data Download (OGD link)
+	# Conditional Data Download (OGD link)
 	output$tagOGD <- renderUI({
 		availability <- dataAvailable()
 		if(availability>0) {
@@ -1006,23 +994,23 @@ server <- function(input, output, session) {
 	})
 	
 	
-	###Change Action Query Button when first selected
-	##App 1
+	### Change Action Query Button when first selected
+	## App 1
 	observe({
 		req(input$buttonStart)
 		updateActionButton(session, "buttonStart",
-											 label = "Erneute Abfrage",
-											 icon = icon("refresh"))
+		                   label = "Erneute Abfrage",
+		                   icon = icon("refresh"))
 	})
 	
-	##App 2
+	## App 2
 	observe({
 		req(input$buttonStartTwo)
 		updateActionButton(session, "buttonStartTwo",
-											 label = "Erneute Abfrage",
-											 icon = icon("refresh"))
+		                   label = "Erneute Abfrage",
+		                   icon = icon("refresh"))
 	})
 }
 
-###Run the App
+### Run the App
 shinyApp(ui = ui, server = server)
