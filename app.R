@@ -352,9 +352,9 @@ server <- function(input, output, session) {
 		} else {
 			filtered <- zonesBZO16 %>%
 				filter(Typ == "Preis",
-							 GebietLang == input$area,
-							 PreisreiheLang == input$price,
-							 ArtLang == input$group) %>% 
+				       GebietLang == input$area,
+				       PreisreiheLang == input$price,
+				       ArtLang == input$group) %>% 
 				select(Jahr, Total, Z, K, Q, W2, W3, W4, W5, W6) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
 				kable("html", align = c("c")) %>% 
