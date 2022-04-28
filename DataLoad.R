@@ -1,7 +1,7 @@
 ### Required libraries
 packages <- c("tidyverse",
-             "httr",
-             "parallel")
+              "httr",
+              "parallel")
 
 ### Load libraries
 package.check <- lapply(
