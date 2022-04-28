@@ -1,37 +1,35 @@
-###Libraries
+### Libraries
 library(tidyverse)
 library(httr)
 library(parallel)
 
-###Load Data
-##Parallelisation
-
-##URLS
+### Load Data
+## URLS
 URLs <- c("https://data.stadt-zuerich.ch/dataset/bau_hae_lima_preise_anzahl_hae_art_gebiet_bzo_jahr/download/BAU514OD5141.csv",
           "https://data.stadt-zuerich.ch/dataset/bau_hae_lima_preise_anzahl_hae_art_gebiet_bzo_jahr_grpd/download/BAU514OD5142.csv",
           "https://data.stadt-zuerich.ch/dataset/bau_hae_lima_zuordnung_adr_quartier_bzo16_bzo99/download/BAU514OD5143.csv")
 
-##Download
+## Download function
 dataDownload <- function(link) {
   data <- data.table::fread(link,
                             encoding = "UTF-8")
 }
 
-#Parallelisation
+## Download
 cl <- makeCluster(detectCores())
 clusterExport(cl, "URLs")
 data <- parLapply(cl, URLs, dataDownload)
 stopCluster(cl)
 
 
-##Data
+## From list to data frame
 zones <- data[[1]]
 series <- data[[2]]
 addresses <- data[[3]]
 
-###Data Transformation
+### Data Transformation
 
-##BZO16
+## BZO16
 zonesBZO16 <- zones %>% 
   filter(BZO == "BZO16") %>% 
   rename(Total = ALLE,
@@ -43,10 +41,10 @@ zonesBZO16 <- zones %>%
          W4 = W34,
          W5 = W45,
          W6 = W56) %>% 
-  mutate_all(funs(replace(., .==".", "..."))) %>% 
-  mutate_all(funs(replace(., .=="", "...")))
+  mutate_all(funs(replace(., .==".", "-"))) %>% 
+  mutate_all(funs(replace(., .=="", "-")))
 
-##BZO99
+##B ZO99
 zonesBZO99 <- zones %>% 
   filter(BZO == "BZO99") %>% 
   rename(Total = ALLE,
@@ -58,10 +56,10 @@ zonesBZO99 <- zones %>%
          W3 = W34,
          W4 = W45,
          W5 = W56) %>% 
-  mutate_all(funs(replace(., .==".", "..."))) %>% 
-  mutate_all(funs(replace(., .=="", "...")))
+  mutate_all(funs(replace(., .==".", "-"))) %>% 
+  mutate_all(funs(replace(., .=="", "-")))
 
-##Series
+## Series
 series <- series %>% 
   mutate_all(funs(replace(., .==".", "-"))) %>% 
   mutate_at(vars(FrQmBodenGanzeLieg,
