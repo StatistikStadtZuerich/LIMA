@@ -26,7 +26,7 @@ The purpose of substracting the building insurance value from the purchase price
 
 Since the new value is higher than the current value and thus the deduction for the building value tends to be too high when calculating the residual value, the residual values shown are likely to tend to be lower than the effective land price. They are therefore only an approximation of the land price and should be interpreted with caution. Further information in the [disclaimer](https://www.stadt-zuerich.ch/prd/de/index/statistik/publikationen-angebote/datenbanken-anwendungen/liegenschaftenpreise/disclaimer.html).
 
-#New building and zoning regulations (BZO) as of 2019
+# New building and zoning regulations (BZO) as of 2019
 
 With the revision of the building and zoning regulations (BZO) in 2016, the BZO 1999 was replaced. In the change of ownership, the prices from 2019 refer to the BZO 2016. The prices up to 2018 refer to the BZO 1999.
 
