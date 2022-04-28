@@ -45,7 +45,7 @@ ui <- fluidPage(
 				# Price
 				radioButtons("price",
 				             "Preise",
-										 choices = c(unique(zones$PreisreiheLang))
+					     choices = c(unique(zones$PreisreiheLang))
 				),
 				
 				# Group (conditional to price)
@@ -53,16 +53,16 @@ ui <- fluidPage(
 					condition = 'input.price != "Stockwerkeigentum pro m2 Wohnungsfläche"',
 					radioButtons("group",
 					             "Art",
-											 choices = c("Nur ganze Liegenschaften",
-											             "Nur Stockwerkeigentum",
-											             "Alle Verkäufe")
+						     choices = c("Nur ganze Liegenschaften",
+								 "Nur Stockwerkeigentum",
+								 "Alle Verkäufe")
 					),
 				),
 				
 				# Action Button
 				actionButton("buttonStart",
 				             "Abfrage starten", 
-										 icon = icon("database")),
+					     icon = icon("database")),
 				br(),
 				
 				# Downloads
@@ -167,8 +167,8 @@ ui <- fluidPage(
 					condition = 'input.buttonStart',
 					actionLink("linkCount",
 					           "Anzahl Handänderungen einblenden", 
-										 icon = icon("angle-down"),
-										 style='font-size:12px')
+						   icon = icon("angle-down"),
+						   style='font-size:12px')
 				),
 				
 				# Hidden Titles and Tables for Sales
@@ -211,7 +211,7 @@ ui <- fluidPage(
 				#Street input
 				autocomplete_input("street",
 				                   "Geben Sie eine Strasse ein", 
-													 unique(addresses$StrasseLang)),
+						   unique(addresses$StrasseLang)),
 				
 				# Number input
 				selectizeInput("number",
@@ -222,7 +222,7 @@ ui <- fluidPage(
 				# Action Button
 				actionButton("buttonStartTwo",
 				             "Abfrage starten", 
-										 icon = icon("database")),
+					     icon = icon("database")),
 				br(),
 				
 				# Conditional Data Download
@@ -382,9 +382,9 @@ server <- function(input, output, session) {
 		} else {
 			filtered <- zonesBZO99 %>%
 				filter(Typ == "Preis",
-							 GebietLang == input$area,
-							 PreisreiheLang == input$price,
-							 ArtLang == input$group) %>% 
+				       GebietLang == input$area,
+				       PreisreiheLang == input$price,
+				       ArtLang == input$group) %>% 
 				select(Jahr, Total, Z, K, Q, ` `,W2, W3, W4, W5) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
 				kable("html", align = c("c")) %>% 
@@ -401,8 +401,8 @@ server <- function(input, output, session) {
 		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
 			filtered <- zonesBZO16 %>%
 				filter(Typ == "Zahl",
-							 GebietLang == input$area,
-							 PreisreiheLang == input$price) %>% 
+				       GebietLang == input$area,
+				       PreisreiheLang == input$price) %>% 
 				select(Jahr, Total, Z, K, Q, W2, W3, W4, W5, W6) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
 				kable("html", align = c("c")) %>% 
@@ -413,9 +413,9 @@ server <- function(input, output, session) {
 		} else {
 			filtered <- zonesBZO16 %>%
 				filter(Typ == "Zahl",
-							 GebietLang == input$area,
-							 PreisreiheLang == input$price,
-							 ArtLang == input$group) %>% 
+				       GebietLang == input$area,
+				       PreisreiheLang == input$price,
+				       ArtLang == input$group) %>% 
 				select(Jahr, Total, Z, K, Q, W2, W3, W4, W5, W6) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
 				kable("html", align = c("c")) %>% 
@@ -431,8 +431,8 @@ server <- function(input, output, session) {
 		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
 			filtered <- zonesBZO99 %>%
 				filter(Typ == "Zahl",
-							 GebietLang == input$area,
-							 PreisreiheLang == input$price) %>% 
+				       GebietLang == input$area,
+				       PreisreiheLang == input$price) %>% 
 				select(Jahr, Total, Z, K, Q, ` `,W2, W3, W4, W5) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
 				kable("html", align = c("c")) %>% 
@@ -443,9 +443,9 @@ server <- function(input, output, session) {
 		} else {
 			filtered <- zonesBZO99 %>%
 				filter(Typ == "Zahl",
-							 GebietLang == input$area,
-							 PreisreiheLang == input$price,
-							 ArtLang == input$group) %>% 
+				       GebietLang == input$area,
+				       PreisreiheLang == input$price,
+				       ArtLang == input$group) %>% 
 				select(Jahr, Total, Z, K, Q, ` `,W2, W3, W4, W5) %>% 
 				mutate_all(., ~replace(., is.na(.), " ")) %>% 
 				kable("html", align = c("c")) %>% 
@@ -702,11 +702,11 @@ server <- function(input, output, session) {
 				      align = c("c")) %>% 
 				add_header_above(c(" ",
 				                   "Gesamtpreise pro m2 Boden" = 3,
-													 "Gesamtpreise pro m2 Boden abzgl. Gebäudeversicherungswert" = 3,
-													 "Stockwerk-\nEigentum pro m2 Wohnungsfläche (alle Zonen)"),
-												 font_size = 10,
-												 color = "#0F05A0",
-												 align = c("l")) %>% 
+						   "Gesamtpreise pro m2 Boden abzgl. Gebäudeversicherungswert" = 3,
+						   "Stockwerk-\nEigentum pro m2 Wohnungsfläche (alle Zonen)"),
+						 font_size = 10,
+						 color = "#0F05A0",
+						 align = c("l")) %>% 
 				kable_styling(bootstrap_options = c("hover", "condensed")) %>% 
 				row_spec(0, font_size = 10) %>% 
 			  column_spec(1:8, width = "10%")
@@ -766,9 +766,9 @@ server <- function(input, output, session) {
 				add_header_above(c(" ",
 				                   "Anzahl Handänderungen" = 6,
 				                   "Stockwerk-\nEigentum pro m2 Wohnungsfläche (alle Zonen)"),
-												 font_size = 10,
-												 color = "#0F05A0",
-												 align = c("l")) %>% 
+						 font_size = 10,
+						 color = "#0F05A0",
+						 align = c("l")) %>% 
 				kable_styling(bootstrap_options = c("hover", "condensed")) %>% 
 				row_spec(0, font_size = 10) %>% 
 			  column_spec(1:8, width = "10%")
@@ -812,8 +812,8 @@ server <- function(input, output, session) {
 		if(availability>0) {
 			actionLink("linkCountTwoTest",
 			           "Anzahl Handänderungen einblenden", 
-								 icon = icon("angle-down"),
-								 style='font-size:12px')
+				   icon = icon("angle-down"),
+				   style='font-size:12px')
 		} else {
 			txt <- NULL
 		}
