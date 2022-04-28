@@ -1,13 +1,13 @@
 ### Required libraries
 packages <- c("shiny",
-             "knitr",
-             "kableExtra",
-             "ggplot2",
-             "dplyr",
-             "shinyjs",
-             "dqshiny",
-             "gtools",
-             "xlsx")
+	      "knitr",
+	      "kableExtra",
+	      "ggplot2",
+	      "dplyr",
+	      "shinyjs",
+	      "dqshiny",
+	      "gtools",
+	      "xlsx")
 
 ### Load libraries
 package.check <- lapply(
