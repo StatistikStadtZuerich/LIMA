@@ -1,13 +1,24 @@
-### Libraries
-library(shiny)
-library(knitr)
-library(kableExtra)
-library(ggplot2)
-library(dplyr)
-library(shinyjs)
-library(dqshiny)
-library(gtools)
-library(xlsx)
+### Required libraries
+packages <- c("shiny",
+             "knitr",
+             "kableExtra",
+             "ggplot2",
+             "dplyr",
+             "shinyjs",
+             "dqshiny",
+             "gtools",
+             "xlsx")
+
+### Load libraries
+package.check <- lapply(
+  packages,
+  FUN = function(x) {
+    if (!require(x, character.only = TRUE)) {
+      install.packages(x, dependencies = TRUE)
+      library(x, character.only = TRUE)
+    }
+  }
+)
 
 ### Data
 source("DataLoad.R", local = TRUE)
