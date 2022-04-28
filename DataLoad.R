@@ -1,7 +1,8 @@
 ### Required libraries
 packages <- c("tidyverse",
               "httr",
-              "parallel")
+              "parallel",
+							"data.table")
 
 ### Load libraries
 package.check <- lapply(
