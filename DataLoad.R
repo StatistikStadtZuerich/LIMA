@@ -1,7 +1,18 @@
-### Libraries
-library(tidyverse)
-library(httr)
-library(parallel)
+### Required libraries
+packages <- c("tidyverse",
+             "httr",
+             "parallel")
+
+### Load libraries
+package.check <- lapply(
+  packages,
+  FUN = function(x) {
+    if (!require(x, character.only = TRUE)) {
+      install.packages(x, dependencies = TRUE)
+      library(x, character.only = TRUE)
+    }
+  }
+)
 
 ### Load Data
 ## URLS
