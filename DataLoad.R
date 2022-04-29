@@ -1,10 +1,10 @@
-### Required libraries
+### Required packages
 packages <- c("tidyverse",
               "httr",
               "parallel",
 	      "data.table")
 
-### Load libraries
+### Load packages
 package.check <- lapply(
   packages,
   FUN = function(x) {
