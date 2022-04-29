@@ -10,7 +10,7 @@ packages <- c("shiny",
 	      "xlsx")
 
 ### Load packages
-package.check <- lapply(
+packageCheck <- lapply(
   packages,
   FUN = function(x) {
     if (!require(x, character.only = TRUE)) {
