@@ -2,7 +2,9 @@
 
 Shiny app for [LIMA](https://www.stadt-zuerich.ch/prd/de/index/statistik/publikationen-angebote/datenbanken-anwendungen/liegenschaftenpreise.html) tool (Abfragetool Liegenschaftenmarkt).
 
-The data from the LIMA (LIegenschaftenMArkt) tool on the Website of [Statistik Stadt Zürich](https://www.stadt-zuerich.ch/prd/de/index/statistik.html) are based on notification changes of ownership from the land registry offices. All sales of developed land in the territory of the city of Zurich are taken into account. The data is obtained from the Open Data portal of the city of Zurich.
+The data from the LIMA (LIegenschaftenMArkt) tool on the Website of [Statistik Stadt Zürich](https://www.stadt-zuerich.ch/prd/de/index/statistik.html) are based on notification changes of ownership from the land registry offices. All sales of developed land in the territory of the city of Zurich are taken into account. The data is obtained from the Open Data portal of the city of Zurich and is available [here](https://data.stadt-zuerich.ch/dataset?tags=lima).
+
+By using the this application you agree to the [disclaimer](https://www.stadt-zuerich.ch/prd/de/index/statistik/publikationen-angebote/datenbanken-anwendungen/liegenschaftenpreise/disclaimer.html). 
 
 ## Price series and grouping
 
@@ -32,6 +34,13 @@ With the revision of the building and zoning regulations (BZO) in 2016, the BZO 
 
 While the various mixed zones (core zones, neighborhood preservation zones, center zones) in the BZO 2016 are still largely comparable with the BZO 1999, the designations of the residential zones changed fundamentally. In the revision, it was determined that an additional floor is permitted in the residential zones to compensate for the previously permitted basement. Thus, former W3 zones became new W4 zones, W4 became W5, and W5 became W6. This means that, for example, the W4 zone now includes areas that were designated W3 until 2018, but are comparable under building law. Or conversely, W3 before 2018 is not comparable to W3 after 2018, but to W4 after 2018. The presentation of the query results in query 1 of LIMA refers to this change.
 
-By using the this application you agree to the [disclaimer](https://www.stadt-zuerich.ch/prd/de/index/statistik/publikationen-angebote/datenbanken-anwendungen/liegenschaftenpreise/disclaimer.html). 
-
-All data is available as OGD: https://data.stadt-zuerich.ch/dataset?tags=lima
+## Zone types
+For LIMA, only changes in ownership zones with possible residential use are taken into account. Sales in working zones (Arbeitszonen), free zones (Freihaltungszonen) and outside building zones are excluded.
+- Z = Center zones
+- K = Core zones
+- Q = Neighborhood preservation zone
+- W2 = Residential zone 2
+- W3 = Residential zone 3
+- W4 = Residential zone 4
+- W5 = Residential zone 5
+- W6 = Residential zone 6
