@@ -1,4 +1,4 @@
-### Required libraries
+### Required packages
 packages <- c("shiny",
 	      "knitr",
 	      "kableExtra",
@@ -9,7 +9,7 @@ packages <- c("shiny",
 	      "gtools",
 	      "xlsx")
 
-### Load libraries
+### Load packages
 package.check <- lapply(
   packages,
   FUN = function(x) {
