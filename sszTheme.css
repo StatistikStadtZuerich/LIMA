@@ -75,6 +75,10 @@ body {
 	font-size: 13px;
 }
 
+.well {
+  min-height: 400px;
+}
+
 /* Headings */
 h2 {
   font-family: "Arial Black", sans-serif;
