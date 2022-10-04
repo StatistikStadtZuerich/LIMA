@@ -16,6 +16,10 @@
   margin-top: 40px;
 }
 
+.col-sm-4 {
+  min-height: 450px;
+}
+
 /* Links */
 a {
   font-size: 14px;
@@ -620,6 +624,11 @@ input[type="radio"]:focus {
 /* Delete row select */
 .rt-td-select {
   display: none;
+}
+
+.rt-tbody {
+  font-size: 11px;
+  font-family: HelveticaNeueLTW01_55Roman;
 }
 
 
