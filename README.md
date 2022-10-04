@@ -44,4 +44,3 @@ For LIMA, only changes in ownership zones with possible residential use are take
 - W4 = Residential zone 4
 - W5 = Residential zone 5
 - W6 = Residential zone 6
-All data is available as OGD: https://data.stadt-zuerich.ch/dataset?tags=lima
