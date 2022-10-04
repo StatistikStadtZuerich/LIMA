@@ -16,12 +16,9 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
     data <- read_excel(hauptPfad, sheet = 1)
     definitions1 <- read_excel(hauptPfad, sheet = 2)
     definitions2 <- read_excel(hauptPfad, sheet = 3)
-    logo <- load.image(imagePfad)
     
     # Manipulate Data
     # Data Sheet 1
-    
-    
     if(queryinput == "Abfrage 1: Zeitreihen nach Bauzonen für ganze Stadt und Teilgebiete"){
       data <- data %>%
         mutate(
@@ -43,8 +40,6 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
     }
       
     # Data Sheet 2
-    bdf <- as.data.frame(logo)
-    
     # Styling
     sty <- createStyle(fgFill="#ffffff")
     styConcept <- createStyle(textDecoration=c("bold"),
@@ -66,7 +61,7 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
     writeData(wb, sheet = 1, x = data,
                  colNames = FALSE, rowNames = FALSE,
                  startCol = 2,
-                 startRow = 8,
+                 startRow = 7,
                  withFilter = FALSE)
     
     # Write Table Sheet 2
@@ -96,22 +91,9 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
             startRow = 9,
             withFilter = FALSE)
     
-    # Wrap Image into Plot
-    p <-ggplot(bdf,aes(x,y))+geom_raster(aes(fill=value))+
-    theme_void() +
-    theme(legend.position = "none") +
-    scale_fill_gradient(low="black",high="white") +
-    scale_y_continuous(expand=c(0,0),
-                       trans=scales::reverse_trans()) +
-    scale_x_continuous(expand=c(0,0))
-    print(p)
-    dev.off()
     # Insert Plot on Sheet 1
-    insertPlot(wb, sheet = 1, startRow= 2, startCol = 2, width = 1.75 , height = 0.3)
-    #dev.off()
+    insertImage(wb, imagePfad, sheet = 1, startRow= 2, startCol = 2, width = 1.75 , height = 0.3)
 
-
-    
     # Add Styling
     addStyle(wb, 1, style = sty, row = 1:19, cols = 1:6, gridExpand = TRUE)
     addStyle(wb, 1, style = styTitle, row = 14, cols = 2, gridExpand = TRUE)
@@ -128,9 +110,7 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
     setColWidths(wb, sheet = 2, cols = "A", widths = 40)
     setColWidths(wb, sheet = 2, cols = "B", widths = 65)
     
-    
     # Save Excel
     # openXL(wb)
     saveWorkbook(wb, file, overwrite = TRUE) ## save to working directory
 }
-
