@@ -529,6 +529,10 @@ input[type="radio"]:focus {
     padding: 9px 20px;
 }
 
+.selectize-dropdown [data-selectable] .highlight {
+  background: transparent;
+}
+
 .selectize-input.not-full{
   border-color: #646464;
   outline: 0;
