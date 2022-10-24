@@ -85,9 +85,21 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   					),
   				),
   				
-  				#Action Button
-  				actionButton(inputId = "buttonStart", 
-  										 label = "Abfrage starten"),
+  				# #Action Button
+  				# actionButton(inputId = "buttonStart", 
+  				# 						 label = "Abfrage starten"),
+  				
+  				# Action Button (disappears after first click)
+  				conditionalPanel(
+  				  condition = 'input.buttonStart==0',
+  				  
+  				  actionButton("buttonStart",
+  				               "Abfrage starten")
+  				),
+  				conditionalPanel(
+  				  condition = 'input.buttonStart>0',
+  				  
+  				),
   				br(),
   				
   				#Downloads
@@ -238,9 +250,21 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   											 choices = c("",sort(unique(addresses$Hnr))),
   											 selected = NULL),
   				
-  				#Action Button
-  				actionButton("buttonStartTwo", 
-  										 "Abfrage starten"),
+  				# #Action Button
+  				# actionButton("buttonStartTwo", 
+  				# 						 "Abfrage starten"),
+  			 
+  			 # Action Button (disappears after first click)
+  			  conditionalPanel(
+  			    condition = 'input.buttonStartTwo==0',
+  			   
+  			    actionButton("buttonStartTwo",
+  			                "Abfrage starten")
+  			  ),
+  			  conditionalPanel(
+  			    condition = 'input.buttonStartTwo>0',
+  			   
+  			  ),
   				br(),
   				
   				#Conditional Data Download
@@ -308,10 +332,27 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   
   ###Server
   server <- function(input, output, session) {
+    
+    # First button click to activate search, after not necessary anymore
+    global <- reactiveValues(activeButton = FALSE)
+    
+    observeEvent(input$buttonStart, {
+      req(input$buttonStart)
+      global$activeButton <- TRUE
+    })
+    
+    globalTwo <- reactiveValues(activeButton = FALSE)
+    
+    observeEvent(input$buttonStartTwo, {
+      req(input$buttonStartTwo)
+      global$activeButton <- TRUE
+    })
   	
   	###Get Data for Download
   	#App 1
-  	dataDownload <- eventReactive(input$buttonStart, {
+  	dataDownload <- reactive({
+  	  req(global$activeButton == TRUE)
+  	  
   		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
   			filtered <- zones %>%
   				filter(GebietLang == input$area,
@@ -329,7 +370,8 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#App 2
-  	dataDownloadTwo <- eventReactive(input$buttonStartTwo, {
+  	dataDownloadTwo <- reactive({
+  	  req(globalTwo$activeButton == TRUE)
   		
   		#Pull district
   		district <- addresses %>%
@@ -369,7 +411,9 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	##App 1
   	#Get Data for Output Prices
   	#BZO16
-  	priceOutput16 <- eventReactive(input$buttonStart, {
+  	priceOutput16 <- reactive({
+  	  req(global$activeButton == TRUE)
+  	  
   		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
   			filtered <- zonesBZO16 %>%
   				filter(Typ == "Preis",
@@ -391,7 +435,9 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#BZO99
-  	priceOutput99 <- eventReactive(input$buttonStart, {
+  	priceOutput99 <- reactive({
+  	  req(global$activeButton == TRUE)
+  	  
   		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
   			filtered <- zonesBZO99 %>%
   				filter(Typ == "Preis",
@@ -414,7 +460,9 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	
   	#Get Data for Output Counts
   	#BZO16
-  	countOutput16 <- eventReactive(input$buttonStart, {
+  	countOutput16 <- reactive({
+  	  req(global$activeButton == TRUE)
+  	  
   		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
   			filtered <- zonesBZO16 %>%
   				filter(Typ == "Zahl",
@@ -436,7 +484,7 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#BZO99
-  	countOutput99 <- eventReactive(input$buttonStart, {
+  	countOutput99 <- eventReactive({
   		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
   			filtered <- zonesBZO99 %>%
   				filter(Typ == "Zahl",
@@ -458,7 +506,9 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#Show Output Prices (App 1)
-  	observeEvent(input$buttonStart, {
+  	observe({
+  	  req(global$activeButton == TRUE)
+  	  
   	  output$resultsPrice16 <- renderReactable({
   	    out16 <- reactable(priceOutput16(),
   	                             theme = reactableTheme(
@@ -548,7 +598,9 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	
   	#Captions
   	#Reactive Title
-  	titleReactive <- eventReactive(input$buttonStart, {
+  	titleReactive <- reactive({
+  	  req(global$activeButton == TRUE)
+  	  
   		input$price
   	})
   	output$title <- renderText({
@@ -556,7 +608,9 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#Reactive Subtitle
-  	subtitleReactive <- eventReactive(input$buttonStart, {
+  	subtitleReactive <- reactive({
+  	  req(global$activeButton == TRUE)
+  	  
   		if(input$price == "Stockwerkeigentum pro m2 Wohnungsfläche"){
   			title <- NULL
   		} else {
@@ -568,7 +622,9 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#Reactive Sub-Subtitle
-  	subSubtitleReactive <- eventReactive(input$buttonStart, {
+  	subSubtitleReactive <- reactive({
+  	  req(global$activeButton == TRUE)
+  	  
   		subSubtitle <- paste0(input$area, ", Medianpreise in CHF")
   	})
   	output$subSubtitle <- renderText({
@@ -576,14 +632,18 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#Reactive Table Title BZO 16
-  	tableTitle16Reactive <- eventReactive(input$buttonStart, {
+  	tableTitle16Reactive <- reactive({
+  	  req(global$activeButton == TRUE)
+  	  
   		tableTitle16 <- paste0("Nach Zonenart gemäss BZO 2016")
   	})
   	output$tableTitle16 <- renderText({
   		tableTitle16Reactive()
   	})
   	
-  	tableTitleTwo16Reactive <- eventReactive(input$buttonStart, {
+  	tableTitleTwo16Reactive <- ereactive({
+  	  req(global$activeButton == TRUE)
+  	  
   		tableTitleTwo16 <- paste0("Nach Zonenart gemäss BZO 2016")
   	})
   	output$tableTitleTwo16 <- renderText({
@@ -591,14 +651,18 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#Reactive Table Title BZO 16
-  	tableTitle99Reactive <- eventReactive(input$buttonStart, {
+  	tableTitle99Reactive <- reactive({
+  	  req(global$activeButton == TRUE)
+  	  
   		tableTitle99 <- paste0("Nach Zonenart gemäss BZO 1999")
   	})
   	output$tableTitle99 <- renderText({
   		tableTitle99Reactive()
   	})
   	
-  	tableTitleTwo99Reactive <- eventReactive(input$buttonStart, {
+  	tableTitleTwo99Reactive <- reactive({
+  	  req(global$activeButton == TRUE)
+  	  
   		tableTitleTwo99 <- paste0("Nach Zonenart gemäss BZO 1999")
   	})
   	output$tableTitleTwo99 <- renderText({
@@ -619,7 +683,8 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#Get Information of Address
-  	infosReactive <- eventReactive(input$buttonStartTwo, {
+  	infosReactive <- reactive({
+  	  req(globalTwo$activeButton == TRUE)
   		req(input$street)
   		req(input$number)
   		infosFiltered <- addresses %>%
@@ -640,7 +705,9 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#Show Output Information Address
-  	observeEvent(input$buttonStartTwo, {
+  	observe({
+  	  req(globalTwo$activeButton == TRUE)
+  	  
   		output$resultsInfos <- renderText({
   			outInfos <- infosReactive() 
   			outInfos
@@ -648,7 +715,8 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#Get Information if Data Frame is empty
-  	dataAvailable <- eventReactive(input$buttonStartTwo, {
+  	dataAvailable <- reactive({
+  	  req(globalTwo$activeButton == TRUE)
   		req(input$street)
   		req(input$number)
   		#Pull district
@@ -690,7 +758,8 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#Reactive Info
-  	infoReactive <- eventReactive(input$buttonStartTwo, {
+  	infoReactive <- reactive({
+  	  req(globalTwo$activeButton == TRUE)
   		req(input$street)
   		req(input$number)
   		
@@ -713,7 +782,8 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	
   	#Show Output (App 2)  
   	#Get Data for Output Prices (District-Zone-Combination)
-  	distReactivePrice <- eventReactive(input$buttonStartTwo, {
+  	distReactivePrice <- reactive({
+  	  req(globalTwo$activeButton == TRUE)
   		req(input$street)
   		req(input$number)
   		
@@ -757,7 +827,8 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	#Get Data for Output Counts (District-Price-Combination)
-  	distReactiveCount <- eventReactive(input$buttonStartTwo, {
+  	distReactiveCount <- reactive({
+  	  req(globalTwo$activeButton == TRUE)
   		req(input$street)
   		req(input$number)
   		
@@ -801,10 +872,11 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   
   	#Show Output Prices
-  	observeEvent(input$buttonStartTwo, {
+  	observe({
+  	  req(globalTwo$activeButton == TRUE)
   		req(input$street)
   		req(input$number)
-  		req(input$buttonStartTwo)
+  		# req(input$buttonStartTwo)
   		
   		#Table if data is available for zone
   		availability <- dataAvailable()
@@ -1006,7 +1078,9 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	)
   	
   	#Conditional Data Download (title)
-  	observeEvent(input$buttonStartTwo, {
+  	observe({
+  	  req(globalTwo$activeButton == TRUE)
+  	  
   		output$dataTwo <- renderUI({
   			availability <- dataAvailable()
   			if(availability>0) {
@@ -1067,20 +1141,20 @@ if(is.null(zones) | is.null(series) | is.null(addresses) | is.null(zonesBZO16) |
   	})
   	
   	
-  	###Change Action Query Button when first selected
-  	##App 1
-  	observe({
-  		req(input$buttonStart)
-  		updateActionButton(session, "buttonStart",
-  											 label = "Erneute Abfrage")
-  	})
-  	
-  	##App 2
-  	observe({
-  		req(input$buttonStartTwo)
-  		updateActionButton(session, "buttonStartTwo",
-  											 label = "Erneute Abfrage")
-  	})
+  	# ###Change Action Query Button when first selected
+  	# ##App 1
+  	# observe({
+  	# 	req(input$buttonStart)
+  	# 	updateActionButton(session, "buttonStart",
+  	# 										 label = "Erneute Abfrage")
+  	# })
+  	# 
+  	# ##App 2
+  	# observe({
+  	# 	req(input$buttonStartTwo)
+  	# 	updateActionButton(session, "buttonStartTwo",
+  	# 										 label = "Erneute Abfrage")
+  	# })
   }
   
   ###Run the App
