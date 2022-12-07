@@ -466,9 +466,10 @@ if(is.null(data)) {
   	                             theme = reactableTheme(
   	                               borderColor = "#DEDEDE"
   	                             ),
-  	                             columns = make_column_defs(priceOutput16()),
+  	                             columns = list(
+  	                               Jahr = colDef(name = "Jahr", align = "left")),
   	                             defaultColDef = colDef(
-  	                               align = "left",
+  	                               align = "right",
   	                               minWidth = 50,
   	                               cell = function(value) {
   	                                 # Format only numeric columns with thousands separators
@@ -495,9 +496,10 @@ if(is.null(data)) {
   	                       theme = reactableTheme(
   	                         borderColor = "#DEDEDE"
   	                       ),
-  	                       columns = make_column_defs(priceOutput99()),
+  	                       columns = list(
+  	                         Jahr = colDef(name = "Jahr", align = "left")),
   	                       defaultColDef = colDef(
-  	                         align = "left",
+  	                         align = "right",
   	                         minWidth = 50,
   	                         cell = function(value) {
   	                           # Format only numeric columns with thousands separators
@@ -531,8 +533,10 @@ if(is.null(data)) {
   	                       theme = reactableTheme(
   	                         borderColor = "#DEDEDE"
   	                       ),
+  	                       columns = list(
+  	                         Jahr = colDef(name = "Jahr", align = "left")),
   	                       defaultColDef = colDef(
-  	                         align = "left",
+  	                         align = "right",
   	                         minWidth = 50
   	                       ),
   	                       outlined = TRUE,
@@ -548,8 +552,10 @@ if(is.null(data)) {
   	                            theme = reactableTheme(
   	                              borderColor = "#DEDEDE"
   	                            ),
+  	                            columns = list(
+  	                              Jahr = colDef(name = "Jahr", align = "left")),
   	                            defaultColDef = colDef(
-  	                              align = "left",
+  	                              align = "right",
   	                              minWidth = 50
   	                            ),
   	                            outlined = TRUE,
@@ -844,7 +850,7 @@ if(is.null(data)) {
   		                                  borderColor = "#DEDEDE"
   		                                ),
   		                                columns = list(
-  		                                  Jahr = colDef(name = "Jahr"),
+  		                                  Jahr = colDef(name = "Jahr", align = "left"),
   		                                  FrQmBodenGanzeLieg = colDef(name = "Ganze Liegen-\nschaften"),
   		                                  FrQmBodenStwE = colDef(name = "StwE"),
   		                                  FrQmBodenAlleHA = colDef(name = "Alle Verkäufe"),
@@ -865,7 +871,7 @@ if(is.null(data)) {
   		                                           align = "left", headerVAlign = "bottom")
   		                                ),
   		                                defaultColDef = colDef(
-  		                                  align = "left",
+  		                                  align = "right",
   		                                  headerVAlign = "bottom",
   		                                  minWidth = 50,
   		                                  cell = function(value) {
@@ -894,7 +900,7 @@ if(is.null(data)) {
   		                                  borderColor = "#DEDEDE"
   		                                ),
   		                                columns = list(
-  		                                  Jahr = colDef(name = "Jahr"),
+  		                                  Jahr = colDef(name = "Jahr", align = "left"),
   		                                  FrQmBodenGanzeLieg = colDef(name = "Ganze Liegen-\nschaften"),
   		                                  FrQmBodenStwE = colDef(name = "StwE"),
   		                                  FrQmBodenAlleHA = colDef(name = "Alle Verkäufe"),
@@ -912,7 +918,7 @@ if(is.null(data)) {
   		                                           align = "right", headerVAlign = "bottom")
   		                                ),
   		                                defaultColDef = colDef(
-  		                                  align = "left",
+  		                                  align = "right",
   		                                  headerVAlign = "bottom",
   		                                  minWidth = 50
   		                                ),
