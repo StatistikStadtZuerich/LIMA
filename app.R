@@ -479,7 +479,7 @@ if(is.null(data)) {
   	                                 if(!is.na(value)){
   	                                   format(value, big.mark = " ")
   	                                 } else {
-  	                                   "-"
+  	                                   "–"
   	                                 }
   	                               }
   	                             ),
@@ -779,7 +779,7 @@ if(is.null(data)) {
   		#Total series
   		priceSerieTotal <- bind_rows(priceSerieBZO16, priceSerieBZO99) %>% 
   		  select(-Typ, -QuarCd, -QuarLang, -ZoneSort, -ZoneLang) %>% 
-  	   	mutate_all(funs(replace(., .=="-", ""))) %>% 
+  	   	mutate_all(funs(replace(., .=="–", ""))) %>% 
   		  mutate_at(c('FrQmBodenGanzeLieg', 'FrQmBodenStwE', 'FrQmBodenAlleHA', 'FrQmBodenNettoGanzeLieg', 
   		              'FrQmBodenNettoStwE', 'FrQmBodenNettoAlleHA', 'FrQmWohnflStwE'), as.numeric)
   		
@@ -882,7 +882,7 @@ if(is.null(data)) {
   		                                    if(!is.na(value)){
   		                                      format(value, big.mark = " ")
   		                                    } else {
-  		                                        "-"
+  		                                        "–"
   		                                      }
   		                                  }
   		                                ),
