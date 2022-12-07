@@ -378,7 +378,7 @@ if(is.null(data)) {
   							 GebietLang == input$area,
   							 PreisreiheLang == input$price) %>% 
   				select(Jahr, Total, Z, K, Q, W2, W3, W4, W5, W6) %>% 
-  				mutate_all(., ~replace(., is.na(.), " "))  
+  			  mutate_at(c('Total', 'Z', 'K', 'Q', 'W2', 'W3', 'W4', 'W5', 'W6'), as.numeric)   
   			filtered
   		} else {
   			filtered <- zonesBZO16 %>%
@@ -387,7 +387,7 @@ if(is.null(data)) {
   							 PreisreiheLang == input$price,
   							 ArtLang == input$group) %>% 
   				select(Jahr, Total, Z, K, Q, W2, W3, W4, W5, W6) %>% 
-  				mutate_all(., ~replace(., is.na(.), " "))  
+  			  mutate_at(c('Total', 'Z', 'K', 'Q', 'W2', 'W3', 'W4', 'W5', 'W6'), as.numeric)  
   			filtered
   		}
   	})
@@ -400,7 +400,7 @@ if(is.null(data)) {
   							 GebietLang == input$area,
   							 PreisreiheLang == input$price) %>% 
   				select(Jahr, Total, Z, K, Q, ` `,W2, W3, W4, W5) %>% 
-  				mutate_all(., ~replace(., is.na(.), " "))  
+  			  mutate_at(c('Total', 'Z', 'K', 'Q', 'W2', 'W3', 'W4', 'W5'), as.numeric)  
   			filtered 
   		} else {
   			filtered <- zonesBZO99 %>%
@@ -409,7 +409,7 @@ if(is.null(data)) {
   							 PreisreiheLang == input$price,
   							 ArtLang == input$group) %>% 
   				select(Jahr, Total, Z, K, Q, ` `,W2, W3, W4, W5) %>% 
-  				mutate_all(., ~replace(., is.na(.), " ")) 
+  			  mutate_at(c('Total', 'Z', 'K', 'Q', 'W2', 'W3', 'W4', 'W5'), as.numeric) 
   			filtered
   		}
   	})
@@ -466,9 +466,21 @@ if(is.null(data)) {
   	                             theme = reactableTheme(
   	                               borderColor = "#DEDEDE"
   	                             ),
+  	                             columns = make_column_defs(priceOutput16()),
   	                             defaultColDef = colDef(
   	                               align = "left",
-  	                               minWidth = 50
+  	                               minWidth = 50,
+  	                               cell = function(value) {
+  	                                 # Format only numeric columns with thousands separators
+  	                                 if (!is.numeric(value)) {
+  	                                   return(value)
+  	                                 }
+  	                                 if(!is.na(value)){
+  	                                   format(value, big.mark = " ")
+  	                                 } else {
+  	                                   "-"
+  	                                 }
+  	                               }
   	                             ),
   	                             outlined = TRUE,
   	                             highlight = TRUE,
@@ -483,9 +495,21 @@ if(is.null(data)) {
   	                       theme = reactableTheme(
   	                         borderColor = "#DEDEDE"
   	                       ),
+  	                       columns = make_column_defs(priceOutput99()),
   	                       defaultColDef = colDef(
   	                         align = "left",
-  	                         minWidth = 50
+  	                         minWidth = 50,
+  	                         cell = function(value) {
+  	                           # Format only numeric columns with thousands separators
+  	                           if (!is.numeric(value)) {
+  	                             return(value)
+  	                           }
+  	                           if(!is.na(value)){
+  	                             format(value, big.mark = " ")
+  	                           } else {
+  	                             "-"
+  	                           }
+  	                         }
   	                       ),
   	                       outlined = TRUE,
   	                       highlight = TRUE,
@@ -748,7 +772,10 @@ if(is.null(data)) {
   		
   		#Total series
   		priceSerieTotal <- bind_rows(priceSerieBZO16, priceSerieBZO99) %>% 
-  			select(-Typ, -QuarCd, -QuarLang, -ZoneSort, -ZoneLang)
+  		  select(-Typ, -QuarCd, -QuarLang, -ZoneSort, -ZoneLang) %>% 
+  	   	mutate_all(funs(replace(., .=="-", ""))) %>% 
+  		  mutate_at(c('FrQmBodenGanzeLieg', 'FrQmBodenStwE', 'FrQmBodenAlleHA', 'FrQmBodenNettoGanzeLieg', 
+  		              'FrQmBodenNettoStwE', 'FrQmBodenNettoAlleHA', 'FrQmWohnflStwE'), as.numeric)
   		
   		if(nrow(priceSerieTotal)>0) {
   			priceDistZone <- priceSerieTotal 
@@ -840,7 +867,18 @@ if(is.null(data)) {
   		                                defaultColDef = colDef(
   		                                  align = "left",
   		                                  headerVAlign = "bottom",
-  		                                  minWidth = 50
+  		                                  minWidth = 50,
+  		                                  cell = function(value) {
+  		                                    # Format only numeric columns with thousands separators
+  		                                    if (!is.numeric(value)) {
+  		                                      return(value)
+  		                                    }
+  		                                    if(!is.na(value)){
+  		                                      format(value, big.mark = " ")
+  		                                    } else {
+  		                                        "-"
+  		                                      }
+  		                                  }
   		                                ),
   		                                outlined = TRUE,
   		                                highlight = TRUE,
