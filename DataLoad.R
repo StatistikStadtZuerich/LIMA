@@ -105,9 +105,3 @@ if (!is.null(data)) {
       TRUE ~ paste0(ZoneBZO16Lang, " (bis 2018: ", ZoneBZO99Lang, ")")
     ))
 }
-
-### Download Function
-sszDownload <- function(outputId, label = "Download"){
-  tags$a(id = outputId, class = "btn btn-default shiny-download-link chipDownload", href = "", 
-         target = "_blank", download = NA, label)
-}

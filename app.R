@@ -6,9 +6,10 @@ library(dplyr)
 library(shinyjs)
 library(dqshiny)
 library(gtools)
+library(zuericssstyle)
 
 ### Data
-source("DataLoad.R")
+source("DataLoad.R", encoding = "UTF-8")
 
 ### Source Export Excel
 source("exportExcel.R", encoding = "UTF-8")
@@ -22,7 +23,7 @@ if (is.null(data)) {
   ui <- fluidPage(
 
     # Include CSS
-    includeCSS("sszTheme.css"),
+    includeCSS("sszThemeShiny.css"),
     h1("Fehler"),
     p("Aufgrund momentaner Wartungsarbeiten ist die Applikation zur Zeit nicht verfügbar.")
   )
@@ -39,22 +40,19 @@ if (is.null(data)) {
   ui <- fluidPage(
 
     # CSS
-    includeCSS("sszTheme.css"),
+    includeCSS("sszThemeShiny.css"),
 
     # App Selection
-    tags$div(
-      class = "radioDiv",
-      h1("Wählen Sie eine Abfrage"),
-      hr(),
-      radioButtons(
-        inputId = "query",
-        label = NULL,
-        choices = c(
-          "Abfrage 1: Zeitreihen nach Bauzonen für ganze Stadt und Teilgebiete",
-          "Abfrage 2: Zeitreihen für Quartiere und Bauzonen über Adresseingabe"
-        ),
-        selected = character(0)
-      )
+    h1("Wählen Sie eine Abfrage"),
+    hr(),
+    sszRadioButtons(
+      inputId = "query",
+      label = NULL,
+      choices = c(
+        "Abfrage 1: Zeitreihen nach Bauzonen für ganze Stadt und Teilgebiete",
+        "Abfrage 2: Zeitreihen für Quartiere und Bauzonen über Adresseingabe"
+      ),
+      selected = character(0) # needed as otherwise the conditional panel is already shown 
     ),
 
 
@@ -67,13 +65,13 @@ if (is.null(data)) {
         sidebarPanel(
 
           # Area
-          selectInput("area",
+          sszSelectInput("area",
             "Gebietsauswahl",
             choices = c(unique(zones$GebietLang))
           ),
 
           # Price
-          radioButtons("price",
+          sszRadioButtons("price",  
             "Preise",
             choices = c(unique(zones$PreisreiheLang))
           ),
@@ -81,18 +79,18 @@ if (is.null(data)) {
           # Group (conditional to price)
           conditionalPanel(
             condition = 'input.price != "Stockwerkeigentum pro m2 Wohnungsfläche"',
-            radioButtons("group",
+            sszRadioButtons("group",
               "Art",
               choices = c(
                 "Ganze Liegenschaften",
                 "Stockwerkeigentum",
                 "Alle Verkäufe"
-              )
+              )  
             ),
           ),
 
           # Action Button
-          actionButton(
+          sszActionButton(
             inputId = "buttonStart",
             label = "Abfrage starten"
           ),
@@ -103,7 +101,6 @@ if (is.null(data)) {
             condition = "input.buttonStart",
             h2("Daten herunterladen"),
             tags$div(
-              id = "downloadWrapperId",
               class = "downloadWrapperDiv",
               sszDownload("csvDownload",
                 label = "csv"
@@ -111,7 +108,7 @@ if (is.null(data)) {
               sszDownload("excelDownload",
                 label = "xlsx"
               ),
-              actionButton(
+              sszOgdDownload(
                 inputId = "ogdDown",
                 label = "OGD",
                 onclick = "window.open('https://data.stadt-zuerich.ch/dataset?tags=lima', '_blank')"
@@ -243,14 +240,14 @@ if (is.null(data)) {
           ),
 
           # Number input
-          selectInput("number",
+          sszSelectInput("number",
             "Wählen Sie eine Hausnummer aus",
             choices = c("", sort(unique(addresses$Hnr))),
             selected = NULL
           ),
 
           # Action Button
-          actionButton(
+          sszActionButton(
             "buttonStartTwo",
             "Abfrage starten"
           ),
