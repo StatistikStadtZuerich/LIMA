@@ -2,7 +2,6 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
 
   # Required Libraries
   library(jpeg)
-  library(imager)
   library(openxlsx)
   library(ggplot2)
   library(readxl)
