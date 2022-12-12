@@ -132,24 +132,24 @@ if (is.null(data)) {
           h2(textOutput("subtitle")),
 
           # Table Subsubtitle (prices)
-          h2(textOutput("subSubtitle")),
+          p(textOutput("subSubtitle")),
 
           # Title for BZO16 (prices)
-          tags$div(
-            id = "tableTitle16_id",
-            class = "tableTitle_div",
-            textOutput("tableTitle16")
-          ),
+          # tags$div(
+          #   id = "tableTitle16_id",
+          #   class = "tableTitle_div",
+            h4(textOutput("tableTitle16")),
+          #),
 
           # Table for BZO 16 (prices)
           reactableOutput("resultsPrice16"),
 
           # title for BZO99 (prices)
-          tags$div(
-            id = "tableTitle99_id",
-            class = "tableTitle_div",
-            textOutput("tableTitle99")
-          ),
+          # tags$div(
+          #   id = "tableTitle99_id",
+          #   class = "tableTitle_div",
+            h4(textOutput("tableTitle99")),
+          # ),
 
           # Table for BZO 99 (prices)
           reactableOutput("resultsPrice99"),
@@ -184,11 +184,11 @@ if (is.null(data)) {
               reactableOutput("resultsCount16"),
 
               # Title for BZO99 (counts)
-              tags$div(
-                id = "tableTitleTwo99_id",
-                class = "tableTitle_div",
-                textOutput("tableTitleTwo99")
-              ),
+              # tags$div(
+              #   id = "tableTitleTwo99_id",
+              #   class = "tableTitle_div",
+                h4(textOutput("tableTitleTwo99")),
+              # ),
 
               # Table for BZO99 (counts)
               reactableOutput("resultsCount99")
@@ -909,22 +909,25 @@ if (is.null(data)) {
               colGroup(
                 name = "Preise pro m2 Boden",
                 columns = c("FrQmBodenGanzeLieg", "FrQmBodenStwE", "FrQmBodenAlleHA"),
-                align = "left", headerVAlign = "bottom"
+                align = "left",
+                # headerVAlign = "bottom" # only with later reactable version
               ),
               colGroup(
                 name = "Preise pro m2 Boden abzgl. VersW",
                 columns = c("FrQmBodenNettoGanzeLieg", "FrQmBodenNettoStwE", "FrQmBodenNettoAlleHA"),
-                align = "left", headerVAlign = "bottom"
+                align = "left", 
+                # headerVAlign = "bottom" # only with later reactable version
               ),
               colGroup(
                 name = "StwE pro m2 Wohnungsfläche (alle Zonen)",
                 columns = "FrQmWohnflStwE",
-                align = "left", headerVAlign = "bottom"
+                align = "left", 
+                # headerVAlign = "bottom" # only with later reactable version
               )
             ),
             defaultColDef = colDef(
               align = "right",
-              headerVAlign = "bottom",
+              # headerVAlign = "bottom", # only with later reactable version
               minWidth = 50,
               cell = function(value) {
                 # Format only numeric columns with thousands separators
@@ -965,17 +968,19 @@ if (is.null(data)) {
               colGroup(
                 name = "Anzahl Handänderungen",
                 columns = c("FrQmBodenGanzeLieg", "FrQmBodenStwE", "FrQmBodenAlleHA"),
-                align = "left", headerVAlign = "bottom"
+                align = "left", 
+                # headerVAlign = "bottom" # only with later reactable version
               ),
               colGroup(
                 name = "StwE pro m2 Wohnungsfläche (alle Zonen)",
                 columns = c("FrQmBodenNettoGanzeLieg", "FrQmBodenNettoStwE", "FrQmBodenNettoAlleHA", "FrQmWohnflStwE"),
-                align = "right", headerVAlign = "bottom"
+                align = "right", 
+                # headerVAlign = "bottom" # only with later reactable version
               )
             ),
             defaultColDef = colDef(
               align = "right",
-              headerVAlign = "bottom",
+              # headerVAlign = "bottom", # only with later reactable version
               minWidth = 50
             ),
             outlined = TRUE,
