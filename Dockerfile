@@ -1,5 +1,5 @@
 FROM rocker/tidyverse:4.0.3
-RUN install2.r rsconnect shiny reactable Rcpp shinyjs gtools httr jpeg openxlsx readxl
+RUN install2.r rsconnect shiny reactable Rcpp shinyjs gtools httr jpeg openxlsx readxl kableExtra
 RUN  R -e 'remotes::install_github("daqana/dqshiny")'
 WORKDIR /home/lima
 COPY app.R app.R
