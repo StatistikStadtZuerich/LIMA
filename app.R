@@ -121,29 +121,18 @@ if (is.null(data)) {
         mainPanel(
 
           # Table Title (prices)
-          tags$div(
-            id = "title_id",
-            class = "title_div",
-            textOutput("title")
-          ),
+          h1(textOutput("title")),
+          
           conditionalPanel(
             condition = "input.buttonStart",
             hr()
           ),
 
           # Table Subtitle (prices)
-          tags$div(
-            id = "subtitle_id",
-            class = "subtitle_div",
-            textOutput("subtitle")
-          ),
+          h2(textOutput("subtitle")),
 
           # Table Subsubtitle (prices)
-          tags$div(
-            id = "subSubtitle_id",
-            class = "subSubtitle_div",
-            textOutput("subSubtitle")
-          ),
+          h2(textOutput("subSubtitle")),
 
           # Title for BZO16 (prices)
           tags$div(
