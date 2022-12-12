@@ -504,7 +504,7 @@ if (is.null(data)) {
                 return(value)
               }
               if (!is.na(value)) {
-                format(value, big.mark = " ")
+                format(value, big.mark = "\ua0")
               } else {
                 "–"
               }
@@ -535,7 +535,7 @@ if (is.null(data)) {
                 return(value)
               }
               if (!is.na(value)) {
-                format(value, big.mark = " ")
+                format(value, big.mark = "\ua0")
               } else {
                 "-"
               }
@@ -935,7 +935,7 @@ if (is.null(data)) {
                   return(value)
                 }
                 if (!is.na(value)) {
-                  format(value, big.mark = " ")
+                  format(value, big.mark = "\ua0")
                 } else {
                   "–"
                 }
