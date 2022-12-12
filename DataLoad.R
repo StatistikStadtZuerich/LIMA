@@ -106,11 +106,8 @@ if (!is.null(data)) {
     ))
 }
 
-
 ### Download Function
-sszDownload <- function(outputId, label = "Download") {
-  tags$a(
-    id = outputId, class = "btn btn-default shiny-download-link chipDownload", href = "",
-    target = "_blank", download = NA, label
-  )
+sszDownload <- function(outputId, label = "Download"){
+  tags$a(id = outputId, class = "btn btn-default shiny-download-link chipDownload", href = "", 
+         target = "_blank", download = NA, label)
 }
