@@ -15,7 +15,7 @@ source("exportExcel.R", encoding = "UTF-8")
 
 
 ### TryCatch for Error in Data Load
-## if data load didn't work show message
+# if data load didn't work show message
 if (is.null(data)) {
 
   # Define UI
