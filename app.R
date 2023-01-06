@@ -923,24 +923,25 @@ if (is.null(data)) {
               colGroup(
                 name = "Preise pro m2 Boden",
                 columns = c("FrQmBodenGanzeLieg", "FrQmBodenStwE", "FrQmBodenAlleHA"),
-                align = "left", headerVAlign = "bottom",
+                align = "left",
                 headerClass = "groupTable-header",
               ),
               colGroup(
                 name = "Preise pro m2 Boden abzgl. VersW",
                 columns = c("FrQmBodenNettoGanzeLieg", "FrQmBodenNettoStwE", "FrQmBodenNettoAlleHA"),
-                align = "left", headerVAlign = "bottom",
+                align = "left",
                 headerClass = "groupTable-header",
               ),
               colGroup(
                 name = "StwE pro m2 Wohnungsfläche (alle Zonen)",
                 columns = "FrQmWohnflStwE",
-                align = "left", headerVAlign = "bottom",
+                align = "left",
                 headerClass = "groupTable-header",
               )
             ),
             defaultColDef = colDef(
               align = "right",
+              #headerVAlign = "bottom",
               minWidth = 50,
               cell = function(value) {
                 # Format only numeric columns with thousands separators
@@ -982,14 +983,12 @@ if (is.null(data)) {
                 name = "Anzahl Handänderungen",
                 columns = c("FrQmBodenGanzeLieg", "FrQmBodenStwE", "FrQmBodenAlleHA"),
                 align = "left",
-                headerVAlign = "bottom",
                 headerClass = "groupTable-header"
               ),
               colGroup(
                 name = "StwE pro m2 Wohnungsfläche (alle Zonen)",
                 columns = c("FrQmBodenNettoGanzeLieg", "FrQmBodenNettoStwE", "FrQmBodenNettoAlleHA", "FrQmWohnflStwE"),
                 align = "right", 
-                headerVAlign = "bottom",
                 headerClass = "groupTable-header"
               )
             ),
