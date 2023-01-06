@@ -923,17 +923,18 @@ if (is.null(data)) {
               colGroup(
                 name = "Preise pro m2 Boden",
                 columns = c("FrQmBodenGanzeLieg", "FrQmBodenStwE", "FrQmBodenAlleHA"),
-                align = "left", #headerVAlign = "bottom"
+                align = "left", headerVAlign = "bottom"
               ),
               colGroup(
                 name = "Preise pro m2 Boden abzgl. VersW",
                 columns = c("FrQmBodenNettoGanzeLieg", "FrQmBodenNettoStwE", "FrQmBodenNettoAlleHA"),
-                align = "left", #headerVAlign = "bottom"
+                align = "left", headerVAlign = "bottom"
               ),
               colGroup(
                 name = "StwE pro m2 Wohnungsfläche (alle Zonen)",
                 columns = "FrQmWohnflStwE",
-                align = "left", #headerVAlign = "bottom"
+                align = "left", headerVAlign = "bottom",
+                
               )
             ),
             defaultColDef = colDef(
@@ -979,18 +980,18 @@ if (is.null(data)) {
               colGroup(
                 name = "Anzahl Handänderungen",
                 columns = c("FrQmBodenGanzeLieg", "FrQmBodenStwE", "FrQmBodenAlleHA"),
-                align = "left"#, headerVAlign = "bottom"
+                align = "left", headerVAlign = "bottom"
               ),
               colGroup(
                 name = "StwE pro m2 Wohnungsfläche (alle Zonen)",
                 columns = c("FrQmBodenNettoGanzeLieg", "FrQmBodenNettoStwE", "FrQmBodenNettoAlleHA", "FrQmWohnflStwE"),
-                align = "right" #, 
-                #headerVAlign = "bottom"
+                align = "right", 
+                headerVAlign = "bottom"
               )
             ),
             defaultColDef = colDef(
               align = "right",
-              # headerVAlign = "bottom",
+              #headerVAlign = "bottom",
               minWidth = 50
             ),
             outlined = TRUE,
