@@ -995,7 +995,7 @@ if (is.null(data)) {
             ),
             defaultColDef = colDef(
               align = "right",
-              headerVAlign = "bottom",
+              #headerVAlign = "bottom",
               minWidth = 50
             ),
             outlined = TRUE,
