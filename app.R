@@ -923,25 +923,25 @@ if (is.null(data)) {
               colGroup(
                 name = "Preise pro m2 Boden",
                 columns = c("FrQmBodenGanzeLieg", "FrQmBodenStwE", "FrQmBodenAlleHA"),
-                align = "left",
-                headerClass = "groupTable-header",
+                align = "right",
+                headerVAlign = "bottom"
               ),
               colGroup(
                 name = "Preise pro m2 Boden abzgl. VersW",
                 columns = c("FrQmBodenNettoGanzeLieg", "FrQmBodenNettoStwE", "FrQmBodenNettoAlleHA"),
-                align = "left",
-                headerClass = "groupTable-header",
+                align = "right",
+                headerVAlign = "bottom"
               ),
               colGroup(
                 name = "StwE pro m2 Wohnungsfläche (alle Zonen)",
                 columns = "FrQmWohnflStwE",
-                align = "left",
-                headerClass = "groupTable-header",
+                align = "right",
+                headerVAlign = "bottom"
               )
             ),
             defaultColDef = colDef(
               align = "right",
-              #headerVAlign = "bottom",
+              headerVAlign = "bottom",
               minWidth = 50,
               cell = function(value) {
                 # Format only numeric columns with thousands separators
@@ -982,19 +982,17 @@ if (is.null(data)) {
               colGroup(
                 name = "Anzahl Handänderungen",
                 columns = c("FrQmBodenGanzeLieg", "FrQmBodenStwE", "FrQmBodenAlleHA"),
-                align = "left",
-                headerClass = "groupTable-header"
+                align = "right"
               ),
               colGroup(
                 name = "StwE pro m2 Wohnungsfläche (alle Zonen)",
                 columns = c("FrQmBodenNettoGanzeLieg", "FrQmBodenNettoStwE", "FrQmBodenNettoAlleHA", "FrQmWohnflStwE"),
-                align = "right", 
-                headerClass = "groupTable-header"
+                align = "right"
               )
             ),
             defaultColDef = colDef(
               align = "right",
-              #headerVAlign = "bottom",
+              headerVAlign = "bottom",
               minWidth = 50
             ),
             outlined = TRUE,
