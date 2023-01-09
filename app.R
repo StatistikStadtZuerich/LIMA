@@ -923,19 +923,19 @@ if (is.null(data)) {
               colGroup(
                 name = "Preise pro m2 Boden",
                 columns = c("FrQmBodenGanzeLieg", "FrQmBodenStwE", "FrQmBodenAlleHA"),
-                align = "left",
+                align = "right",
                 headerVAlign = "bottom"
               ),
               colGroup(
                 name = "Preise pro m2 Boden abzgl. VersW",
                 columns = c("FrQmBodenNettoGanzeLieg", "FrQmBodenNettoStwE", "FrQmBodenNettoAlleHA"),
-                align = "left",
+                align = "right",
                 headerVAlign = "bottom"
               ),
               colGroup(
                 name = "StwE pro m2 Wohnungsfläche (alle Zonen)",
                 columns = "FrQmWohnflStwE",
-                align = "left",
+                align = "right",
                 headerVAlign = "bottom"
               )
             ),
@@ -982,7 +982,7 @@ if (is.null(data)) {
               colGroup(
                 name = "Anzahl Handänderungen",
                 columns = c("FrQmBodenGanzeLieg", "FrQmBodenStwE", "FrQmBodenAlleHA"),
-                align = "left"
+                align = "right"
               ),
               colGroup(
                 name = "StwE pro m2 Wohnungsfläche (alle Zonen)",
