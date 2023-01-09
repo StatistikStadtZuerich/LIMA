@@ -50,12 +50,6 @@ if (!is.null(data)) {
   addresses <- data[[3]]
 
   ### Data Transformation
-  
-  ## Zones
-  zones <- zones %>% 
-    mutate(PreisreiheLang = case_when(PreisreiheSort == 41 ~ "Preis pro m\u00B2 Grundstücksfläche",
-                                      PreisreiheSort == 42 ~ "Preis pro m\u00B2 Grundstücksfläche, abzgl. Versicherungswert",
-                                      PreisreiheSort == 49 ~ "Stockwerkeigentum pro m\u00B2 Wohnungsfläche"))
 
   ## BZO16
   zonesBZO16 <- zones %>%
