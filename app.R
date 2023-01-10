@@ -80,7 +80,7 @@ if (is.null(data)) {
 
           # Group (conditional to price)
           conditionalPanel(
-            condition = 'input.price != "Stockwerkeigentum pro m2 Wohnungsfläche"',
+            condition = 'input.price != "Stockwerkeigentum pro m\u00B2 Wohnungsfläche"',
             radioButtons("group",
               "Art",
               choices = c(
@@ -326,7 +326,7 @@ if (is.null(data)) {
     ### Get Data for Download
     # App 1
     dataDownload <- eventReactive(input$buttonStart, {
-      if (input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
+      if (input$price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
         filtered <- zones %>%
           filter(
             GebietLang == input$area,
@@ -396,7 +396,7 @@ if (is.null(data)) {
     # Get Data for Output Prices
     # BZO16
     priceOutput16 <- eventReactive(input$buttonStart, {
-      if (input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
+      if (input$price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
         filtered <- zonesBZO16 %>%
           filter(
             Typ == "Preis",
@@ -422,7 +422,7 @@ if (is.null(data)) {
 
     # BZO99
     priceOutput99 <- eventReactive(input$buttonStart, {
-      if (input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
+      if (input$price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
         filtered <- zonesBZO99 %>%
           filter(
             Typ == "Preis",
@@ -449,7 +449,7 @@ if (is.null(data)) {
     # Get Data for Output Counts
     # BZO16
     countOutput16 <- eventReactive(input$buttonStart, {
-      if (input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
+      if (input$price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
         filtered <- zonesBZO16 %>%
           filter(
             Typ == "Zahl",
@@ -475,7 +475,7 @@ if (is.null(data)) {
 
     # BZO99
     countOutput99 <- eventReactive(input$buttonStart, {
-      if (input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
+      if (input$price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
         filtered <- zonesBZO99 %>%
           filter(
             Typ == "Zahl",
@@ -632,7 +632,7 @@ if (is.null(data)) {
 
     # Reactive Subtitle
     subtitleReactive <- eventReactive(input$buttonStart, {
-      if (input$price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
+      if (input$price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
         title <- NULL
       } else {
         title <- input$group
@@ -921,19 +921,19 @@ if (is.null(data)) {
             ),
             columnGroups = list(
               colGroup(
-                name = "Preise pro m2 Boden",
+                name = "Preise pro m² Boden",
                 columns = c("FrQmBodenGanzeLieg", "FrQmBodenStwE", "FrQmBodenAlleHA"),
                 align = "right",
                 headerVAlign = "bottom"
               ),
               colGroup(
-                name = "Preise pro m2 Boden abzgl. VersW",
+                name = "Preise pro m² Boden abzgl. VersW",
                 columns = c("FrQmBodenNettoGanzeLieg", "FrQmBodenNettoStwE", "FrQmBodenNettoAlleHA"),
                 align = "right",
                 headerVAlign = "bottom"
               ),
               colGroup(
-                name = "StwE pro m2 Wohnungsfläche (alle Zonen)",
+                name = "StwE pro m² Wohnungsfläche (alle Zonen)",
                 columns = "FrQmWohnflStwE",
                 align = "right",
                 headerVAlign = "bottom"
@@ -985,7 +985,7 @@ if (is.null(data)) {
                 align = "right"
               ),
               colGroup(
-                name = "StwE pro m2 Wohnungsfläche (alle Zonen)",
+                name = "StwE pro m² Wohnungsfläche (alle Zonen)",
                 columns = c("FrQmBodenNettoGanzeLieg", "FrQmBodenNettoStwE", "FrQmBodenNettoAlleHA", "FrQmWohnflStwE"),
                 align = "right"
               )
@@ -1061,7 +1061,7 @@ if (is.null(data)) {
     output$csvDownload <- downloadHandler(
       filename = function(price) {
         price <- input$price
-        if (price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
+        if (price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
           price <- gsub(" ", "-", input$price, fixed = TRUE)
           area <- gsub(" ", "-", input$area, fixed = TRUE)
           paste0("Liegenschaftenhandel_nach_Bauzonenordnung_und_Zonenart_", price, "_", area, ".csv")
@@ -1081,7 +1081,7 @@ if (is.null(data)) {
     output$excelDownload <- downloadHandler(
       filename = function(price) {
         price <- input$price
-        if (price == "Stockwerkeigentum pro m2 Wohnungsfläche") {
+        if (price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
           price <- gsub(" ", "-", input$price, fixed = TRUE)
           area <- gsub(" ", "-", input$area, fixed = TRUE)
           paste0("Liegenschaftenhandel_nach_Bauzonenordnung_und_Zonenart_", price, "_", area, ".xlsx")
