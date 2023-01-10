@@ -551,7 +551,7 @@ if (is.null(data)) {
               if (!is.na(value)) {
                 format(value, big.mark = "\ua0")
               } else {
-                "-"
+                "–"
               }
             }
           ),
