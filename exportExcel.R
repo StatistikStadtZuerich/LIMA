@@ -52,8 +52,7 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
     fontName = "Arial Black"
     )
   styNumeric <- createStyle(
-    halign = "right",
-    numFmt = "NUMBER"
+    halign = "right"
   )
 
   # Create Workbook
