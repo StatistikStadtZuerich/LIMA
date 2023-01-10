@@ -16,8 +16,7 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
   definitions1 <- read_excel(hauptPfad, sheet = 2)
   definitions2 <- read_excel(hauptPfad, sheet = 3)
 
-  # Manipulate Data
-  # Data Sheet 1
+  # Manipulate Data for the two queries
   if (queryinput == "Abfrage 1: Zeitreihen nach Bauzonen für ganze Stadt und Teilgebiete") {
     data <- data %>%
       mutate(
@@ -38,7 +37,6 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
       as.data.frame()
   }
 
-  # Data Sheet 2
   # Styling
   sty <- createStyle(fgFill = "#ffffff")
   styConcept <- createStyle(
@@ -50,7 +48,13 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
     valign = "top",
     wrapText = TRUE
   )
-  styTitle <- createStyle(fontName = "Arial Black")
+  styTitle <- createStyle(
+    fontName = "Arial Black"
+    )
+  styNumeric <- createStyle(
+    halign = "right",
+    numFmt = "NUMBER"
+  )
 
   # Create Workbook
   wb <- createWorkbook()
@@ -113,6 +117,14 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
   addStyle(wb, 2, style = styConcept, row = 1:20, cols = 1, gridExpand = TRUE)
   addStyle(wb, 2, style = styDefinition, row = 1:20, cols = 2, gridExpand = TRUE)
   addStyle(wb, 3, style = styConcept, row = 9, cols = 1:50, gridExpand = TRUE)
+  
+    # Numeric values: different columns in the two queries
+    if (queryinput == "Abfrage 1: Zeitreihen nach Bauzonen für ganze Stadt und Teilgebiete") {
+      addStyle(wb, 3, style = styNumeric, rows = 10:37, cols = 6:15, gridExpand = TRUE)
+    } else {
+      addStyle(wb, 3, style = styNumeric, rows = 10:37, cols = 4:10, gridExpand = TRUE)
+    }
+  
   modifyBaseFont(wb, fontSize = 8, fontName = "Arial")
 
   # Set Column Width
@@ -122,8 +134,13 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
   setColWidths(wb, sheet = 1, cols = "5", widths = 8)
   setColWidths(wb, sheet = 2, cols = "A", widths = 40)
   setColWidths(wb, sheet = 2, cols = "B", widths = 65)
+  
+    # Column widths: different columns in the two queries
+    if (queryinput == "Abfrage 1: Zeitreihen nach Bauzonen für ganze Stadt und Teilgebiete") {
+      setColWidths(wb, sheet = 3, cols = "C", widths = 30)
+      setColWidths(wb, sheet = 3, cols = "D", widths = 20)
+    }
 
   # Save Excel
-  # openXL(wb)
   saveWorkbook(wb, file, overwrite = TRUE) ## save to working directory
 }

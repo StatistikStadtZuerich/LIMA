@@ -55,8 +55,10 @@ if (!is.null(data)) {
   zones <- zones %>% 
     mutate(PreisreiheLang = case_when(PreisreiheSort == 41 ~ "Preis pro m\u00B2 Grundstücksfläche",
                                       PreisreiheSort == 42 ~ "Preis pro m\u00B2 Grundstücksfläche, abzgl. Versicherungswert",
-                                      PreisreiheSort == 49 ~ "Stockwerkeigentum pro m\u00B2 Wohnungsfläche"))
-
+                                      PreisreiheSort == 49 ~ "Stockwerkeigentum pro m\u00B2 Wohnungsfläche")) %>% 
+    mutate_all(funs(replace(., . == ".", "–"))) %>%
+    mutate_all(funs(replace(., . == "", "–"))) 
+  
   ## BZO16
   zonesBZO16 <- zones %>%
     filter(BZO == "BZO16") %>%
@@ -71,8 +73,8 @@ if (!is.null(data)) {
       W5 = W45,
       W6 = W56
     ) %>%
-    mutate_all(funs(replace(., . == ".", "-"))) %>%
-    mutate_all(funs(replace(., . == "", "-")))
+    mutate_all(funs(replace(., . == ".", "–"))) %>%
+    mutate_all(funs(replace(., . == "", "–")))
 
   ## BZO99
   zonesBZO99 <- zones %>%
@@ -88,12 +90,12 @@ if (!is.null(data)) {
       W4 = W45,
       W5 = W56
     ) %>%
-    mutate_all(funs(replace(., . == ".", "-"))) %>%
-    mutate_all(funs(replace(., . == "", "-")))
+    mutate_all(funs(replace(., . == ".", "–"))) %>%
+    mutate_all(funs(replace(., . == "", "–")))
 
   ## Series
   series <- series %>%
-    mutate_all(funs(replace(., . == ".", "-"))) %>%
+    mutate_all(funs(replace(., . == ".", "–"))) %>%
     mutate_at(
       vars(
         FrQmBodenGanzeLieg,
@@ -101,7 +103,7 @@ if (!is.null(data)) {
         FrQmBodenAlleHA,
         FrQmWohnflStwE
       ),
-      funs(replace(., . == "", "-"))
+      funs(replace(., . == "", "–"))
     )
 
   ## Addresses
