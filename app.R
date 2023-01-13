@@ -112,7 +112,7 @@ if (is.null(data)) {
               sszDownload("excelDownload",
                 label = "xlsx"
               ),
-              actionButton(
+              sszOgdDownload(
                 inputId = "ogdDown",
                 label = "OGD",
                 onclick = "window.open('https://data.stadt-zuerich.ch/dataset?tags=lima', '_blank')"
@@ -213,7 +213,7 @@ if (is.null(data)) {
             condition = "input.buttonStart",
             tags$div(
               class = "infoDiv",
-              h5("Erklärung Zonenarten"),
+              h4("Erklärung Zonenarten"),
               hr(),
               p("Z = Zentrumszone"),
               p("K = Kernzone"),
@@ -237,21 +237,21 @@ if (is.null(data)) {
         sidebarPanel(
 
           # Street input
-          autocomplete_input(
+          sszAutocompleteInput(
             "street",
             "Geben Sie eine Strasse ein",
             unique(addresses$StrasseLang)
           ),
 
           # Number input
-          selectInput("number",
+          sszSelectInput("number",
             "Wählen Sie eine Hausnummer aus",
             choices = c("", sort(unique(addresses$Hnr))),
             selected = NULL
           ),
 
           # Action Button
-          actionButton(
+          sszActionButton(
             "buttonStartTwo",
             "Abfrage starten"
           ),
@@ -309,8 +309,8 @@ if (is.null(data)) {
             condition = "input.street && input.number && input.buttonStartTwo",
             tags$div(
               id = "defs",
-              class = "radioDiv",
-              h3("Begriffserklärung"),
+              class = "infoDiv",
+              h4("Begriffserklärung"),
               hr(),
               p("StwE = Stockwerkeigentum"),
               p("VersW = Versicherungswert des Gebäudes")
@@ -1133,7 +1133,7 @@ if (is.null(data)) {
           req(input$street)
           req(input$number)
           req(input$buttonStartTwo)
-          h2("Daten herunterladen")
+          h3("Daten herunterladen")
         } else {
           txt <- NULL
         }
@@ -1177,7 +1177,7 @@ if (is.null(data)) {
         req(input$street)
         req(input$number)
         req(input$buttonStartTwo)
-        actionButton(
+        sszOgdDownload(
           inputId = "linkOGD",
           label = "OGD",
           onclick = "window.open('https://data.stadt-zuerich.ch/dataset?tags=lima', '_blank')"

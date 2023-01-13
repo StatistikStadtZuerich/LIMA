@@ -18,6 +18,7 @@
 
 .col-sm-4 {
   min-height: 450px;
+  margin-top: 10px;
 }
 
 /* Ruler */
@@ -55,19 +56,11 @@ h3 {
   font-size: 18px;
   line-height: 25px;
   font-weight: 750;
-}
-
-/* h4 Font */
-h4 {
-  font-family: HelveticaNeueLTW05_85Heavy;
-  color: #0F05A0;
-  font-size: 14px;
-  line-height: 23px;
-  font-weight: 750;
+  margin-top: 28px;
 }
 
 /* h5 Font (for Infos) */
-h5 {
+h4 {
   font-family: HelveticaNeueLTW05_85Heavy;
   color: #0F05A0;
   font-size: 18px;
@@ -248,6 +241,13 @@ a#linkCountTwoTest.action-button.shiny-bound-input {
   margin-bottom: 15px;
 }
 
+.info_div {
+  font-family: HelveticaNeueLTW01_55Roman;
+  font-size: 14px;
+  margin-top: 40px;
+  color: #4D4D4D;
+}
+
 
 /*******************************
 * Control Labels
@@ -311,11 +311,23 @@ a#linkCountTwoTest.action-button.shiny-bound-input {
 .form-group {
   margin-bottom: 0px;
   margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 .shiny-input-container:not(.shiny-input-container-inline) {
   width: 600px;
   max-width: 100%;
+}
+
+/* Color the Label on input hover */
+.form-group:hover .ssz-label {
+  color: #070250;
+  transition: 0.7s;
+}
+
+/* Color the Label on input hover */
+option:checked .ssz-label {
+  color: #070250;
 }
 
 
@@ -332,6 +344,10 @@ a#linkCountTwoTest.action-button.shiny-bound-input {
 
 .sszRadioButton {
   margin-top: 10px;
+}
+
+.radioDiv {
+  margin-top: 18px;
 }
 
 /* Radio Buttons Span */
@@ -451,6 +467,7 @@ a#linkCountTwoTest.action-button.shiny-bound-input {
   transition: 0.7s;
 }
 
+
 /*******************************
 * Autocomplete from daqana/dqshiny
 *******************************/
@@ -560,7 +577,7 @@ button:active {
 
 /* Table */
 .rt-table {
-  font-size: 11px;
+  font-size: 12px;
   color: #646464;
   border: 0px;
 }
@@ -614,6 +631,34 @@ button:active {
 
 .rt-th-select {
   display: none;
+}
+
+.rt-tr.rt-tr-group-header {
+  color: #4D4D4D;
+}
+
+
+/*******************************
+* Tables
+*******************************/
+
+.table {
+  font-size: 80%;
+  font-family: HelveticaNeueLTW01_55Roman;
+}
+
+thead {
+  color: #0F05A0;
+  font-family: HelveticaNeueLTW05_85Heavy;
+}
+
+tbody {
+  color: #646464;
+}
+
+#resultsInfos {
+  margin-top: -14px;
+  font-size: 18px;
 }
 
 
@@ -693,6 +738,7 @@ button:active {
  /* Donwload Container */
 .downloadWrapperDiv {
     margin-top: 16px;
+    display: flex;
  }
 
 .sszDownload {
@@ -742,6 +788,62 @@ button:active {
   margin-top: 40px;
   padding: 20px;
   background-color: #F2F2F2;
+}
+
+/*******************************
+* Dropdowns
+*******************************/
+
+.option[data-value = "Ganze Stadt"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 1"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 2"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 3"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 4"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 5"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 6"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 7"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 8"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 9"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 10"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 11"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 12"] {
+  font-weight: bold !important;
 }
 
 
