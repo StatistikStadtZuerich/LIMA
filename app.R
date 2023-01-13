@@ -6,6 +6,7 @@ library(dplyr)
 library(shinyjs)
 library(dqshiny)
 library(gtools)
+library(zuericssstyle)
 
 ### Data
 source("DataLoad.R")
@@ -22,7 +23,7 @@ if (is.null(data)) {
   ui <- fluidPage(
 
     # Include CSS
-    includeCSS("sszTheme.css"),
+    includeCSS("sszThemeShiny.css"),
     h1("Fehler"),
     p("Aufgrund momentaner Wartungsarbeiten ist die Applikation zur Zeit nicht verfügbar.")
   )
@@ -39,14 +40,14 @@ if (is.null(data)) {
   ui <- fluidPage(
 
     # CSS
-    includeCSS("sszTheme.css"),
+    includeCSS("sszThemeShiny.css"),
 
     # App Selection
     tags$div(
-      class = "radioDiv",
+      class = "queryDiv",
       h1("Wählen Sie eine Abfrage"),
       hr(),
-      radioButtons(
+      sszRadioButtons(
         inputId = "query",
         label = NULL,
         choices = c(
@@ -67,13 +68,13 @@ if (is.null(data)) {
         sidebarPanel(
 
           # Area
-          selectInput("area",
+          sszSelectInput("area",
             "Gebietsauswahl",
             choices = c(unique(zones$GebietLang))
           ),
 
           # Price
-          radioButtons("price",
+          sszRadioButtons("price",
             "Preise",
             choices = c(unique(zones$PreisreiheLang))
           ),
@@ -81,7 +82,7 @@ if (is.null(data)) {
           # Group (conditional to price)
           conditionalPanel(
             condition = 'input.price != "Stockwerkeigentum pro m\u00B2 Wohnungsfläche"',
-            radioButtons("group",
+            sszRadioButtons("group",
               "Art",
               choices = c(
                 "Ganze Liegenschaften",
@@ -92,7 +93,7 @@ if (is.null(data)) {
           ),
 
           # Action Button
-          actionButton(
+          sszActionButton(
             inputId = "buttonStart",
             label = "Abfrage starten"
           ),
@@ -101,7 +102,7 @@ if (is.null(data)) {
           # Downloads
           conditionalPanel(
             condition = "input.buttonStart",
-            h2("Daten herunterladen"),
+            h3("Daten herunterladen"),
             tags$div(
               id = "downloadWrapperId",
               class = "downloadWrapperDiv",
@@ -211,8 +212,8 @@ if (is.null(data)) {
           conditionalPanel(
             condition = "input.buttonStart",
             tags$div(
-              class = "radioDiv",
-              h3("Erklärung Zonenarten"),
+              class = "infoDiv",
+              h5("Erklärung Zonenarten"),
               hr(),
               p("Z = Zentrumszone"),
               p("K = Kernzone"),
