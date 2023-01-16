@@ -7,6 +7,7 @@ library(shinyjs)
 library(dqshiny)
 library(gtools)
 library(zuericssstyle)
+library(icons)
 
 ### Data
 source("DataLoad.R")
@@ -24,6 +25,7 @@ if (is.null(data)) {
 
     # Include CSS
     includeCSS("sszThemeShiny.css"),
+    includeCSS("LimaTheme.css"),
     h1("Fehler"),
     p("Aufgrund momentaner Wartungsarbeiten ist die Applikation zur Zeit nicht verfügbar.")
   )
@@ -35,12 +37,15 @@ if (is.null(data)) {
   shinyApp(ui = ui, server = server)
 } else {
 
-
+  ### Set up directory for icons
+  icon_bell <- icon_set("icons/")
+  
   ### GUI
   ui <- fluidPage(
 
     # CSS
     includeCSS("sszThemeShiny.css"),
+    includeCSS("LimaTheme.css"),
 
     # App Selection
     tags$div(
@@ -213,7 +218,7 @@ if (is.null(data)) {
             condition = "input.buttonStart",
             tags$div(
               class = "infoDiv",
-              h4("Erklärung Zonenarten"),
+              h5("Erklärung Zonenarten"),
               hr(),
               p("Z = Zentrumszone"),
               p("K = Kernzone"),
@@ -277,11 +282,7 @@ if (is.null(data)) {
 
           # Info Table
           htmlOutput("resultsInfos"),
-          tags$div(
-            id = "info_id",
-            class = "info_div",
-            textOutput("info")
-          ),
+          uiOutput("info"),
           br(),
 
           # Table for prices
@@ -310,7 +311,7 @@ if (is.null(data)) {
             tags$div(
               id = "defs",
               class = "infoDiv",
-              h4("Begriffserklärung"),
+              h5("Begriffserklärung"),
               hr(),
               p("StwE = Stockwerkeigentum"),
               p("VersW = Versicherungswert des Gebäudes")
@@ -781,7 +782,17 @@ if (is.null(data)) {
       if (availability > 0) {
         req(input$street)
         req(input$number)
-        infoTitle <- paste0("In dieser Zone dieses Quartiers wurden folgende Medianpreise und Handänderungen festgestellt:")
+        district <- addresses %>%
+          filter(StrasseLang == input$street & Hnr == input$number) %>%
+          pull(QuarLang)
+        zoneBZO16 <- addresses %>%
+          filter(StrasseLang == input$street & Hnr == input$number) %>%
+          pull(ZoneBZO16Lang)
+        zoneBZO99 <- addresses %>%
+          filter(StrasseLang == input$street & Hnr == input$number) %>%
+          pull(ZoneBZO99Lang)
+        zones <- paste0(zoneBZO16, " (bis 2018: ", zoneBZO99, ")")
+        infoTitle <- paste0("Medianpreise und Handänderungen im Quartier ", district, ", in der ", zones)
       } else {
         req(input$street)
         req(input$number)
@@ -790,8 +801,27 @@ if (is.null(data)) {
     })
 
     # Show Info (App 2)
-    output$info <- renderText({
-      infoReactive()
+    output$info <- renderUI({
+      availability <- dataAvailable()
+      if (availability > 0) {
+        tags$div(
+          class = "info_div",
+          infoReactive()
+        )
+      } else {
+        tags$div(
+          class = "info_na_div",
+          tags$div(
+            class = "info_na_icon",
+            img(icon_bell$`warning-big`)
+          ),
+          tags$div(
+            class = "info_na_text",
+            h6("Achtung"),
+            infoReactive()
+          )
+        )
+      }
     })
 
     # Show Output (App 2)
@@ -1017,8 +1047,7 @@ if (is.null(data)) {
       if (availability > 0) {
         actionLink("linkCountTwoTest",
           "Anzahl Handänderungen einblenden",
-          icon = icon("angle-down"),
-          style = "font-size:12px"
+          icon = icon("angle-down")
         )
       } else {
         txt <- NULL
