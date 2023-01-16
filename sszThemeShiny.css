@@ -6,21 +6,6 @@
 * General Settings
 *******************************/
 
-/* Row */
-.row {
-  margin-top: 30px;
-}
-
-/* Columns */
-.col-sm-8 {
-  margin-top: 40px;
-}
-
-.col-sm-4 {
-  min-height: 450px;
-  margin-top: 10px;
-}
-
 /* Ruler */
 hr {
   height: 0.2px;
@@ -59,12 +44,12 @@ h3 {
   margin-top: 28px;
 }
 
-/* h5 Font (for Infos) */
+/* h4 Font */
 h4 {
   font-family: HelveticaNeueLTW05_85Heavy;
   color: #0F05A0;
-  font-size: 18px;
-  line-height: 25px;
+  font-size: 14px;
+  line-height: 23px;
   font-weight: 750;
 }
 
@@ -112,25 +97,6 @@ a {
 a:hover {
   color: #070250;
   transition: 0.7s;
-}
-
-a.visitedLink {
-  color: #070250;
-  text-decoration: underline;
-}
-
-.linkCount {
-  margin-bottom: 40px;
-  margin-top: 40px;
-}
-
-a#linkCountTwoTest.action-button.shiny-bound-input {
-  font-size: 14px !important;
-}
-
-.linkCountTwoDiv {
-  margin-bottom: 40px;
-  margin-top: 40px;
 }
 
 /* Media Queries */
@@ -205,49 +171,6 @@ a#linkCountTwoTest.action-button.shiny-bound-input {
   }
 }
 
-/*******************************
-* Titles
-*******************************/
-
-.title_div {
-  font-family: HelveticaNeueLTW05_85Heavy;
-  color: #0F05A0;
-  font-size: 22px;
-  line-height: 31px;
-  font-weight: 750;
-  margin-top: -5px;
-}
-
-.subtitle_div {
-  font-family: HelveticaNeueLTW05_85Heavy;
-  color: #0F05A0;
-  font-size: 20px;
-  line-height: 28px;
-  font-weight: 750;
-}
-
-.subSubtitle_div {
-  font-family: HelveticaNeueLTW01_55Roman;
-  font-size: 14px;
-  color: #646464;
-}
-
-.tableTitle_div {
-  font-family: HelveticaNeueLTW05_85Heavy;
-  font-size: 14px;
-  color: #0F05A0;
-  margin-top: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.info_div {
-  font-family: HelveticaNeueLTW01_55Roman;
-  font-size: 14px;
-  margin-top: 40px;
-  color: #4D4D4D;
-}
-
 
 /*******************************
 * Control Labels
@@ -287,6 +210,7 @@ a#linkCountTwoTest.action-button.shiny-bound-input {
   font-weight: 100;
 }
 
+
 /*******************************
 * Context Box
 *******************************/
@@ -311,12 +235,6 @@ a#linkCountTwoTest.action-button.shiny-bound-input {
 .form-group {
   margin-bottom: 0px;
   margin-top: -10px;
-  margin-bottom: 10px;
-}
-
-.shiny-input-container:not(.shiny-input-container-inline) {
-  width: 600px;
-  max-width: 100%;
 }
 
 /* Color the Label on input hover */
@@ -325,29 +243,19 @@ a#linkCountTwoTest.action-button.shiny-bound-input {
   transition: 0.7s;
 }
 
-/* Color the Label on input hover */
-option:checked .ssz-label {
-  color: #070250;
-}
-
 
 /*******************************
 * Radio Buttons
 *******************************/
 
-/* Radio Buttons Label */
-.queryDiv {
-  margin-top: 40px;
-  padding: 20px;
-  background-color: #F2F2F2;
-}
-
-.sszRadioButton {
-  margin-top: 10px;
-}
-
+/* Div around Radio Buttons */
 .radioDiv {
   margin-top: 18px;
+}
+
+/* SZZ Radio Button */
+.sszRadioButton {
+  margin-top: 10px;
 }
 
 /* Radio Buttons Span */
@@ -380,9 +288,6 @@ option:checked .ssz-label {
   border: 0.05em solid #070250;
 }
 
-.radio input[type="radio"]:active {
-  border: 0.05em solid #070250;
-}
 
 /* General Radio Button */
 .radio {
@@ -522,7 +427,7 @@ option:checked .ssz-label {
 .btn:focus {
   outline-color: transparent;
   outline-style: solid;
-  background-color: #070250;
+  background-color: #0F05A0;
   color: white;
 }
 
@@ -550,7 +455,12 @@ button:active {
   transition: 0.7s;
 }
 
-.sszActionButton:active {
+/* SSZ Button */
+.sszActionButton {
+  stroke: white;
+}
+
+.sszActionButton:active:focus {
   outline-color: transparent;
   outline-style: solid;
   background-color: #070250;
@@ -558,8 +468,16 @@ button:active {
   transition: 0.7s;
 }
 
-.sszActionButton {
-  stroke: white;
+/* Button no Outline on Click */
+.btn:active:focus, .btn:focus {
+  outline: transparent;
+}
+
+/* Disable default Shiny Active and Focus Button */
+.btn-default:active:focus {
+  color: white;
+  background-color: #0F05A0;
+  border-color: #0F05A0;
 }
 
 
@@ -589,6 +507,10 @@ button:active {
   position: relative;
   min-width: 0px !important;
   flex: 0;
+}
+
+.rt-tr.rt-tr-group-header {
+  color: #4D4D4D;
 }
 
 /* Table Pagination */
@@ -631,34 +553,6 @@ button:active {
 
 .rt-th-select {
   display: none;
-}
-
-.rt-tr.rt-tr-group-header {
-  color: #4D4D4D;
-}
-
-
-/*******************************
-* Tables
-*******************************/
-
-.table {
-  font-size: 80%;
-  font-family: HelveticaNeueLTW01_55Roman;
-}
-
-thead {
-  color: #0F05A0;
-  font-family: HelveticaNeueLTW05_85Heavy;
-}
-
-tbody {
-  color: #646464;
-}
-
-#resultsInfos {
-  margin-top: -14px;
-  font-size: 18px;
 }
 
 
@@ -741,6 +635,7 @@ tbody {
     display: flex;
  }
 
+/* SSZ Download */
 .sszDownload {
     text-decoration: none;
     border-radius: 50px;
@@ -779,71 +674,6 @@ tbody {
   margin-top: 40px;
   padding: 20px;
   background-color: #F2F2F2;
-}
-
-/*******************************
-* Info Div
-*******************************/
-.queryDiv {
-  margin-top: 40px;
-  padding: 20px;
-  background-color: #F2F2F2;
-}
-
-/*******************************
-* Dropdowns
-*******************************/
-
-.option[data-value = "Ganze Stadt"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 1"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 2"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 3"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 4"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 5"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 6"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 7"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 8"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 9"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 10"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 11"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 12"] {
-  font-weight: bold !important;
 }
 
 
