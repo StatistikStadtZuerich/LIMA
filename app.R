@@ -813,7 +813,7 @@ if (is.null(data)) {
           class = "info_na_div",
           tags$div(
             class = "info_na_icon",
-            img(icon_bell$`warning-big`)
+            img(icon_bell$`warning`)
           ),
           tags$div(
             class = "info_na_text",
