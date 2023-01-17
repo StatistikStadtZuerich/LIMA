@@ -1,7 +1,6 @@
 ### Libraries
 library(shiny)
 library(reactable)
-library(ggplot2)
 library(dplyr)
 library(shinyjs)
 library(dqshiny)
@@ -249,7 +248,8 @@ if (is.null(data)) {
           ),
 
           # Number input
-          sszSelectInput("number",
+          sszSelectInput(
+            "number",
             "Wählen Sie eine Hausnummer aus",
             choices = c("", sort(unique(addresses$Hnr))),
             selected = NULL
@@ -325,8 +325,8 @@ if (is.null(data)) {
   ### Server
   server <- function(input, output, session) {
 
-    ### Get Data for Download
-    # App 1
+    ### Get Data for Download 
+    # App 1 (if else redundanz)
     dataDownload <- eventReactive(input$buttonStart, {
       if (input$price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
         filtered <- zones %>%
@@ -348,7 +348,7 @@ if (is.null(data)) {
       }
     })
 
-    # App 2
+    # App 2 (Dataload in separate Function!!!!!!!!!!!!!!!!!!!!!!!!!!)
     dataDownloadTwo <- eventReactive(input$buttonStartTwo, {
 
       # Pull district
@@ -396,7 +396,7 @@ if (is.null(data)) {
     ### Tables Output
     ## App 1
     # Get Data for Output Prices
-    # BZO16
+    # BZO16 (if else redundanz) All outputs in one function output
     priceOutput16 <- eventReactive(input$buttonStart, {
       if (input$price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
         filtered <- zonesBZO16 %>%
@@ -501,7 +501,7 @@ if (is.null(data)) {
       }
     })
 
-    # Show Output Prices (App 1)
+    # Show Output Prices (App 1) outsource Reactables
     observeEvent(input$buttonStart, {
       output$resultsPrice16 <- renderReactable({
         out16 <- reactable(priceOutput16(),
@@ -695,7 +695,7 @@ if (is.null(data)) {
       )
     })
 
-    # Get Information of Address
+    # Get Information of Address (not reaactive darum outsorce)
     infosReactive <- eventReactive(input$buttonStartTwo, {
       req(input$street)
       req(input$number)
@@ -720,14 +720,12 @@ if (is.null(data)) {
     })
 
     # Show Output Information Address
-    observeEvent(input$buttonStartTwo, {
       output$resultsInfos <- renderText({
         outInfos <- infosReactive()
         outInfos
       })
-    })
 
-    # Get Information if Data Frame is empty
+    # Get Information if Data Frame is empty (Outsorce in function) --> withouth reactivness, if 0 empty, if not info to zones and district
     dataAvailable <- eventReactive(input$buttonStartTwo, {
       req(input$street)
       req(input$number)
@@ -780,8 +778,6 @@ if (is.null(data)) {
 
       availability <- dataAvailable()
       if (availability > 0) {
-        req(input$street)
-        req(input$number)
         district <- addresses %>%
           filter(StrasseLang == input$street & Hnr == input$number) %>%
           pull(QuarLang)
@@ -794,9 +790,7 @@ if (is.null(data)) {
         zones <- paste0(zoneBZO16, " (bis 2018: ", zoneBZO99, ")")
         infoTitle <- paste0("Medianpreise und Handänderungen im Quartier ", district, ", in der ", zones)
       } else {
-        req(input$street)
-        req(input$number)
-        infoTitle <- paste0("Die gewünschte Adresse liegt nicht in einer Wohnzone oder Mischzone (Kernzone, Zentrumszone, Quartiererhaltungszone).\nWählen Sie eine andere Adresse und machen Sie eine erneute Abfrage.")
+        infoTitle <- paste0("Die gewünschte Adresse liegt nicht in einer Wohn- oder Mischzone (Kernzone, Zentrumszone, Quartiererhaltungszone).\nWählen Sie eine andere Adresse und machen Sie eine erneute Abfrage.")
       }
     })
 
@@ -825,7 +819,7 @@ if (is.null(data)) {
     })
 
     # Show Output (App 2)
-    # Get Data for Output Prices (District-Zone-Combination)
+    # Get Data for Output Prices (District-Zone-Combination) --> withouth reactivness, if 0 empty, if not info to zones and district
     distReactivePrice <- eventReactive(input$buttonStartTwo, {
       req(input$street)
       req(input$number)
@@ -932,7 +926,7 @@ if (is.null(data)) {
       req(input$number)
       req(input$buttonStartTwo)
 
-      # Table if data is available for zone
+      # Table if data is available for zone --> outsorce reactalbe
       availability <- dataAvailable()
       if (availability > 0) {
         output$resultsPriceSeries <- renderReactable({
