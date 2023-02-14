@@ -9,6 +9,8 @@ COPY exportExcel.R exportExcel.R
 COPY logo_stzh_stat_sw_pos_1.png logo_stzh_stat_sw_pos_1.png
 COPY DataLoad.R DataLoad.R
 COPY icons/warning.svg icons/warning.svg
+COPY icons/external-link.svg icons/warning.svg
+COPY icons/download.svg icons/download.svg
 COPY sszThemeShiny.css sszThemeShiny.css
 COPY LimaTheme.css LimaTheme.css
 COPY Titelblatt.xlsx Titelblatt.xlsx
