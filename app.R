@@ -37,7 +37,7 @@ if (is.null(data)) {
 } else {
 
   ### Set up directory for icons
-  icon_bell <- icon_set("icons/")
+  ssz_icons <- icon_set("icons/")
   
   ### GUI
   ui <- fluidPage(
@@ -110,16 +110,19 @@ if (is.null(data)) {
             tags$div(
               id = "downloadWrapperId",
               class = "downloadWrapperDiv",
-              sszDownload("csvDownload",
-                label = "csv"
+              sszDownloadButton("csvDownload",
+                                label = "csv",
+                                image = img(ssz_icons$download)
               ),
-              sszDownload("excelDownload",
-                label = "xlsx"
+              sszDownloadButton("excelDownload",
+                                label = "xlsx",
+                                image = img(ssz_icons$download)
               ),
               sszOgdDownload(
-                inputId = "ogdDown",
+                outputId = "ogdDown",
                 label = "OGD",
-                onclick = "window.open('https://data.stadt-zuerich.ch/dataset?tags=lima', '_blank')"
+                href = "https://data.stadt-zuerich.ch/dataset?tags=lima",
+                image = img(ssz_icons$`external-link`)
               )
             )
           )
@@ -265,13 +268,11 @@ if (is.null(data)) {
           # Conditional Data Download
           conditionalPanel(
             condition = "input.street && input.number && input.buttonStartTwo",
-            uiOutput("dataTwo"),
+            uiOutput("downloadTitleTwo"),
             tags$div(
               id = "downloadWrapperId",
               class = "downloadWrapperDiv",
-              uiOutput("tagCSV"),
-              uiOutput("tagEXCEL"),
-              uiOutput("tagOGD")
+              uiOutput("downloadTwo")
             )
           )
         ),
@@ -807,7 +808,7 @@ if (is.null(data)) {
           class = "info_na_div",
           tags$div(
             class = "info_na_icon",
-            img(icon_bell$`warning`)
+            img(ssz_icons$`warning`)
           ),
           tags$div(
             class = "info_na_text",
@@ -1150,7 +1151,7 @@ if (is.null(data)) {
 
     # Conditional Data Download (title)
     observeEvent(input$buttonStartTwo, {
-      output$dataTwo <- renderUI({
+      output$downloadTitleTwo <- renderUI({
         availability <- dataAvailable()
         if (availability > 0) {
           req(input$street)
@@ -1164,46 +1165,28 @@ if (is.null(data)) {
     })
 
     # Conditional Data Download (CSV link)
-    output$tagCSV <- renderUI({
+    output$downloadTwo <- renderUI({
       availability <- dataAvailable()
       if (availability > 0) {
         req(input$street)
         req(input$number)
         req(input$buttonStartTwo)
-        sszDownload("downloadDataCSVTwo",
-          label = "csv"
-        )
-      } else {
-        txt <- NULL
-      }
-    })
-
-    # Conditional Data Download (Excel link)
-    output$tagEXCEL <- renderUI({
-      availability <- dataAvailable()
-      if (availability > 0) {
-        req(input$street)
-        req(input$number)
-        req(input$buttonStartTwo)
-        sszDownload("downloadDataEXCELTwo",
-          label = "xlsx"
-        )
-      } else {
-        txt <- NULL
-      }
-    })
-
-    # Conditional Data Download (OGD link)
-    output$tagOGD <- renderUI({
-      availability <- dataAvailable()
-      if (availability > 0) {
-        req(input$street)
-        req(input$number)
-        req(input$buttonStartTwo)
-        sszOgdDownload(
-          inputId = "linkOGD",
-          label = "OGD",
-          onclick = "window.open('https://data.stadt-zuerich.ch/dataset?tags=lima', '_blank')"
+        tags$div(
+          id = "downloadWrapperId",
+          class = "downloadWrapperDiv",
+          sszDownloadButton("downloadDataCSVTwo",
+                            label = "csv",
+                            image = img(ssz_icons$download)
+          ),
+          sszDownloadButton("downloadDataEXCELTwo",
+                            label = "xlsx",
+                            image = img(ssz_icons$download)
+          ),
+          sszOgdDownload(
+            outputId = "linkOGD",
+            label = "OGD",
+            href = "https://data.stadt-zuerich.ch/dataset?tags=lima"
+          )
         )
       } else {
         txt <- NULL
