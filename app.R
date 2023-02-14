@@ -326,7 +326,7 @@ if (is.null(data)) {
   server <- function(input, output, session) {
 
     ### Get Data for Download 
-    # App 1 (if else redundanz)
+    # App 1
     dataDownload <- eventReactive(input$buttonStart, {
       if (input$price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
         filtered <- zones %>%
@@ -348,7 +348,7 @@ if (is.null(data)) {
       }
     })
 
-    # App 2 (Dataload in separate Function!!!!!!!!!!!!!!!!!!!!!!!!!!)
+    # App 2
     dataDownloadTwo <- eventReactive(input$buttonStartTwo, {
 
       # Pull district
@@ -396,7 +396,7 @@ if (is.null(data)) {
     ### Tables Output
     ## App 1
     # Get Data for Output Prices
-    # BZO16 (if else redundanz) All outputs in one function output
+    # BZO16
     priceOutput16 <- eventReactive(input$buttonStart, {
       if (input$price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
         filtered <- zonesBZO16 %>%
@@ -501,7 +501,7 @@ if (is.null(data)) {
       }
     })
 
-    # Show Output Prices (App 1) outsource Reactables
+    # Show Output Prices (App 1)
     observeEvent(input$buttonStart, {
       output$resultsPrice16 <- renderReactable({
         out16 <- reactable(priceOutput16(),
@@ -695,7 +695,7 @@ if (is.null(data)) {
       )
     })
 
-    # Get Information of Address (not reaactive darum outsorce)
+    # Get Information of Address
     infosReactive <- eventReactive(input$buttonStartTwo, {
       req(input$street)
       req(input$number)
@@ -725,7 +725,7 @@ if (is.null(data)) {
         outInfos
       })
 
-    # Get Information if Data Frame is empty (Outsorce in function) --> withouth reactivness, if 0 empty, if not info to zones and district
+    # Get Information if Data Frame is empty
     dataAvailable <- eventReactive(input$buttonStartTwo, {
       req(input$street)
       req(input$number)
@@ -819,7 +819,7 @@ if (is.null(data)) {
     })
 
     # Show Output (App 2)
-    # Get Data for Output Prices (District-Zone-Combination) --> withouth reactivness, if 0 empty, if not info to zones and district
+    # Get Data for Output Prices (District-Zone-Combination)
     distReactivePrice <- eventReactive(input$buttonStartTwo, {
       req(input$street)
       req(input$number)
@@ -926,7 +926,7 @@ if (is.null(data)) {
       req(input$number)
       req(input$buttonStartTwo)
 
-      # Table if data is available for zone --> outsorce reactalbe
+      # Table if data is available for zone
       availability <- dataAvailable()
       if (availability > 0) {
         output$resultsPriceSeries <- renderReactable({
