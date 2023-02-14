@@ -1,0 +1,245 @@
+/*******************************
+* LIMA SSZ Styling
+*******************************/
+
+/*******************************
+* General Settings
+*******************************/
+
+/*path {
+  fill: #DC030E;
+}
+
+circle {
+  stroke: #DC030E;
+}
+*/
+
+.info_na_text {
+  padding-left: 16px;
+}
+
+.info_na_icon {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Row */
+.row {
+  margin-top: 30px;
+}
+
+/* Columns */
+.col-sm-8 {
+  margin-top: 40px;
+}
+
+.col-sm-4 {
+  margin-top: 10px;
+}
+
+/* h5 Font (for Infos) */
+h5 {
+  font-family: HelveticaNeueLTW05_85Heavy;
+  color: #0F05A0;
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 750;
+}
+
+/* h6 Font (for NA Infos) */
+h6 {
+  font-family: HelveticaNeueLTW05_85Heavy;
+  color: #4D4D4D;
+  font-size: 14px;
+  line-height: 23px;
+  fnt-weight: 750;
+    margin-top: -1px;
+  margin-bottom: -0.5px;
+}
+
+/* Special Container for visited Link  */
+.linkCount {
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.linkCountTwoDiv {
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+/* Change color of visited Link */
+a.visitedLink {
+  color: #070250;
+  text-decoration: underline;
+}
+
+/* Additional Media Queries */
+@media screen and (max-width: 600px) {
+  .row {
+    margin-top: 0px;
+  }
+  .col-sm-8 {
+    margin-top: 60px;
+  }
+}
+
+
+/*******************************
+* Titles
+*******************************/
+
+/* Title */
+.title_div {
+  font-family: HelveticaNeueLTW05_85Heavy;
+  color: #0F05A0;
+  font-size: 22px;
+  line-height: 31px;
+  font-weight: 750;
+  margin-top: -5px;
+}
+
+/* Subtitle */
+.subtitle_div {
+  font-family: HelveticaNeueLTW05_85Heavy;
+  color: #0F05A0;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 750;
+}
+
+/* Even smaller Subtitle */
+.subSubtitle_div {
+  font-family: HelveticaNeueLTW01_55Roman;
+  font-size: 14px;
+  color: #646464;
+}
+
+/* Table Title */
+.tableTitle_div {
+  font-family: HelveticaNeueLTW05_85Heavy;
+  font-size: 14px;
+  color: #0F05A0;
+  margin-top: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Info for Table in second query */
+.info_div {
+  font-family: HelveticaNeueLTW05_85Heavy;
+  color: #0F05A0;
+  font-size: 22px;
+  line-height: 31px;
+  font-weight: 750;
+  margin-top: 40px;
+}
+
+.info_na_div {
+  font-family: HelveticaNeueLTW01_55Roman;
+  font-size: 14px;
+  margin-top: 40px;
+  color: #4D4D4D;
+  padding: 16px;
+  display: flex;
+  box-shadow: 0px 0px 4px rgb(0 0 0 / 24%);
+}
+
+
+/*******************************
+* Radio Buttons
+*******************************/
+
+/* Specific Radio Buttons Container for LIMA queries */
+.queryDiv {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #F2F2F2;
+}
+
+/* Specific Radio Buttons for LIMA queries (length of Text) */
+.shiny-input-container:not(.shiny-input-container-inline) {
+  width: 600px;
+  max-width: 100%;
+}
+
+
+/*******************************
+* Tables
+*******************************/
+
+.table {
+  font-size: 80%;
+  font-family: HelveticaNeueLTW01_55Roman;
+}
+
+thead {
+  color: #0F05A0;
+  font-family: HelveticaNeueLTW05_85Heavy;
+}
+
+tbody {
+  color: #646464;
+}
+
+#resultsInfos {
+  margin-top: -14px;
+  font-size: 18px;
+}
+
+/*******************************
+* Dropdowns
+*******************************/
+
+.option[data-value = "Ganze Stadt"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 1"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 2"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 3"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 4"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 5"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 6"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 7"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 8"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 9"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 10"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 11"] {
+  font-weight: bold !important;
+}
+
+.option[data-value = "Kreis 12"] {
+  font-weight: bold !important;
+}

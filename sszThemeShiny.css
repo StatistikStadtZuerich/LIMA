@@ -1,56 +1,11 @@
-/*******************************
-* LIMA SSZ Styling
+/********************************
+* SSZ Shiny css
 *******************************/
 
 /*******************************
 * General Settings
 *******************************/
 
-/* Row */
-.row {
-  margin-top: 30px;
-}
-
-/* Columns */
-.col-sm-8 {
-  margin-top: 40px;
-}
-
-.col-sm-4 {
-  min-height: 450px;
-}
-
-/* Links */
-a {
-  font-size: 14px;
-	color: #0F05A0;
-	text-decoration: none;
-	font-family: HelveticaNeueLTW01_55Roman;
-}
-
-a:hover {
-  color: #070250;
-  transition: 0.7s;
-}
-
-a.visitedLink {
-  color: #070250;
-  text-decoration: underline;
-}
-
-.linkCount {
-  margin-bottom: 40px;
-  margin-top: 40px;
-}
-
-a#linkCountTwoTest.action-button.shiny-bound-input {
-  font-size: 14px !important;
-}
-
-.linkCountTwoDiv {
-  margin-bottom: 40px;
-  margin-top: 40px;
-}
 
 /* Ruler */
 hr {
@@ -61,15 +16,7 @@ hr {
   margin-bottom: 25px;
 }
 
-/* Paragraph Text */
-p {
-  font-size: 14px;
-  letter-spacing: 0.01em;
-  font-family: HelveticaNeueLTW01_55Roman;
-  color: #646464;
-}
-
-/* Headings */
+/* h1 */
 h1 {
   font-family: HelveticaNeueLTW05_85Heavy;
   color: #0F05A0;
@@ -79,42 +26,136 @@ h1 {
   margin-top: 28px;
 }
 
-/* h3 Font */
+/* h2 Font */
 h2 {
+  font-family: HelveticaNeueLTW05_85Heavy;
+  color: #0F05A0;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 750;
+}
+
+/* h3 Font */
+h3 {
   font-family: HelveticaNeueLTW05_85Heavy;
   color: #4D4D4D;
   font-size: 18px;
   line-height: 25px;
   font-weight: 750;
-  margin-top: 28px;
 }
 
 /* h4 Font */
-h3 {
+h4 {
   font-family: HelveticaNeueLTW05_85Heavy;
   color: #0F05A0;
-  font-size: 18px;
-  line-height: 25px;
+  font-size: 14px;
+  line-height: 23px;
   font-weight: 750;
 }
 
+/* Paragraph Text */
+p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 23px;
+  font-family: HelveticaNeueLTW01_55Roman;
+  color: #646464;
+}
+
+/* Lists */
+ol {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 23px;
+  font-family: HelveticaNeueLTW01_55Roman;
+  color: #646464;
+}
+
+li::marker {
+  font-size: 14px;
+  line-height: 23px;
+  font-family: HelveticaNeueLTW01_55Roman;
+  color: #646464;
+}
+
+/* Code */
+code {
+  background-color: #F2F2F2;
+  color: #0F05A0;
+}
+
+/* Links */
+a {
+  text-decoration: underline;
+  color: #0F05A0;
+}
+
+a:hover {
+  color: #070250;
+}
+
 /* Media Queries */
-@media screen and (max-width: 799px) {
-  .row {
-    margin-top: 0px;
+@media screen and (max-width: 768px) {
+  p {
+    font-size: 14px;
+    line-height: 23px;
+  }
+  ol {
+    font-size: 14px;
+    line-height: 23px;
+  }
+  h1 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  h2 {
+    font-size: 18px;
+    line-height: 25px;
+  }
+  h3 {
+    font-size: 14px;
+    line-height: 23px;
+  }
+  h4 {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  hr {
+    margin-top: 12px;
+    margin-bottom: 16px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  h2 {
+  p {
+    font-size: 14px;
+    line-height: 23px;
+  }
+  ol {
+    font-size: 14px;
+    line-height: 23px;
+  }
+  h1 {
     font-size: 18px;
-    line-height: 29px;
+    line-height: 25px;
   }
-  .row {
-    margin-top: 0px;
+  h2 {
+    font-size: 16px;
+    line-height: 22px;
   }
-  .col-sm-8 {
-    margin-top: 60px;
+  h3 {
+    font-size: 14px;
+    line-height: 23px;
+  }
+  h4 {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  hr {
+    margin-top: 12px;
+    margin-bottom: 16px;
   }
 }
 
@@ -125,82 +166,14 @@ h3 {
 
 /* Context Box */
 .well {
-    border-radius: 0px;
-    background-color: transparent;
-    box-shadow: none;
-    border: 0 solid #646464;
-    position: relative;
-    z-index: 0;
-    padding: 0;
-    margin-top: 20px;
-}
-
-
-/*******************************
-* Form Control (Input)
-*******************************/
-
-.form-control {
-    border-color: #646464;
-    outline: 0;
-    border-radius: 2px;
-    height: 40px;
-    box-shadow: none;
-    font-family: HelveticaNeueLTW01_55Roman;
-    font-size: 14px;
-    line-height: 26px;
-    padding: 6px 16px 6px 16px;
-    cursor: pointer;
-}
-
-.form-control:active {
-    border-color: #070250;
-    outline: 0;
-    border-radius: 2px;
-    height: 40px;
-    box-shadow: none;
-    font-family: HelveticaNeueLTW01_55Roman;
-    font-size: 14px;
-    line-height: 26px;
-    padding: 6px 16px 6px 16px;
-}
-
-.form-control:hover {
-    border-color: #070250;
-    outline: 0;
-    border-radius: 2px;
-    height: 40px;
-    box-shadow: none;
-    font-family: HelveticaNeueLTW01_55Roman;
-    font-size: 14px;
-    line-height: 26px;
-    padding: 6px 16px 6px 16px;
-    transition: 0.7s;
-}
-
-.form-control:focus {
-    border-color: #070250;
-    outline: 0;
-    border-radius: 2px;
-    height: 40px;
-    box-shadow: none;
-    font-family: HelveticaNeueLTW01_55Roman;
-    font-size: 14px;
-    line-height: 26px;
-    padding: 6px 16px 6px 16px;
-}
-
-.form-group {
-  margin-bottom: 0px;
-}
-
-.form-group {
-  margin-bottom: 0px;
-}
-
-.shiny-input-container:not(.shiny-input-container-inline) {
-  width: 600px;
-  max-width: 100%;
+  border-radius: 0px;
+  background-color: transparent;
+  box-shadow: none;
+  border: 0 solid #646464;
+  position: relative;
+  z-index: 0;
+  padding: 0;
+  margin-top: 20px;
 }
 
 
@@ -209,43 +182,23 @@ h3 {
 *******************************/
 
 /* Control Label Font (Radio Button Title) */
-#query-label {
-  font-family: HelveticaNeueLTW05_85Heavy;
+.sszRadioButton-label {
+  font-family: HelveticaNeueLTW01_55Roman;
   color: #646464;
-  font-weight: 400;
+  font-weight: 750;
   font-size: 12px;
   line-height: 19px;
   letter-spacing: 0.01em;
   text-align: left;
 }
 
-#price-label {
-  font-family: HelveticaNeueLTW01_41488878;
-  color: #646464;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 19px;
-  letter-spacing: 0.01em;
-  text-align: left;
-}
-
-#group-label {
-  font-family: HelveticaNeueLTW01_41488878;
-  color: #646464;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 19px;
-  letter-spacing: 0.01em;
-  text-align: left;
-}
-
-/* Control Label (Select Input) */
-#area-label.control-label {
+/* Control Label (Date Range, select input, text input) */
+.ssz-label {
     top: 14px;
-    font-family: HelveticaNeueLTW01_55Roman;
-    font-weight: 400;
-    color: #646464;
+    font-family: 'HelveticaNeueLTW01_55Roman';
+    font-weight: 750;
     font-size: 12px;
+    color: #646464;
     line-height: 19px;
     letter-spacing: 0.01em;
     text-align: left;
@@ -257,174 +210,82 @@ h3 {
     padding-right: 2px;
 }
 
-/* Control Label (Select Input) */
-#number-label.control-label {
-    top: 14px;
-    font-family: HelveticaNeueLTW01_55Roman;
-    font-weight: 400;
-    color: #646464;
-    font-size: 12px;
-    line-height: 19px;
-    letter-spacing: 0.01em;
-    text-align: left;
-    position: relative;
-    left: 16px;
-    z-index: 10;
-    background-color: white;
-    padding-left: 2px;
-    padding-right: 2px;
+/* General Label*/
+.label {
+  font-weight: 100;
 }
 
-/* Control Label (Select Input) */
-label[for=street] {
-    top: 14px;
-    font-family: HelveticaNeueLTW01_55Roman;
-    font-weight: 400;
-    color: #646464;
-    font-size: 12px;
-    line-height: 19px;
-    letter-spacing: 0.01em;
-    text-align: left;
-    position: relative;
-    left: 16px;
-    z-index: 10;
-    background-color: white;
-    padding-left: 2px;
-    padding-right: 2px;
+
+/*******************************
+* Form Control (Input)
+*******************************/
+
+/* Input field for selectInput and textInput */
+.form-group {
+  margin-bottom: 0px;
+  margin-top: -10px;
 }
 
+/*******************************
+* Radio Buttons
+*******************************/
+
+/* Div around Radio Buttons */
+.radioDiv {
+  margin-top: 18px;
+}
+
+/* SZZ Radio Button */
+.sszRadioButton {
+  margin-top: 10px;
+}
 
 /* Radio Buttons Label */
-.radioDiv {
-  margin-top: 40px;
-  padding: 20px;
-  background-color: #F2F2F2;
-}
-
-#query {
-  margin-top: 10px;
-}
-
-#price {
-  margin-top: 10px;
-}
-
-#group {
-  margin-top: 10px;
-}
-
-/* Radio Buttons Text */
 .radio span {
-  padding-left: 0.7em;
+  padding-left: 1em;
   display: inline-block;
+  font-family: HelveticaNeueLTW01_55Roman;
+  color: #646464;
+}
+
+.radio:hover span {
+  color: #070250;
+  transition: 0.5s;
+}
+
+.radio input[type="radio"]:checked+span {
+  color:#070250;
 }
 
 .radio label {
   color: #646464;
 }
 
-.radio label:hover {
-  color: #030033;
-  transition: 0.7s;
-}
-
-.radio label:active {
-  color: #070250;
-}
-
-
-/*******************************
-* Action Buttons
-*******************************/
-.btn {
-    background-color: #0F05A0;
-    padding: 9px 24px 9px 24px;
-    border-radius: 3px;
-    border: 0 solid;
-    height: 40px;
-    color: white;
-    font-family: HelveticaNeueLTW01_55Roman;
-    font-size: 14px;
-    line-height: 22px;
-    margin-top: 32px;
-}
-
-.btn:hover {
-    background-color: #070250;
-    color: white;
-    transition: 0.7s;
-}
-
-.btn:focus {
-  outline-color: transparent;
-  outline-style: solid;
-  background-color: #070250;
-  color: white;
-}
-
-#buttonStart:active {
-  outline-color: transparent;
-  outline-style: solid;
-  background-color: #070250;
-  color: white;
-  transition: 0.7s;
-}
-
-button {
-    background-color: #F2F2F2;
-    padding: 4px 12px 4px 12px;
-    border-radius: 30px;
-    border: 0 solid;
-    color: #0F05A0;
-    font-family: HelveticaNeueLTW01_55Roman;
-    font-size: 12px;
-    line-height: 22px;
-}
-
-button:hover {
-    background-color: rgba(15, 5, 160, 0.08);
-    color: #070250;
-    transition: 0.7s;
-}
-
-button:active {
-    background-color: #0F05A0;
-    color: white;
-    outline-color: transparent;
-    outline-style: solid;
-    transition: 0.7s;
-}
-
-
-/*******************************
-* Radio Buttons
-*******************************/
-
 /* Radio Buttons Input */
+.radio input[type="radio"]:hover {
+  border: 0.05em solid #030033;
+}
+
+.radio input[type="radio"]:focus {
+  border: 0.05em solid #080490;
+}
+
+/* General Radio Button */
 .radio {
   position: relative;
   display: block;
   margin-top: 1em;
   margin-bottom: 1.15em;
-  font-family: HelveticaNeueLTW01_55Roman;
 }
 
-input[type="radio"]:hover {
-  border: 0.05em solid #030033;
+.radio input[type=radio] {
+  margin: 0px 0 0 ;
+  display: inline-grid;
+  margin-left: -1.25em;
+  margin-top: 2px;
 }
 
-input[type="radio"]:focus {
-  border: 0.05em solid #080490;
-}
-
-input[type=radio] {
-    margin: 0px 0 0 ;
-    display: inline-grid;
-    margin-left: -1.25em;
-    margin-top: 2px;
-}
-
-input[type="radio"] {
+.radio input[type="radio"] {
   -webkit-appearance: none;
   appearance: none;
   background-color: white;
@@ -438,24 +299,480 @@ input[type="radio"] {
   place-content: center;
 }
 
-input[type="radio"]::before {
+.radio input[type="radio"]::before {
   content: "";
-  width: 0.25em;
-  height: 0.25em;
+  width: 0.5em;
+  height: 0.5em;
   border-radius: 50%;
   transform: scale(0);
   background-color: #646464;
 }
 
-input[type="radio"]:checked::before {
+.radio input[type="radio"]:checked::before {
   transform: scale(1);
-  background-color: #080490;
-  border: 0.03em solid #080490;
+  background-color: #070250;
+  border: 0.03em solid #070250;
 }
 
-input[type="radio"]:focus {
+.radio input[type="radio"]:focus {
   outline: max(2px, 0.15em) solid transparent;
   outline-offset: max(2px, 0.15em);
+}
+
+
+/*******************************
+* Text Input
+*******************************/
+
+/* Input */
+.form-control {
+  border-color: #646464;
+  outline: 0;
+  border-radius: 2px;
+  height: 40px;
+  box-shadow: none;
+  font-family: HelveticaNeueLTW01_55Roman;
+  font-size: 14px;
+  line-height: 26px;
+  padding: 6px 16px 6px 16px;
+}
+
+.form-control:hover {
+  background-color: white;
+  color:  #070250;
+  border-color: #070250;
+  padding: 6px 16px 6px 16px;
+  transition: 0.5s;
+}
+
+.form-control:focus {
+  color: #070250;
+  box-shadow: none;
+  border-color: #070250;
+  padding: 6px 16px 6px 16px;
+  transition: 0.5s;
+}
+
+
+/*******************************
+* Autocomplete from daqana/dqshiny
+*******************************/
+
+.autocomplete {
+  color: #0F05A0;
+}
+
+/* Autocomplete Drop Down Menu */
+.autocomplete-items div {
+  font-family: HelveticaNeueLTW01_55Roman;
+  font-size: 14px;
+  padding: 6px 16px 6px 20px;
+  line-height: 26px;
+  border-bottom: 0px;
+ }
+
+.autocomplete-items div:hover {
+  background-color: #F2F2F2;
+  color: #070250;
+  z-index: 100;
+ }
+
+.autocomplete-active {
+  background-color: #F2F2F2 !important;
+  color: #070250;
+}
+
+
+/*******************************
+* Action Buttons
+*******************************/
+
+/* General Button */
+.btn {
+  background-color: #0F05A0;
+  padding: 9px 24px 9px 24px;
+  border-radius: 3px;
+  border: 0 solid;
+  height: 40px;
+  color: white;
+  font-family: HelveticaNeueLTW01_55Roman;
+  font-size: 14px;
+  line-height: 22px;
+  margin-top: 32px;
+}
+
+.btn:hover {
+  background-color: #070250;
+  color: white;
+  transition: 0.5s;
+}
+
+.btn:focus {
+  outline-color: transparent;
+  outline-style: solid;
+  background-color: #070250;
+  color: white;
+}
+
+button {
+  background-color: #F2F2F2;
+  padding: 4px 12px 4px 12px;
+  border-radius: 30px;
+  border: 0 solid;
+  color: #0F05A0;
+  font-family: HelveticaNeueLTW01_55Roman;
+  font-size: 12px;
+  line-height: 22px;
+}
+
+button:hover {
+  background-color: rgba(15, 5, 160, 0.08);
+  color: #070250;
+  transition: 0.5s;
+}
+
+button:active {
+  background-color: #0F05A0;
+  color: white;
+  outline-color: transparent;
+  transition: 0.5s;
+}
+
+/* SSZ Button */
+.sszActionButton {
+  stroke: white;
+}
+
+.sszActionButton:active {
+  outline-color: transparent;
+  outline-style: solid;
+  background-color: #070250;
+  color: white;
+  transition: 0.5s;
+}
+
+.sszActionButton:focus {
+  outline-color: transparent;
+  outline-style: solid;
+  background-color: #070250;
+  color: white;
+  transition: 0.5s;
+}
+
+/* Button no Outline on Click */
+.btn:active:focus, .btn:focus {
+  outline: transparent;
+}
+
+/* Disable default Shiny Active and Focus Button */
+.btn-default:active:focus {
+  color: white;
+  background-color: #0F05A0;
+  border-color: #0F05A0;
+}
+
+
+/*******************************
+* Reactable
+*******************************/
+
+.rt-select {
+  visibility:hidden;
+}
+
+.rt-tbody {
+  font-family: HelveticaNeueLTW01_55Roman;
+}
+
+/* Table */
+.rt-table {
+  font-size: 11px;
+  color: #646464;
+  border: 0px;
+}
+
+ /* Table Header */
+.rt-thead {
+  color: #0F05A0;
+  font-family: HelveticaNeueLTW05_85Heavy;
+  position: relative;
+  min-width: 0px !important;
+  flex: 0;
+}
+
+.rt-tr.rt-tr-group-header {
+  color: #4D4D4D;
+}
+
+/* Table Pagination */
+.rt-pagination {
+  font-size: 12px;
+  color: #646464
+}
+
+.rt-expander-button:hover {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 2px;
+  padding: 0;
+}
+
+.rt-expander-button:active {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline-color: transparent;
+}
+
+.rt-expander-button:focus {
+  background: none;
+  border: none;
+  outline-color: transparent;
+}
+
+/* Activate Background-color and pointer on hover */
+.ReactTable .rt-tr:hover .rt-td {
+  background: #F2F2F2;
+  cursor: pointer;
+}
+
+/* Delete row select */
+.rt-td-select {
+  display: none;
+}
+
+.rt-th-select {
+  display: none;
+}
+
+
+/*******************************
+ * Date Range
+ *******************************/
+
+/* Date Picker Input Styling */
+.input-group-sm>.form-control, .input-group-sm>.input-group-addon, .input-group-sm>.input-group-btn>.btn {
+    height: 40px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+/* Date Range first Date Input*/
+.input-daterange input:first-child {
+    border-radius: 2px 2px 2px 2px;
+}
+
+.input-daterange input:first-child {
+    border-radius: 2px 2px 2px 2px;
+}
+
+.input-group .form-control:first-child {
+  text-align: left;
+  padding-left: 16px;
+}
+
+/* Date Range second Date Input*/
+.input-daterange input:last-child {
+    border-radius: 2px 2px 2px 2px;
+}
+
+.input-daterange input:last-child {
+    border-radius: 2px 2px 2px 2px;
+}
+
+.input-group .form-control:last-child {
+  text-align: left;
+  padding-left: 16px;
+}
+
+/* Calendar Icon */
+.input-group-addon {
+    background-color:transparent;
+    border: 0;
+    color:  #070250;
+}
+
+/* Date Range Dropdown */
+.dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 16px;
+    margin: 12px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-color: #646464;
+    border: 0 solid #646464;
+    border-radius: 2px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.24);
+}
+
+.datepicker-dropdown:before {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: transparent;
+    border-top: 0;
+    border-bottom-color: transparent;
+    position: absolute;
+}
+
+.datepicker-dropdown:after {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: transparent;
+    border-top: 0;
+    border-bottom-color: transparent;
+    position: absolute;
+}
+
+.datepicker-switch {
+  font-size: 14px;
+  font-family: HelveticaNeueLTW05_85Heavy;
+  color: #646464;
+}
+
+.datepicker .datepicker-switch:hover {
+  color: #070250;
+  background: transparent;
+  transition: 0.5s;
+}
+
+/* Active Day, Month, Year  */
+.datepicker table tr td.active.active {
+  background-color: #0F05A0;
+  border-radius: 99999px;
+}
+
+.datepicker table tr td span.active.active {
+    background-color: #0F05A0;
+    height: 45px;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 50px;
+    display: inline-grid;
+    align-content: center;
+}
+
+.datepicker table tr td span.active.active:hover {
+    background-color: #0F05A0;
+}
+
+.datepicker table tr td span.active.active:hover:hover {
+  background-color: #0F05A0;
+}
+
+.datepicker table tr td span {
+    height: 45px;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 50px;
+    display: inline-grid;
+    align-content: center;
+}
+
+.datepicker table tr td span:hover, .datepicker table tr td span.focused {
+    color: #0F05A0;
+    background: rgba(15, 5, 160, 0.08);
+}
+
+.datepicker table tr td.active.active:hover {
+  background-color: #0F05A0;
+}
+
+.datepicker table tr td span.active.active:hover {
+  background-color: #0F05A0;
+}
+
+/* Disable Century*/
+.datepicker table tr td span.active.disabled.active {
+   background-color: #0F05A0;
+}
+
+.datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active.disabled:focus, .datepicker table tr td span.active.disabled.focus, .datepicker table tr td span.active[disabled]:hover, .datepicker table tr td span.active[disabled]:focus, .datepicker table tr td span.active.focus[disabled], fieldset[disabled] .datepicker table tr td span.active:hover, fieldset[disabled] .datepicker table tr td span.active:focus, fieldset[disabled] .datepicker table tr td span.active.focus, .datepicker table tr td span.active.disabled:hover:hover, .datepicker table tr td span.active.disabled:hover:focus, .datepicker table tr td span.active.disabled.focus:hover, .datepicker table tr td span.active[disabled]:hover:hover, .datepicker table tr td span.active[disabled]:hover:focus, .datepicker table tr td span.active.focus[disabled]:hover, fieldset[disabled] .datepicker table tr td span.active:hover:hover, fieldset[disabled] .datepicker table tr td span.active:hover:focus, fieldset[disabled] .datepicker table tr td span.active.focus:hover, .datepicker table tr td span.active.disabled.disabled:hover, .datepicker table tr td span.active.disabled.disabled:focus, .datepicker table tr td span.active.disabled.disabled.focus, .datepicker table tr td span.active.disabled[disabled]:hover, .datepicker table tr td span.active.disabled[disabled]:focus, .datepicker table tr td span.active.disabled.focus[disabled], fieldset[disabled] .datepicker table tr td span.active.disabled:hover, fieldset[disabled] .datepicker table tr td span.active.disabled:focus, fieldset[disabled] .datepicker table tr td span.active.disabled.focus, .datepicker table tr td span.active.disabled.disabled:hover:hover, .datepicker table tr td span.active.disabled.disabled:hover:focus, .datepicker table tr td span.active.disabled.disabled.focus:hover, .datepicker table tr td span.active.disabled[disabled]:hover:hover, .datepicker table tr td span.active.disabled[disabled]:hover:focus, .datepicker table tr td span.active.disabled.focus[disabled]:hover, fieldset[disabled] .datepicker table tr td span.active.disabled:hover:hover, fieldset[disabled] .datepicker table tr td span.active.disabled:hover:focus, fieldset[disabled] .datepicker table tr td span.active.disabled.focus:hover {
+    background-color: #0F05A0;
+}
+
+/* Inactive Day */
+.datepicker table tr td.day:hover {
+  color: #0F05A0;
+  background: rgba(15, 5, 160, 0.08);
+  border-radius: 99999px;
+}
+
+/* Old Day */
+.datepicker table tr td.old, .datepicker table tr td.new {
+    color: #BFBFBF;
+}
+
+/* Days */
+.day {
+  color: #646464;
+}
+
+
+/*******************************
+ * Airdatepicker
+ *******************************/
+
+.airdatepicker {
+    background-color: #fff;
+    box-sizing: border-box;
+    font-family:  "HelveticaNeueLTW01_55Roman";
+    font-size: 14px;
+    color: #4a4a4a;
+    width: 237px;
+    position: fixed;
+    left: -100000px;
+    opacity: 0;
+    padding: 16px;
+    margin: 12px 0 0;
+    border-color: rgb(100 100 100);
+    border: 0px solid rgb(100 100 100);
+    border-radius: 2px;
+    box-shadow: 0px 0px 4px 0px rgb(0 0 0 / 24%);
+}
+
+.airdatepicker--content {
+    box-sizing: content-box;
+    padding: 0px;
+    height: auto;
+}
+
+.airdatepicker--cell-month,.airdatepicker--cell-year, .airdatepicker--cell.-current- {
+    height: 45px;
+    width: 45px;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 50px;
+    display: inline-grid;
+    align-content: center;
+    color: #646464;
+}
+
+.airdatepicker--cell.-selected-, .airdatepicker--cell.-selected-.-current-, .airdatepicker--cell.-selected-.-focus-, .airdatepicker--cell.-focus- {
+    background-color: #0F05A0;
+    border-radius: 50px;
+    height: 45px;
+    margin: 1%;
+    display: inline-grid;
+    align-content: center;
+    color: #fff;
+}
+
+.airdatepicker--nav-title {
+    font-size: 14px;
+    font-family: HelveticaNeueLTW05_85Heavy;
+    color: #646464;
 }
 
 
@@ -488,12 +805,13 @@ input[type="radio"]:focus {
 .selectize-dropdown-content {
   background: white;
   color: #646464;
+  font-family: HelveticaNeueLTW01_55Roman;
 }
 
 .selectize:hover {
-    background-color: #F2F2F2;
-    color: #070250;
-    transition: 0.7s;
+  background-color: #F2F2F2;
+  color: #070250;
+  transition: 0.5s;
 }
 
 .selectize-input.full{
@@ -508,31 +826,6 @@ input[type="radio"]:focus {
   height: 40px;
 }
 
-.selectize-input.full:hover {
-    background-color: white;
-    color:  #070250;
-    border-color: #070250;
-    padding: 6px 16px 6px 16px;
-    transition: 0.7s;
-}
-
-
-.selectize-input.full:focus {
-  color: #070250;
-  box-shadow: none;
-  border-color: #070250;
-  padding: 6px 16px 6px 16px;
-  transition: 0.7s;
-}
-
-.selectize-dropdown [data-selectable], .selectize-dropdown .optgroup-header {
-    padding: 9px 20px;
-}
-
-.selectize-dropdown [data-selectable] .highlight {
-  background: transparent;
-}
-
 .selectize-input.not-full{
   border-color: #646464;
   outline: 0;
@@ -545,94 +838,24 @@ input[type="radio"]:focus {
   height: 40px;
 }
 
-.selectize-input.not-full:hover {
-    background-color: white;
-    color:  #070250;
-    border-color: #070250;
-    padding: 6px 16px 6px 16px;
-    transition: 0.7s;
+.selectize-input.full:hover {
+  background-color: white;
+  color:  #070250;
+  border-color: #070250;
+  padding: 6px 16px 6px 16px;
+  transition: 0.5s;
 }
 
-.selectize-input.not-full:focus {
+.selectize-input.full:focus {
   color: #070250;
   box-shadow: none;
   border-color: #070250;
   padding: 6px 16px 6px 16px;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 
-/*******************************
- * Reactablee
-*******************************/
- 
- /* Table */
-.rt-table {
-   font-size: 12px;
-   color: #646464;
-   border: 0px;
- }
- 
- /* Table Header */
-.rt-thead {
-   color: #0F05A0;
-   font-family: HelveticaNeueLTW05_85Heavy;
-   vertical-align: bottom;
- }
- 
-.rt-tr-group-header {
-  color: #4D4D4D;
-}
- 
- /* Table Pagination */
-.rt-pagination {
-  font-size: 12px;
-  color: #646464
-}
-
-.rt-page-button {
-    padding: 6px 12px;
-    background-color: transparent;
-    border: none;
-    outline-width: 0;
-    outline-style: solid;
-    cursor: pointer;
-    color: #646464;
-    border-radius: 50px;
-}
-
-.rt-page-button:hover {
-    background-color: rgba(15, 5, 160, 0.08);
-    color: #070250;
-    transition: 0.7s;
-}
-
-.rt-page-button:active {
-    background-color: #0F05A0;
-    color: white;
-    outline-color: transparent;
-    outline-style: solid;
-    transition: 0.7s;
-}
-
-.rt-page-button:disabled {
-    opacity: 0;
-    cursor: default;
-}
-
-/* Activate Background-color and pointer on hover */
-.ReactTable .rt-tr:hover .rt-td {
-    background: #F2F2F2;
-    cursor: pointer;
-}
-
-/* Delete row select */
-.rt-td-select {
-  display: none;
-}
-
-.rt-tbody {
-  font-size: 11px;
-  font-family: HelveticaNeueLTW01_55Roman;
+.selectize-dropdown [data-selectable], .selectize-dropdown .optgroup-header {
+  padding: 9px 20px;
 }
 
 
@@ -642,341 +865,76 @@ input[type="radio"]:focus {
 
 /* Donwload Container */
 .downloadWrapperDiv {
-    margin-top: 16px;
-    display: flex;
+  margin-top: 16px;
+  max-width: 188px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
  }
 
-#csvDownload {
-    text-decoration: none;
-    border-radius: 50px;
-    background-color: #F2F2F2;
-    padding: 0;
-    height: 24px;
-    width: 50px;
-    font-size: 12px;
-    margin-right: 16px;
+/* General Button Styling */
+.sszDownload {
+    text-decoration:none;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid #7974C2;
     color: #0F05A0;
-    margin-top: 0;
+    font-family: HelveticaNeueLTW01_55Roman;
+    font-size: 14px;
+    line-height: 22px;
+    padding: 2px 6px 2px 6px;
+    text-align: center;
+    stroke: #0F05A0;
 }
 
-#csvDownload:hover {
-    text-decoration: none;
-    background-color: rgba(15, 5, 160, 0.08);
-    color: #070250;
-    transition: 0.7s;
- }
-
-#csvDownload:active {
-    text-decoration: none;
-    background-color: #0F05A0;
+/* Button Hover */
+.sszDownload:hover {
+    text-decoration:none;
+    background-color: #070250;
+    border: 1px solid #070250;
     color: white;
-    outline-color: transparent;
-    outline-style: solid;
-    transition: 0.7s;
- }
- 
-#downloadDataCSVTwo {
-    text-decoration: none;
-    border-radius: 50px;
-    background-color: #F2F2F2;
-    padding: 0;
-    height: 24px;
-    width: 50px;
-    font-size: 12px;
-    margin-right: 16px;
-    color: #0F05A0;
-    margin-top: 0;
+    transition: 0.5s;
 }
 
-#downloadDataCSVTwo:hover {
-    text-decoration: none;
-    background-color: rgba(15, 5, 160, 0.08);
-    color: #070250;
-    transition: 0.7s;
+.sszDownload:focus, .sszDownload:active {
+  text-decoration:none;
 }
 
-#downloadDataCSVTwo:active {
-    text-decoration: none;
-    background-color: #0F05A0;
-    color: white;
-    outline-color: transparent;
-    outline-style: solid;
-    transition: 0.7s;
+.sszDownload path {
+  stroke: #0F05A0;
 }
 
-#excelDownload {
-    text-decoration: none;
-    border-radius: 50px;
-    background-color: #F2F2F2;
-    padding: 0;
-    height: 24px;
-    font-size: 12px;
-    width: 50px;
-    margin-right: 16px;
-    color: #0F05A0;
-    margin-top: 0;
- }
-
-#excelDownload:hover {
-    text-decoration: none;
-    background-color: rgba(15, 5, 160, 0.08);
-    color: #070250;
-    transition: 0.7s;
- }
-
-#excelDownload:active {
-    text-decoration: none;
-    background-color: #0F05A0;
-    color: white;
-    outline-color: transparent;
-    outline-style: solid;
-    transition: 0.7s;
- }
- 
-#downloadDataEXCELTwo {
-    text-decoration: none;
-    border-radius: 50px;
-    background-color: #F2F2F2;
-    padding: 0;
-    height: 24px;
-    width: 50px;
-    font-size: 12px;
-    margin-right: 16px;
-    color: #0F05A0;
-    margin-top: 0;
+.sszDownload:hover path {
+  stroke: white;
+  transition: 0.5s;
 }
-
-#downloadDataEXCELTwo:hover {
-    text-decoration: none;
-    background-color: rgba(15, 5, 160, 0.08);
-    color: #070250;
-    transition: 0.7s;
-}
-
-#downloadDataEXCELTwo:active {
-    text-decoration: none;
-    background-color: #0F05A0;
-    color: white;
-    outline-color: transparent;
-    outline-style: solid;
-    transition: 0.7s;
-}
-
-#ogdDown {
-   border-radius: 50px;
-    background-color: #F2F2F2;
-    padding: 0;
-    height: 24px;
-    font-size: 12px;
-    width: 50px;
-    margin-right: 16px;
-    color: #0F05A0;
-    margin-top: 0;
- }
-
-#ogdDown:hover {
-    background-color: rgba(15, 5, 160, 0.08);
-    color: #070250;
-    transition: 0.7s;
- }
-
-#ogdDown:active {
-    background-color: #0F05A0;
-    color: white;
-    outline-color: transparent;
-    outline-style: solid;
-    transition: 0.7s;
- }
- 
- #linkOGD {
-    border-radius: 50px;
-    background-color: #F2F2F2;
-    padding: 0;
-    height: 24px;
-    font-size: 12px;
-    width: 50px;
-    margin-right: 16px;
-    color: #0F05A0;
-    margin-top: 0;
- }
- 
- #linkOGD:hover {
-    background-color: rgba(15, 5, 160, 0.08);
-    color: #070250;
-    transition: 0.7s;
- }
- 
- #linkOGD:avtive {
-    background-color: #0F05A0;
-    color: white;
-    outline-color: transparent;
-    outline-style: solid;
-    transition: 0.7s;
- }
-
 
 /*******************************
-* Titles
+* Link
 *******************************/
 
-.title_div {
-  font-family: HelveticaNeueLTW05_85Heavy;
+a:focus {
   color: #0F05A0;
-  font-size: 22px;
-  line-height: 31px;
-  font-weight: 750;
-  margin-top: -5px;
 }
 
-.subtitle_div {
-  font-family: HelveticaNeueLTW05_85Heavy;
-  color: #0F05A0;
-  font-size: 20px;
-  line-height: 28px;
-  font-weight: 750;
+a:hover {
+  transition: 0.5s;
 }
 
-.subSubtitle_div {
-  font-family: HelveticaNeueLTW01_55Roman;
-  font-size: 14px;
-  color: #646464;
-}
+/*******************************
+* Info Div
+*******************************/
 
-.tableTitle_div {
-  font-family: HelveticaNeueLTW05_85Heavy;
-  font-size: 14px;
-  color: #0F05A0;
-  margin-top: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.info_div {
-  font-family: HelveticaNeueLTW01_55Roman;
-  font-size: 14px;
+.infoDiv {
   margin-top: 40px;
-  color: #4D4D4D;
-}
-
-
-/*******************************
-* Tables
-*******************************/
-
-.table {
-  font-size: 80%;
-  font-family: HelveticaNeueLTW01_55Roman;
-}
-
-thead {
-  color: #0F05A0;
-  font-family: HelveticaNeueLTW05_85Heavy;
-}
-
-tbody {
-  color: #646464;
-}
-
-#countDivTwo {
-	margin-top: 20px;
-}
-
-#resultsInfos {
-  margin-top: -14px;
-  font-size: 18px;
-}
-
-
-/*******************************
-* Autocomplete
-*******************************/
-
-.autocomplete {
-  color: #0F05A0;
-}
-
-/* Autocomplete Drop Down Menu */
-.autocomplete-items div {
-  font-family: HelveticaNeueLTW01_55Roman;
-  font-size: 14px;
-  padding: 6px 16px 6px 20px;
-  line-height: 26px;
-  border-bottom: 0px;
- }
-
-.autocomplete-items div:hover {
+  padding: 20px;
   background-color: #F2F2F2;
-  color: #070250;
-  z-index: 100;
- }
- 
-.autocomplete-active {
-  background-color: #F2F2F2 !important;
-  color: #070250;
 }
- 
 
 
 /*******************************
-* Dropdowns
+* SSZ Fonts
 *******************************/
-
-.option[data-value = "Ganze Stadt"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 1"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 2"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 3"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 4"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 5"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 6"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 7"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 8"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 9"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 10"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 11"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 12"] {
-  font-weight: bold !important;
-}
-
-
-/*******************************
- * SSZ Fonts
- *******************************/
 
 @font-face {
   font-family: HelveticaNeueLTW01_41488878;

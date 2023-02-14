@@ -1,11 +1,12 @@
 ### Libraries
 library(shiny)
 library(reactable)
-library(ggplot2)
 library(dplyr)
 library(shinyjs)
 library(dqshiny)
 library(gtools)
+library(zuericssstyle)
+library(icons)
 
 ### Data
 source("DataLoad.R")
@@ -22,7 +23,8 @@ if (is.null(data)) {
   ui <- fluidPage(
 
     # Include CSS
-    includeCSS("sszTheme.css"),
+    includeCSS("sszThemeShiny.css"),
+    includeCSS("LimaTheme.css"),
     h1("Fehler"),
     p("Aufgrund momentaner Wartungsarbeiten ist die Applikation zur Zeit nicht verfügbar.")
   )
@@ -34,19 +36,22 @@ if (is.null(data)) {
   shinyApp(ui = ui, server = server)
 } else {
 
-
+  ### Set up directory for icons
+  ssz_icons <- icon_set("icons/")
+  
   ### GUI
   ui <- fluidPage(
 
     # CSS
-    includeCSS("sszTheme.css"),
+    includeCSS("sszThemeShiny.css"),
+    includeCSS("LimaTheme.css"),
 
     # App Selection
     tags$div(
-      class = "radioDiv",
+      class = "queryDiv",
       h1("Wählen Sie eine Abfrage"),
       hr(),
-      radioButtons(
+      sszRadioButtons(
         inputId = "query",
         label = NULL,
         choices = c(
@@ -67,13 +72,13 @@ if (is.null(data)) {
         sidebarPanel(
 
           # Area
-          selectInput("area",
+          sszSelectInput("area",
             "Gebietsauswahl",
             choices = c(unique(zones$GebietLang))
           ),
 
           # Price
-          radioButtons("price",
+          sszRadioButtons("price",
             "Preise",
             choices = c(unique(zones$PreisreiheLang))
           ),
@@ -81,7 +86,7 @@ if (is.null(data)) {
           # Group (conditional to price)
           conditionalPanel(
             condition = 'input.price != "Stockwerkeigentum pro m\u00B2 Wohnungsfläche"',
-            radioButtons("group",
+            sszRadioButtons("group",
               "Art",
               choices = c(
                 "Ganze Liegenschaften",
@@ -92,7 +97,7 @@ if (is.null(data)) {
           ),
 
           # Action Button
-          actionButton(
+          sszActionButton(
             inputId = "buttonStart",
             label = "Abfrage starten"
           ),
@@ -101,20 +106,23 @@ if (is.null(data)) {
           # Downloads
           conditionalPanel(
             condition = "input.buttonStart",
-            h2("Daten herunterladen"),
+            h3("Daten herunterladen"),
             tags$div(
               id = "downloadWrapperId",
               class = "downloadWrapperDiv",
-              sszDownload("csvDownload",
-                label = "csv"
+              sszDownloadButton("csvDownload",
+                                label = "csv",
+                                image = img(ssz_icons$download)
               ),
-              sszDownload("excelDownload",
-                label = "xlsx"
+              sszDownloadButton("excelDownload",
+                                label = "xlsx",
+                                image = img(ssz_icons$download)
               ),
-              actionButton(
-                inputId = "ogdDown",
+              sszOgdDownload(
+                outputId = "ogdDown",
                 label = "OGD",
-                onclick = "window.open('https://data.stadt-zuerich.ch/dataset?tags=lima', '_blank')"
+                href = "https://data.stadt-zuerich.ch/dataset?tags=lima",
+                image = img(ssz_icons$link)
               )
             )
           )
@@ -211,8 +219,8 @@ if (is.null(data)) {
           conditionalPanel(
             condition = "input.buttonStart",
             tags$div(
-              class = "radioDiv",
-              h3("Erklärung Zonenarten"),
+              class = "infoDiv",
+              h5("Erklärung Zonenarten"),
               hr(),
               p("Z = Zentrumszone"),
               p("K = Kernzone"),
@@ -236,21 +244,22 @@ if (is.null(data)) {
         sidebarPanel(
 
           # Street input
-          autocomplete_input(
+          sszAutocompleteInput(
             "street",
             "Geben Sie eine Strasse ein",
             unique(addresses$StrasseLang)
           ),
 
           # Number input
-          selectInput("number",
+          sszSelectInput(
+            "number",
             "Wählen Sie eine Hausnummer aus",
             choices = c("", sort(unique(addresses$Hnr))),
             selected = NULL
           ),
 
           # Action Button
-          actionButton(
+          sszActionButton(
             "buttonStartTwo",
             "Abfrage starten"
           ),
@@ -259,13 +268,11 @@ if (is.null(data)) {
           # Conditional Data Download
           conditionalPanel(
             condition = "input.street && input.number && input.buttonStartTwo",
-            uiOutput("dataTwo"),
+            uiOutput("downloadTitleTwo"),
             tags$div(
               id = "downloadWrapperId",
               class = "downloadWrapperDiv",
-              uiOutput("tagCSV"),
-              uiOutput("tagEXCEL"),
-              uiOutput("tagOGD")
+              uiOutput("downloadTwo")
             )
           )
         ),
@@ -276,11 +283,7 @@ if (is.null(data)) {
 
           # Info Table
           htmlOutput("resultsInfos"),
-          tags$div(
-            id = "info_id",
-            class = "info_div",
-            textOutput("info")
-          ),
+          uiOutput("info"),
           br(),
 
           # Table for prices
@@ -308,8 +311,8 @@ if (is.null(data)) {
             condition = "input.street && input.number && input.buttonStartTwo",
             tags$div(
               id = "defs",
-              class = "radioDiv",
-              h3("Begriffserklärung"),
+              class = "infoDiv",
+              h5("Begriffserklärung"),
               hr(),
               p("StwE = Stockwerkeigentum"),
               p("VersW = Versicherungswert des Gebäudes")
@@ -323,7 +326,7 @@ if (is.null(data)) {
   ### Server
   server <- function(input, output, session) {
 
-    ### Get Data for Download
+    ### Get Data for Download 
     # App 1
     dataDownload <- eventReactive(input$buttonStart, {
       if (input$price == "Stockwerkeigentum pro m\u00B2 Wohnungsfläche") {
@@ -718,12 +721,10 @@ if (is.null(data)) {
     })
 
     # Show Output Information Address
-    observeEvent(input$buttonStartTwo, {
       output$resultsInfos <- renderText({
         outInfos <- infosReactive()
         outInfos
       })
-    })
 
     # Get Information if Data Frame is empty
     dataAvailable <- eventReactive(input$buttonStartTwo, {
@@ -778,19 +779,44 @@ if (is.null(data)) {
 
       availability <- dataAvailable()
       if (availability > 0) {
-        req(input$street)
-        req(input$number)
-        infoTitle <- paste0("In dieser Zone dieses Quartiers wurden folgende Medianpreise und Handänderungen festgestellt:")
+        district <- addresses %>%
+          filter(StrasseLang == input$street & Hnr == input$number) %>%
+          pull(QuarLang)
+        zoneBZO16 <- addresses %>%
+          filter(StrasseLang == input$street & Hnr == input$number) %>%
+          pull(ZoneBZO16Lang)
+        zoneBZO99 <- addresses %>%
+          filter(StrasseLang == input$street & Hnr == input$number) %>%
+          pull(ZoneBZO99Lang)
+        zones <- paste0(zoneBZO16, " (bis 2018: ", zoneBZO99, ")")
+        infoTitle <- paste0("Medianpreise und Handänderungen im Quartier ", district, ", in der ", zones)
       } else {
-        req(input$street)
-        req(input$number)
-        infoTitle <- paste0("Die gewünschte Adresse liegt nicht in einer Wohnzone oder Mischzone (Kernzone, Zentrumszone, Quartiererhaltungszone).\nWählen Sie eine andere Adresse und machen Sie eine erneute Abfrage.")
+        infoTitle <- paste0("Die gewünschte Adresse liegt nicht in einer Wohn- oder Mischzone (Kernzone, Zentrumszone, Quartiererhaltungszone).\nWählen Sie eine andere Adresse und machen Sie eine erneute Abfrage.")
       }
     })
 
     # Show Info (App 2)
-    output$info <- renderText({
-      infoReactive()
+    output$info <- renderUI({
+      availability <- dataAvailable()
+      if (availability > 0) {
+        tags$div(
+          class = "info_div",
+          infoReactive()
+        )
+      } else {
+        tags$div(
+          class = "info_na_div",
+          tags$div(
+            class = "info_na_icon",
+            img(ssz_icons$`warning`)
+          ),
+          tags$div(
+            class = "info_na_text",
+            h6("Achtung"),
+            infoReactive()
+          )
+        )
+      }
     })
 
     # Show Output (App 2)
@@ -1016,8 +1042,7 @@ if (is.null(data)) {
       if (availability > 0) {
         actionLink("linkCountTwoTest",
           "Anzahl Handänderungen einblenden",
-          icon = icon("angle-down"),
-          style = "font-size:12px"
+          icon = icon("angle-down")
         )
       } else {
         txt <- NULL
@@ -1126,13 +1151,13 @@ if (is.null(data)) {
 
     # Conditional Data Download (title)
     observeEvent(input$buttonStartTwo, {
-      output$dataTwo <- renderUI({
+      output$downloadTitleTwo <- renderUI({
         availability <- dataAvailable()
         if (availability > 0) {
           req(input$street)
           req(input$number)
           req(input$buttonStartTwo)
-          h2("Daten herunterladen")
+          h3("Daten herunterladen")
         } else {
           txt <- NULL
         }
@@ -1140,46 +1165,29 @@ if (is.null(data)) {
     })
 
     # Conditional Data Download (CSV link)
-    output$tagCSV <- renderUI({
+    output$downloadTwo <- renderUI({
       availability <- dataAvailable()
       if (availability > 0) {
         req(input$street)
         req(input$number)
         req(input$buttonStartTwo)
-        sszDownload("downloadDataCSVTwo",
-          label = "csv"
-        )
-      } else {
-        txt <- NULL
-      }
-    })
-
-    # Conditional Data Download (Excel link)
-    output$tagEXCEL <- renderUI({
-      availability <- dataAvailable()
-      if (availability > 0) {
-        req(input$street)
-        req(input$number)
-        req(input$buttonStartTwo)
-        sszDownload("downloadDataEXCELTwo",
-          label = "xlsx"
-        )
-      } else {
-        txt <- NULL
-      }
-    })
-
-    # Conditional Data Download (OGD link)
-    output$tagOGD <- renderUI({
-      availability <- dataAvailable()
-      if (availability > 0) {
-        req(input$street)
-        req(input$number)
-        req(input$buttonStartTwo)
-        actionButton(
-          inputId = "linkOGD",
-          label = "OGD",
-          onclick = "window.open('https://data.stadt-zuerich.ch/dataset?tags=lima', '_blank')"
+        tags$div(
+          id = "downloadWrapperId",
+          class = "downloadWrapperDiv",
+          sszDownloadButton("downloadDataCSVTwo",
+                            label = "csv",
+                            image = img(ssz_icons$download)
+          ),
+          sszDownloadButton("downloadDataEXCELTwo",
+                            label = "xlsx",
+                            image = img(ssz_icons$download)
+          ),
+          sszOgdDownload(
+            outputId = "linkOGD",
+            label = "OGD",
+            href = "https://data.stadt-zuerich.ch/dataset?tags=lima",
+            image = img(ssz_icons$link)
+          )
         )
       } else {
         txt <- NULL
