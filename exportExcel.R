@@ -119,9 +119,9 @@ sszDownloadExcel <- function(filteredData, file, queryinput, input1, input2, inp
   
     # Numeric values: different columns in the two queries
     if (queryinput == "Abfrage 1: Zeitreihen nach Bauzonen für ganze Stadt und Teilgebiete") {
-      addStyle(wb, 3, style = styNumeric, rows = 10:37, cols = 6:15, gridExpand = TRUE)
+      addStyle(wb, 3, style = styNumeric, rows = 10:50, cols = 6:15, gridExpand = TRUE)
     } else {
-      addStyle(wb, 3, style = styNumeric, rows = 10:37, cols = 4:10, gridExpand = TRUE)
+      addStyle(wb, 3, style = styNumeric, rows = 10:50, cols = 4:10, gridExpand = TRUE)
     }
   
   modifyBaseFont(wb, fontSize = 8, fontName = "Arial")
