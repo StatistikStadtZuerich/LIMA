@@ -122,7 +122,7 @@ if (is.null(data)) {
                 outputId = "ogdDown",
                 label = "OGD",
                 href = "https://data.stadt-zuerich.ch/dataset?tags=lima",
-                image = img(ssz_icons$`external-link`)
+                image = img(ssz_icons$link)
               )
             )
           )
@@ -1185,7 +1185,8 @@ if (is.null(data)) {
           sszOgdDownload(
             outputId = "linkOGD",
             label = "OGD",
-            href = "https://data.stadt-zuerich.ch/dataset?tags=lima"
+            href = "https://data.stadt-zuerich.ch/dataset?tags=lima",
+            image = img(ssz_icons$link)
           )
         )
       } else {
