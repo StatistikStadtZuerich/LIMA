@@ -1,5 +1,5 @@
 FROM rocker/tidyverse:4.2.1
-RUN install2.r rsconnect shiny reactable Rcpp shinyjs gtools httr jpeg openxlsx readxl kableExtra
+RUN install2.r rsconnect shiny reactable Rcpp shinyjs gtools httr jpeg openxlsx readxl kableExtra furrr
 RUN  R -e 'remotes::install_github("daqana/dqshiny")'
 RUN  R -e 'remotes::install_github("StatistikStadtZuerich/zuericssstyle")'
 RUN  R -e 'remotes::install_github("mitchelloharawild/icons")'

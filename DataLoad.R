@@ -1,7 +1,7 @@
 ### Libraries
 library(tidyverse)
 library(httr)
-library(parallel)
+library(furrr)
 
 ### Load Data
 ## Parallelisation
@@ -28,10 +28,7 @@ tryCatch(
     }
 
     # Parallelisation
-    cl <- makeCluster(detectCores())
-    clusterExport(cl, "URLs")
-    data <- parLapply(cl, URLs, dataDownload)
-    stopCluster(cl)
+    data <- future_map(URLs, dataDownload)
   },
   error = function(e) { # Specifying error message
     message("Error in Data Load")
