@@ -6,20 +6,6 @@
 * General Settings
 *******************************/
 
-/* Row */
-.row {
-  margin-top: 30px;
-}
-
-/* Columns */
-.col-sm-8 {
-  margin-top: 40px;
-}
-
-.col-sm-4 {
-  min-height: 450px;
-  margin-top: 10px;
-}
 
 /* Ruler */
 hr {
@@ -56,15 +42,14 @@ h3 {
   font-size: 18px;
   line-height: 25px;
   font-weight: 750;
-  margin-top: 28px;
 }
 
-/* h5 Font (for Infos) */
+/* h4 Font */
 h4 {
   font-family: HelveticaNeueLTW05_85Heavy;
   color: #0F05A0;
-  font-size: 18px;
-  line-height: 25px;
+  font-size: 14px;
+  line-height: 23px;
   font-weight: 750;
 }
 
@@ -103,34 +88,12 @@ code {
 
 /* Links */
 a {
-  font-size: 14px;
-	color: #0F05A0;
-	text-decoration: none;
-	font-family: HelveticaNeueLTW01_55Roman;
+  text-decoration: underline;
+  color: #0F05A0;
 }
 
 a:hover {
   color: #070250;
-  transition: 0.7s;
-}
-
-a.visitedLink {
-  color: #070250;
-  text-decoration: underline;
-}
-
-.linkCount {
-  margin-bottom: 40px;
-  margin-top: 40px;
-}
-
-a#linkCountTwoTest.action-button.shiny-bound-input {
-  font-size: 14px !important;
-}
-
-.linkCountTwoDiv {
-  margin-bottom: 40px;
-  margin-top: 40px;
 }
 
 /* Media Queries */
@@ -163,9 +126,6 @@ a#linkCountTwoTest.action-button.shiny-bound-input {
     margin-top: 12px;
     margin-bottom: 16px;
   }
-  .row {
-    margin-top: 0px;
-  }
 }
 
 @media screen and (max-width: 600px) {
@@ -197,55 +157,23 @@ a#linkCountTwoTest.action-button.shiny-bound-input {
     margin-top: 12px;
     margin-bottom: 16px;
   }
-  .row {
-    margin-top: 0px;
-  }
-  .col-sm-8 {
-    margin-top: 60px;
-  }
 }
+
 
 /*******************************
-* Titles
+* Context Box
 *******************************/
 
-.title_div {
-  font-family: HelveticaNeueLTW05_85Heavy;
-  color: #0F05A0;
-  font-size: 22px;
-  line-height: 31px;
-  font-weight: 750;
-  margin-top: -5px;
-}
-
-.subtitle_div {
-  font-family: HelveticaNeueLTW05_85Heavy;
-  color: #0F05A0;
-  font-size: 20px;
-  line-height: 28px;
-  font-weight: 750;
-}
-
-.subSubtitle_div {
-  font-family: HelveticaNeueLTW01_55Roman;
-  font-size: 14px;
-  color: #646464;
-}
-
-.tableTitle_div {
-  font-family: HelveticaNeueLTW05_85Heavy;
-  font-size: 14px;
-  color: #0F05A0;
+/* Context Box */
+.well {
+  border-radius: 0px;
+  background-color: transparent;
+  box-shadow: none;
+  border: 0 solid #646464;
+  position: relative;
+  z-index: 0;
+  padding: 0;
   margin-top: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.info_div {
-  font-family: HelveticaNeueLTW01_55Roman;
-  font-size: 14px;
-  margin-top: 40px;
-  color: #4D4D4D;
 }
 
 
@@ -287,70 +215,32 @@ a#linkCountTwoTest.action-button.shiny-bound-input {
   font-weight: 100;
 }
 
-/*******************************
-* Context Box
-*******************************/
-
-/* Context Box */
-.well {
-  border-radius: 0px;
-  background-color: transparent;
-  box-shadow: none;
-  border: 0 solid #646464;
-  position: relative;
-  z-index: 0;
-  padding: 0;
-  margin-top: 20px;
-}
-
 
 /*******************************
 * Form Control (Input)
 *******************************/
 
+/* Input field for selectInput and textInput */
 .form-group {
   margin-bottom: 0px;
   margin-top: -10px;
-  margin-bottom: 10px;
 }
-
-.shiny-input-container:not(.shiny-input-container-inline) {
-  width: 600px;
-  max-width: 100%;
-}
-
-/* Color the Label on input hover */
-.form-group:hover .ssz-label {
-  color: #070250;
-  transition: 0.7s;
-}
-
-/* Color the Label on input hover */
-option:checked .ssz-label {
-  color: #070250;
-}
-
 
 /*******************************
 * Radio Buttons
 *******************************/
 
-/* Radio Buttons Label */
-.queryDiv {
-  margin-top: 40px;
-  padding: 20px;
-  background-color: #F2F2F2;
-}
-
-.sszRadioButton {
-  margin-top: 10px;
-}
-
+/* Div around Radio Buttons */
 .radioDiv {
   margin-top: 18px;
 }
 
-/* Radio Buttons Span */
+/* SZZ Radio Button */
+.sszRadioButton {
+  margin-top: 10px;
+}
+
+/* Radio Buttons Label */
 .radio span {
   padding-left: 1em;
   display: inline-block;
@@ -360,7 +250,7 @@ option:checked .ssz-label {
 
 .radio:hover span {
   color: #070250;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 
 .radio input[type="radio"]:checked+span {
@@ -368,7 +258,7 @@ option:checked .ssz-label {
 }
 
 .radio label {
-  margin-left: -0.24em;
+  color: #646464;
 }
 
 /* Radio Buttons Input */
@@ -377,11 +267,7 @@ option:checked .ssz-label {
 }
 
 .radio input[type="radio"]:focus {
-  border: 0.05em solid #070250;
-}
-
-.radio input[type="radio"]:active {
-  border: 0.05em solid #070250;
+  border: 0.05em solid #080490;
 }
 
 /* General Radio Button */
@@ -456,7 +342,7 @@ option:checked .ssz-label {
   color:  #070250;
   border-color: #070250;
   padding: 6px 16px 6px 16px;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 
 .form-control:focus {
@@ -464,7 +350,7 @@ option:checked .ssz-label {
   box-shadow: none;
   border-color: #070250;
   padding: 6px 16px 6px 16px;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 
 
@@ -496,10 +382,12 @@ option:checked .ssz-label {
   color: #070250;
 }
 
+
 /*******************************
 * Action Buttons
 *******************************/
 
+/* General Button */
 .btn {
   background-color: #0F05A0;
   padding: 9px 24px 9px 24px;
@@ -516,7 +404,7 @@ option:checked .ssz-label {
 .btn:hover {
   background-color: #070250;
   color: white;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 
 .btn:focus {
@@ -540,14 +428,19 @@ button {
 button:hover {
   background-color: rgba(15, 5, 160, 0.08);
   color: #070250;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 
 button:active {
   background-color: #0F05A0;
   color: white;
   outline-color: transparent;
-  transition: 0.7s;
+  transition: 0.5s;
+}
+
+/* SSZ Button */
+.sszActionButton {
+  stroke: white;
 }
 
 .sszActionButton:active {
@@ -555,11 +448,27 @@ button:active {
   outline-style: solid;
   background-color: #070250;
   color: white;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 
-.sszActionButton {
-  stroke: white;
+.sszActionButton:focus {
+  outline-color: transparent;
+  outline-style: solid;
+  background-color: #070250;
+  color: white;
+  transition: 0.5s;
+}
+
+/* Button no Outline on Click */
+.btn:active:focus, .btn:focus {
+  outline: transparent;
+}
+
+/* Disable default Shiny Active and Focus Button */
+.btn-default:active:focus {
+  color: white;
+  background-color: #0F05A0;
+  border-color: #0F05A0;
 }
 
 
@@ -577,7 +486,7 @@ button:active {
 
 /* Table */
 .rt-table {
-  font-size: 12px;
+  font-size: 11px;
   color: #646464;
   border: 0px;
 }
@@ -589,6 +498,10 @@ button:active {
   position: relative;
   min-width: 0px !important;
   flex: 0;
+}
+
+.rt-tr.rt-tr-group-header {
+  color: #4D4D4D;
 }
 
 /* Table Pagination */
@@ -633,32 +546,233 @@ button:active {
   display: none;
 }
 
-.rt-tr.rt-tr-group-header {
-  color: #4D4D4D;
+
+/*******************************
+ * Date Range
+ *******************************/
+
+/* Date Picker Input Styling */
+.input-group-sm>.form-control, .input-group-sm>.input-group-addon, .input-group-sm>.input-group-btn>.btn {
+    height: 40px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+/* Date Range first Date Input*/
+.input-daterange input:first-child {
+    border-radius: 2px 2px 2px 2px;
+}
+
+.input-daterange input:first-child {
+    border-radius: 2px 2px 2px 2px;
+}
+
+.input-group .form-control:first-child {
+  text-align: left;
+  padding-left: 16px;
+}
+
+/* Date Range second Date Input*/
+.input-daterange input:last-child {
+    border-radius: 2px 2px 2px 2px;
+}
+
+.input-daterange input:last-child {
+    border-radius: 2px 2px 2px 2px;
+}
+
+.input-group .form-control:last-child {
+  text-align: left;
+  padding-left: 16px;
+}
+
+/* Calendar Icon */
+.input-group-addon {
+    background-color:transparent;
+    border: 0;
+    color:  #070250;
+}
+
+/* Date Range Dropdown */
+.dropdown-menu {
+    position: absolute;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 16px;
+    margin: 12px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-color: #646464;
+    border: 0 solid #646464;
+    border-radius: 2px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.24);
+}
+
+.datepicker-dropdown:before {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: transparent;
+    border-top: 0;
+    border-bottom-color: transparent;
+    position: absolute;
+}
+
+.datepicker-dropdown:after {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: transparent;
+    border-top: 0;
+    border-bottom-color: transparent;
+    position: absolute;
+}
+
+.datepicker-switch {
+  font-size: 14px;
+  font-family: HelveticaNeueLTW05_85Heavy;
+  color: #646464;
+}
+
+.datepicker .datepicker-switch:hover {
+  color: #070250;
+  background: transparent;
+  transition: 0.5s;
+}
+
+/* Active Day, Month, Year  */
+.datepicker table tr td.active.active {
+  background-color: #0F05A0;
+  border-radius: 99999px;
+}
+
+.datepicker table tr td span.active.active {
+    background-color: #0F05A0;
+    height: 45px;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 50px;
+    display: inline-grid;
+    align-content: center;
+}
+
+.datepicker table tr td span.active.active:hover {
+    background-color: #0F05A0;
+}
+
+.datepicker table tr td span.active.active:hover:hover {
+  background-color: #0F05A0;
+}
+
+.datepicker table tr td span {
+    height: 45px;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 50px;
+    display: inline-grid;
+    align-content: center;
+}
+
+.datepicker table tr td span:hover, .datepicker table tr td span.focused {
+    color: #0F05A0;
+    background: rgba(15, 5, 160, 0.08);
+}
+
+.datepicker table tr td.active.active:hover {
+  background-color: #0F05A0;
+}
+
+.datepicker table tr td span.active.active:hover {
+  background-color: #0F05A0;
+}
+
+/* Disable Century*/
+.datepicker table tr td span.active.disabled.active {
+   background-color: #0F05A0;
+}
+
+.datepicker table tr td span.active.disabled:hover, .datepicker table tr td span.active.disabled:focus, .datepicker table tr td span.active.disabled.focus, .datepicker table tr td span.active[disabled]:hover, .datepicker table tr td span.active[disabled]:focus, .datepicker table tr td span.active.focus[disabled], fieldset[disabled] .datepicker table tr td span.active:hover, fieldset[disabled] .datepicker table tr td span.active:focus, fieldset[disabled] .datepicker table tr td span.active.focus, .datepicker table tr td span.active.disabled:hover:hover, .datepicker table tr td span.active.disabled:hover:focus, .datepicker table tr td span.active.disabled.focus:hover, .datepicker table tr td span.active[disabled]:hover:hover, .datepicker table tr td span.active[disabled]:hover:focus, .datepicker table tr td span.active.focus[disabled]:hover, fieldset[disabled] .datepicker table tr td span.active:hover:hover, fieldset[disabled] .datepicker table tr td span.active:hover:focus, fieldset[disabled] .datepicker table tr td span.active.focus:hover, .datepicker table tr td span.active.disabled.disabled:hover, .datepicker table tr td span.active.disabled.disabled:focus, .datepicker table tr td span.active.disabled.disabled.focus, .datepicker table tr td span.active.disabled[disabled]:hover, .datepicker table tr td span.active.disabled[disabled]:focus, .datepicker table tr td span.active.disabled.focus[disabled], fieldset[disabled] .datepicker table tr td span.active.disabled:hover, fieldset[disabled] .datepicker table tr td span.active.disabled:focus, fieldset[disabled] .datepicker table tr td span.active.disabled.focus, .datepicker table tr td span.active.disabled.disabled:hover:hover, .datepicker table tr td span.active.disabled.disabled:hover:focus, .datepicker table tr td span.active.disabled.disabled.focus:hover, .datepicker table tr td span.active.disabled[disabled]:hover:hover, .datepicker table tr td span.active.disabled[disabled]:hover:focus, .datepicker table tr td span.active.disabled.focus[disabled]:hover, fieldset[disabled] .datepicker table tr td span.active.disabled:hover:hover, fieldset[disabled] .datepicker table tr td span.active.disabled:hover:focus, fieldset[disabled] .datepicker table tr td span.active.disabled.focus:hover {
+    background-color: #0F05A0;
+}
+
+/* Inactive Day */
+.datepicker table tr td.day:hover {
+  color: #0F05A0;
+  background: rgba(15, 5, 160, 0.08);
+  border-radius: 99999px;
+}
+
+/* Old Day */
+.datepicker table tr td.old, .datepicker table tr td.new {
+    color: #BFBFBF;
+}
+
+/* Days */
+.day {
+  color: #646464;
 }
 
 
 /*******************************
-* Tables
-*******************************/
+ * Airdatepicker
+ *******************************/
 
-.table {
-  font-size: 80%;
-  font-family: HelveticaNeueLTW01_55Roman;
+.airdatepicker {
+    background-color: #fff;
+    box-sizing: border-box;
+    font-family:  "HelveticaNeueLTW01_55Roman";
+    font-size: 14px;
+    color: #4a4a4a;
+    width: 237px;
+    position: fixed;
+    left: -100000px;
+    opacity: 0;
+    padding: 16px;
+    margin: 12px 0 0;
+    border-color: rgb(100 100 100);
+    border: 0px solid rgb(100 100 100);
+    border-radius: 2px;
+    box-shadow: 0px 0px 4px 0px rgb(0 0 0 / 24%);
 }
 
-thead {
-  color: #0F05A0;
-  font-family: HelveticaNeueLTW05_85Heavy;
+.airdatepicker--content {
+    box-sizing: content-box;
+    padding: 0px;
+    height: auto;
 }
 
-tbody {
-  color: #646464;
+.airdatepicker--cell-month,.airdatepicker--cell-year, .airdatepicker--cell.-current- {
+    height: 45px;
+    width: 45px;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 50px;
+    display: inline-grid;
+    align-content: center;
+    color: #646464;
 }
 
-#resultsInfos {
-  margin-top: -14px;
-  font-size: 18px;
+.airdatepicker--cell.-selected-, .airdatepicker--cell.-selected-.-current-, .airdatepicker--cell.-selected-.-focus-, .airdatepicker--cell.-focus- {
+    background-color: #0F05A0;
+    border-radius: 50px;
+    height: 45px;
+    margin: 1%;
+    display: inline-grid;
+    align-content: center;
+    color: #fff;
+}
+
+.airdatepicker--nav-title {
+    font-size: 14px;
+    font-family: HelveticaNeueLTW05_85Heavy;
+    color: #646464;
 }
 
 
@@ -691,15 +805,28 @@ tbody {
 .selectize-dropdown-content {
   background: white;
   color: #646464;
+  font-family: HelveticaNeueLTW01_55Roman;
 }
 
 .selectize:hover {
   background-color: #F2F2F2;
   color: #070250;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 
 .selectize-input.full{
+  border-color: #646464;
+  outline: 0;
+  border-radius: 2px;
+  box-shadow: none;
+  font-family: HelveticaNeueLTW01_55Roman;
+  font-size: 14px;
+  line-height: 26px;
+  padding: 6px 16px 6px 16px;
+  height: 40px;
+}
+
+.selectize-input.not-full{
   border-color: #646464;
   outline: 0;
   border-radius: 2px;
@@ -716,7 +843,7 @@ tbody {
   color:  #070250;
   border-color: #070250;
   padding: 6px 16px 6px 16px;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 
 .selectize-input.full:focus {
@@ -724,52 +851,75 @@ tbody {
   box-shadow: none;
   border-color: #070250;
   padding: 6px 16px 6px 16px;
-  transition: 0.7s;
+  transition: 0.5s;
 }
 
 .selectize-dropdown [data-selectable], .selectize-dropdown .optgroup-header {
   padding: 9px 20px;
 }
 
+
 /*******************************
 * Downloads
 *******************************/
 
- /* Donwload Container */
+/* Donwload Container */
 .downloadWrapperDiv {
-    margin-top: 16px;
-    display: flex;
+  margin-top: 16px;
+  max-width: 188px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
  }
 
+/* General Button Styling */
 .sszDownload {
-    text-decoration: none;
-    border-radius: 50px;
-    background-color: #F2F2F2;
-    padding: 0;
-    height: 24px;
-    width: 50px;
-    font-size: 12px;
-    margin-right: 16px;
+    text-decoration:none;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid #7974C2;
     color: #0F05A0;
-    margin-top: 0;
+    font-family: HelveticaNeueLTW01_55Roman;
+    font-size: 14px;
+    line-height: 22px;
+    padding: 2px 6px 2px 6px;
+    text-align: center;
+    stroke: #0F05A0;
 }
 
+/* Button Hover */
 .sszDownload:hover {
-    text-decoration: none;
-    background-color: rgba(15, 5, 160, 0.08);
-    color: #070250;
-    transition: 0.7s;
- }
-
-.sszDownload:active {
-    text-decoration: none;
-    background-color: #0F05A0;
+    text-decoration:none;
+    background-color: #070250;
+    border: 1px solid #070250;
     color: white;
-    outline-color: transparent;
-    outline-style: solid;
-    transition: 0.7s;
- }
+    transition: 0.5s;
+}
 
+.sszDownload:focus, .sszDownload:active {
+  text-decoration:none;
+}
+
+.sszDownload path {
+  stroke: #0F05A0;
+}
+
+.sszDownload:hover path {
+  stroke: white;
+  transition: 0.5s;
+}
+
+/*******************************
+* Link
+*******************************/
+
+a:focus {
+  color: #0F05A0;
+}
+
+a:hover {
+  transition: 0.5s;
+}
 
 /*******************************
 * Info Div
@@ -779,71 +929,6 @@ tbody {
   margin-top: 40px;
   padding: 20px;
   background-color: #F2F2F2;
-}
-
-/*******************************
-* Info Div
-*******************************/
-.queryDiv {
-  margin-top: 40px;
-  padding: 20px;
-  background-color: #F2F2F2;
-}
-
-/*******************************
-* Dropdowns
-*******************************/
-
-.option[data-value = "Ganze Stadt"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 1"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 2"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 3"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 4"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 5"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 6"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 7"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 8"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 9"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 10"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 11"] {
-  font-weight: bold !important;
-}
-
-.option[data-value = "Kreis 12"] {
-  font-weight: bold !important;
 }
 
 
